@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MATHEO IQ • Dashboard Template v1</title>
+  <style>
+    :root {
+      --bg: #07111a;
+      --bg-2: #0b1724;
+      --panel: rgba(17, 31, 47, 0.94);
+      --panel-2: rgba(25, 46, 70, 0.94);
+      --line: rgba(129, 174, 213, 0.26);
+      --text: #f8fbff;
+      --text-2: #dcebfa;
+      --muted: #a9c0d6;
+      --teal: #19c7c5;
+      --teal-2: #0ea5a3;
+      --cyan: #73e6ff;
+      --green: #58d68d;
+      --amber: #f4be64;
+      --rose: #ff8a8a;
+      --shadow: 0 28px 90px rgba(0,0,0,.38);
+      --font: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 85% 6%, rgba(25,199,197,.15), transparent 26%),
+        radial-gradient(circle at 12% 5%, rgba(37,99,235,.18), transparent 28%),
+        linear-gradient(180deg, var(--bg), #050a11 100%);
+    }
+    .shell {
+      width: min(1440px, calc(100% - 28px));
+      margin: 18px auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 18px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(180deg, var(--panel), rgba(8,17,27,.98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .sidebar { padding: 22px; display: flex; flex-direction: column; gap: 18px; }
+    .brand { display: flex; gap: 12px; align-items: center; }
+    .logo {
+      width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--teal), var(--cyan)); color: #07212a; font-weight: 900;
+    }
+    .brand strong { display: block; letter-spacing: .08em; }
+    .brand span { color: var(--cyan); font-size: .84rem; }
+    .nav { display: grid; gap: 10px; }
+    .nav a {
+      padding: 14px 16px; border-radius: 18px; text-decoration: none; color: var(--text-2);
+      border: 1px solid transparent; background: rgba(255,255,255,.04);
+    }
+    .nav a.active { background: rgba(25,199,197,.14); border-color: rgba(115,230,255,.28); color: var(--text); }
+    .small-card {
+      padding: 16px; border-radius: 20px; border: 1px solid var(--line); background: rgba(255,255,255,.06);
+    }
+    .small-card strong { display: block; margin-bottom: 8px; }
+    .small-card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: .92rem; }
+    .main { padding: 20px; display: grid; gap: 16px; }
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding: 18px 20px; border-radius: 24px; border: 1px solid var(--line); background: rgba(255,255,255,.05);
+    }
+    .topbar h1 { margin: 0; font-size: 1.55rem; }
+    .topbar p { margin: 6px 0 0; color: var(--muted); }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      min-height: 44px; padding: 0 15px; border-radius: 15px; display: inline-flex; align-items: center;
+      border: 1px solid var(--line); color: var(--text-2); background: rgba(255,255,255,.05); font-weight: 700;
+    }
+    .btn.primary { background: linear-gradient(135deg, var(--teal), var(--teal-2)); color: #082126; border-color: transparent; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .metric, .card {
+      padding: 18px; border-radius: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.06);
+    }
+    .metric .kpi { font-size: 1.85rem; font-weight: 900; margin-bottom: 6px; }
+    .metric span, .card p, .card li { color: var(--muted); line-height: 1.6; }
+    .grid-main { display: grid; grid-template-columns: 1.15fr .85fr; gap: 14px; }
+    .card h2, .card h3 { margin: 0 0 12px; }
+    .queue { display: grid; gap: 10px; }
+    .queue-item {
+      padding: 14px; border-radius: 18px; border: 1px solid var(--line); background: rgba(255,255,255,.05);
+      display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: start;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 999px; margin-top: 5px; }
+    .dot.green { background: var(--green); }
+    .dot.amber { background: var(--amber); }
+    .dot.rose { background: var(--rose); }
+    .tag {
+      display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; border-radius: 999px;
+      background: rgba(255,255,255,.07); border: 1px solid var(--line); color: var(--text-2); font-size: .82rem;
+    }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .list { display: grid; gap: 10px; }
+    .list .row {
+      padding: 12px 14px; border-radius: 16px; border: 1px solid var(--line); background: rgba(255,255,255,.05);
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .footer-note {
+      padding: 16px 18px; border-radius: 20px; border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(25,199,197,.16), rgba(37,99,235,.12)); color: var(--text-2);
+    }
+    @media (max-width: 1100px) {
+      .shell { grid-template-columns: 1fr; }
+      .metrics, .grid-main, .split { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="panel sidebar">
+      <div class="brand">
+        <div class="logo">M</div>
+        <div>
+          <strong>MATHEO IQ</strong>
+          <span>ops cockpit</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="active" href="#">Overview</a>
+        <a href="#">Conversaciones</a>
+        <a href="#">Pacientes</a>
+        <a href="#">Recetas QR</a>
+        <a href="#">Farmacias aliadas</a>
+        <a href="#">Cumplimiento</a>
+      </nav>
+
+      <div class="small-card">
+        <strong>Postura vendable</strong>
+        <p>Premium clinic operations, WhatsApp-first, con trazabilidad y trayectoria de soberanía-by-design.</p>
+      </div>
+
+      <div class="small-card">
+        <strong>Estado del día</strong>
+        <p>Recepción organizada, cola priorizada y visibilidad sobre receta, seguimiento y handoff humano.</p>
+      </div>
+    </aside>
+
+    <main class="panel main">
+      <section class="topbar">
+        <div>
+          <h1>Dashboard clínico-operativo</h1>
+          <p>Visión simple para clínica, recepción y seguimiento patient-facing.</p>
+        </div>
+        <div class="actions">
+          <div class="btn">Exportar reporte</div>
+          <div class="btn">Ver auditoría</div>
+          <div class="btn primary">Nueva interacción</div>
+        </div>
+      </section>
+
+      <section class="metrics">
+        <article class="metric"><div class="kpi">128</div><span>conversaciones activas</span></article>
+        <article class="metric"><div class="kpi">17</div><span>handoffs pendientes</span></article>
+        <article class="metric"><div class="kpi">92%</div><span>mensajes respondidos &lt; 5 min</span></article>
+        <article class="metric"><div class="kpi">36</div><span>recetas QR verificadas</span></article>
+      </section>
+
+      <section class="grid-main">
+        <article class="card">
+          <h2>Cola priorizada</h2>
+          <div class="queue">
+            <div class="queue-item">
+              <div class="dot green"></div>
+              <div><strong>Renovación receta</strong><p>Paciente ya identificado, requiere revisión rápida y PDF con QR.</p></div>
+              <div class="tag">rápido</div>
+            </div>
+            <div class="queue-item">
+              <div class="dot amber"></div>
+              <div><strong>Seguimiento postconsulta</strong><p>Solicita ajuste de cita y confirmación de indicaciones.</p></div>
+              <div class="tag">recepción</div>
+            </div>
+            <div class="queue-item">
+              <div class="dot rose"></div>
+              <div><strong>Paciente nuevo</strong><p>Falta ficha mínima, consentimiento y clasificación de motivo.</p></div>
+              <div class="tag">alta prioridad</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Control premium</h2>
+          <div class="list">
+            <div class="row"><span>Trazabilidad eventos</span><strong style="color:var(--green)">activa</strong></div>
+            <div class="row"><span>Receta QR verify</span><strong style="color:var(--green)">operando</strong></div>
+            <div class="row"><span>Gatekeeper IA</span><strong style="color:var(--amber)">controlado</strong></div>
+            <div class="row"><span>Status callback</span><strong style="color:var(--rose)">pendiente</strong></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="split">
+        <article class="card">
+          <h3>Farmacias aliadas</h3>
+          <p>La idea no es solo emitir receta, sino cerrar continuidad operativa con verificación simple y pilot local.</p>
+          <div class="list">
+            <div class="row"><span>QR validación pública</span><span class="tag">listo demo</span></div>
+            <div class="row"><span>Kit farmacia one-pager</span><span class="tag">listo</span></div>
+            <div class="row"><span>Primeras farmacias piloto</span><span class="tag">pipeline</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Cumplimiento realista</h3>
+          <p>Sin vender humo. Documentación, auditoría, permisos, privacidad reforzada y camino hacia mayor madurez regulatoria.</p>
+          <ul>
+            <li>clinician-controlled workflow</li>
+            <li>claims prudentes</li>
+            <li>gobernanza de datos sensibles</li>
+          </ul>
+        </article>
+      </section>
+
+      <div class="footer-note">
+        Este template sirve para dashboard web, screenshot deck ou démo opérateur, avec une lecture plus claire que le dark précédent.
+      </div>
+    </main>
+  </div>
+</body>
+</html>

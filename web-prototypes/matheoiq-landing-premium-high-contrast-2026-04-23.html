@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MATHEO IQ — Landing Premium High Contrast High Contrast</title>
+  <style>
+    :root {
+      --bg: #050b14;
+      --surface: #122338;
+      --surface-2: #173553;
+      --navy: #1a3f68;
+      --teal: #008080;
+      --cyan: #00ced1;
+      --text: #ffffff;
+      --text-2: #e6f0f7;
+      --muted: #b7ccdc;
+      --line: rgba(173, 211, 234, 0.28);
+      --shadow: 0 28px 90px rgba(0,0,0,0.42);
+      --radius: 24px;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Aptos, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 78% 8%, rgba(0,206,209,0.2), transparent 28%),
+        radial-gradient(circle at 15% 8%, rgba(31,81,133,0.42), transparent 30%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1200px, calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      width: min(1200px, calc(100% - 40px));
+      margin: 18px auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 22px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(18,35,56,0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand { display: flex; gap: 14px; align-items: center; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--teal), var(--cyan)); font-weight: 800;
+    }
+    .brand-title { font-size: 1.05rem; font-weight: 800; letter-spacing: .08em; }
+    .brand-sub { font-size: .82rem; color: var(--cyan); }
+
+    .nav-links { display: flex; align-items: center; gap: 18px; color: var(--text-2); font-size: .95rem; }
+    .cta { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 16px; font-weight: 700; }
+    .cta.primary { background: linear-gradient(135deg, var(--teal), #0aa2a2); }
+    .cta.secondary { border: 1px solid var(--line); color: var(--text-2); }
+
+    .hero {
+      padding: 72px 0 40px;
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(18,35,56,0.98), rgba(11,24,39,0.98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-copy { padding: 42px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; color: var(--cyan);
+      text-transform: uppercase; letter-spacing: .14em; font-size: .82rem; margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      line-height: .96;
+      letter-spacing: -.05em;
+      max-width: 10.5ch;
+    }
+    .hero p {
+      margin: 24px 0 28px;
+      max-width: 58ch;
+      color: var(--text-2);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 26px;
+    }
+    .proof {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.07);
+    }
+    .proof strong { display: block; margin-bottom: 8px; font-size: 1.02rem; }
+    .proof span { color: var(--muted); font-size: .92rem; line-height: 1.5; }
+
+    .mock { padding: 26px; display: flex; flex-direction: column; gap: 16px; }
+    .mock-top {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      border: 1px solid var(--line); border-radius: 22px; padding: 16px 18px; background: rgba(255,255,255,.07);
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px;
+      border: 1px solid var(--line); color: var(--text-2); font-size: .82rem;
+    }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .stat {
+      padding: 14px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.07); text-align: center;
+    }
+    .stat strong { display: block; font-size: 1.5rem; margin-bottom: 4px; }
+    .stat span { color: var(--muted); font-size: .82rem; }
+
+    .mock-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 14px; min-height: 420px; }
+    .chat, .ops {
+      border: 1px solid var(--line); border-radius: 22px; background: rgba(255,255,255,.07); padding: 16px;
+    }
+    .section-title { font-size: .95rem; font-weight: 700; margin-bottom: 14px; }
+    .bubble {
+      max-width: 88%; padding: 14px 16px; border-radius: 18px; margin-bottom: 12px; line-height: 1.45; font-size: .95rem;
+    }
+    .bubble.user { background: rgba(0,128,128,.24); color: #e8ffff; border: 1px solid rgba(0,206,209,.34); }
+    .bubble.bot { margin-left: auto; background: linear-gradient(135deg, var(--teal), #0aa2a2); }
+    .ops-item {
+      border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.06); padding: 14px; margin-bottom: 12px;
+    }
+    .ops-item.active { background: rgba(0,128,128,.24); border-color: rgba(0,206,209,.22); }
+    .ops-item strong { display: block; margin-bottom: 6px; }
+    .ops-item span { color: var(--muted); font-size: .92rem; }
+
+    section { padding: 36px 0; }
+    .section-head { margin-bottom: 22px; }
+    .section-head h2 { margin: 0 0 10px; font-size: clamp(2rem,4vw,3rem); letter-spacing: -.04em; }
+    .section-head p { margin: 0; color: var(--muted); max-width: 68ch; line-height: 1.7; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .card {
+      border: 1px solid var(--line); border-radius: 24px; background: rgba(255,255,255,.07); padding: 22px;
+    }
+    .card h3 { margin: 0 0 10px; font-size: 1.1rem; }
+    .card p, .card li { color: var(--text-2); line-height: 1.65; }
+    .card ul { margin: 10px 0 0 18px; padding: 0; }
+
+    .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .timeline .card { background: rgba(255,255,255,.09); }
+
+    .final-cta {
+      margin: 28px 0 64px;
+      padding: 30px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(0,128,128,.26), rgba(31,81,133,.32));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .hero, .grid-3, .grid-2, .timeline, .proof-grid, .stats, .mock-grid { grid-template-columns: 1fr; }
+      .nav { width: calc(100% - 24px); }
+      .nav-links { display: none; }
+      .hero-copy { padding: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand">
+      <div class="brand-mark">M</div>
+      <div>
+        <div class="brand-title">MATHEO IQ</div>
+        <div class="brand-sub">Dark premium medical</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#problema">Problema</a>
+      <a href="#producto">Producto</a>
+      <a href="#verticales">Verticales</a>
+      <a href="#farmacias">Farmacias</a>
+      <a href="#demo" class="cta primary">Solicitar demo</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <div class="panel hero-copy">
+        <div class="eyebrow">Producto premium · operaciones clínicas</div>
+        <h1>Automatiza la atención clínica por WhatsApp con una capa operativa premium.</h1>
+        <p>
+          MATHEO IQ ayuda a consultorios y clínicas ambulatorias a responder más rápido,
+          reducir ausencias y organizar mejor la relación con el paciente, sin romper el flujo real del equipo.
+        </p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a class="cta primary" href="#demo">Solicitar demo</a>
+          <a class="cta secondary" href="#producto">Ver flujo</a>
+        </div>
+        <div class="proof-grid">
+          <div class="proof">
+            <strong>WhatsApp-first</strong>
+            <span>Diseñado para el canal real del paciente, no para un flujo artificial.</span>
+          </div>
+          <div class="proof">
+            <strong>Operación</strong>
+            <span>Recepción, recordatorios, preconsulta y seguimiento en una misma capa.</span>
+          </div>
+          <div class="proof">
+            <strong>Clínica</strong>
+            <span>Core fuerte primero. Verticales y especialidades después.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel mock">
+        <div class="mock-top">
+          <div>
+            <div style="font-weight:700;font-size:1.02rem;">Vista demo</div>
+            <div style="color:var(--muted);font-size:.9rem;">Paciente → MATHEO IQ → recepción / clínica</div>
+          </div>
+          <div class="badge">CDMX pilot</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>42%</strong><span>menos tiempo en tareas repetitivas</span></div>
+          <div class="stat"><strong>-28%</strong><span>no-shows en flujo guiado</span></div>
+          <div class="stat"><strong>&lt; 5 min</strong><span>demo QR / recepción</span></div>
+        </div>
+        <div class="mock-grid">
+          <div class="chat">
+            <div class="section-title">Conversación</div>
+            <div class="bubble user">Hola, quiero agendar una cita.</div>
+            <div class="bubble bot">Claro. ¿Qué tipo de consulta necesitas?</div>
+            <div class="bubble user">Seguimiento y receta.</div>
+          </div>
+          <div class="ops">
+            <div class="section-title">Operación clínica</div>
+            <div class="ops-item"><strong>Recepción</strong><span>Derivar si se necesita intervención humana.</span></div>
+            <div class="ops-item active"><strong>Recordatorios</strong><span>Automáticos y contextuales.</span></div>
+            <div class="ops-item"><strong>Paciente</strong><span>Datos preconsulta y seguimiento.</span></div>
+            <div class="ops-item"><strong>Verticales</strong><span>Neurología, Oftalmología, Urología.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="problema">
+      <div class="section-head">
+        <h2>El problema es operativo, no cosmético</h2>
+        <p>Los consultorios ya viven en WhatsApp, pero siguen operando con fragmentación, tiempos muertos y tareas manuales que drenan al equipo.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>Demanda fragmentada</h3><p>Mensajes, llamadas y recepción compiten por la misma atención.</p></div>
+        <div class="card"><h3>No-shows y seguimiento</h3><p>Confirmaciones, recordatorios y seguimiento se hacen tarde o no se hacen.</p></div>
+        <div class="card"><h3>Preconsulta lenta</h3><p>Se pierde tiempo antes de que el médico vea el valor de la interacción.</p></div>
+      </div>
+    </section>
+
+    <section id="producto">
+      <div class="section-head">
+        <h2>Un flujo simple que la clínica sí puede adoptar</h2>
+        <p>La demo debe hacer visible un antes / después claro, no un sistema teórico.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Qué hace MATHEO IQ</h3>
+          <ul>
+            <li>califica intención</li>
+            <li>ordena la conversación</li>
+            <li>captura datos útiles</li>
+            <li>dispara seguimiento y recordatorios</li>
+            <li>escala a recepción o staff si hace falta</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Qué no intenta vender de entrada</h3>
+          <ul>
+            <li>no “OS universal”</li>
+            <li>no compliance total como claim comercial</li>
+            <li>no automatización clínica autónoma</li>
+            <li>no promesas enterprise prematuras</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="verticales">
+      <div class="section-head">
+        <h2>Credibilidad clínica modular</h2>
+        <p>Las verticales muestran profundidad y seriedad, pero el core sigue mandando.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>Neurología</h3><p>NIHSS, Glasgow, UPDRS, MIDAS y nota neurológica con lógica UI real.</p></div>
+        <div class="card"><h3>Oftalmología</h3><p>Snellen, Humphrey 24-2, OCT RNFL, ETDRS y nota oftalmológica.</p></div>
+        <div class="card"><h3>Urología</h3><p>IPSS, PSA, uroflujometría, litiasis y nota urológica estructurada.</p></div>
+      </div>
+    </section>
+
+    <section id="farmacias">
+      <div class="section-head">
+        <h2>Farmacias aliadas como accélérateur de crédibilité</h2>
+        <p>Un canal terrain pour créer de la preuve locale autour du flux patient et de la validation.</p>
+      </div>
+      <div class="timeline">
+        <div class="card">
+          <h3>Semana 1</h3>
+          <ul>
+            <li>URL pública robusta</li>
+            <li>Kit Farmacia PDF</li>
+            <li>demo QR en 5 min</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Semana 2-6</h3>
+          <ul>
+            <li>10-15 farmacias piloto</li>
+            <li>visita o WhatsApp</li>
+            <li>médico piloto = embajador</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Mes 2-3</h3>
+          <ul>
+            <li>social proof</li>
+            <li>pitch de flujo paciente</li>
+            <li>lista pública futura</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="final-cta">
+        <div>
+          <div style="font-size:1.6rem;font-weight:800;margin-bottom:8px;">MATHEO IQ, premium et montrable en 48h</div>
+          <div style="color:var(--text-2);max-width:58ch;line-height:1.7;">
+            Base visuelle premium, landing forte, dashboard crédible et support commercial cohérent.
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <div class="cta primary">Solicitar demo</div>
+          <div class="cta secondary">Ver kit farmacia</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

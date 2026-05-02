@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MATHEO IQ • Pharmakit Desktop V1</title>
+    <style>
+      :root {
+        --bg: #eef6fb;
+        --bg2: #f8fcff;
+        --surface: rgba(255,255,255,.74);
+        --surface-2: rgba(255,255,255,.56);
+        --line: rgba(39, 100, 131, 0.14);
+        --line-strong: rgba(20, 170, 196, 0.28);
+        --text: #153145;
+        --muted: #617f91;
+        --teal: #109ca7;
+        --cyan: #49d5ec;
+        --blue: #4d71e8;
+        --green: #3fbb87;
+        --amber: #efb35b;
+        --shadow: 0 28px 80px rgba(53, 93, 128, 0.16);
+        --radius-xl: 32px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font);
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(73,213,236,.17), transparent 24%),
+          radial-gradient(circle at top right, rgba(77,113,232,.12), transparent 24%),
+          linear-gradient(180deg, var(--bg2), var(--bg));
+      }
+
+      a { color: inherit; }
+
+      .shell {
+        width: min(1440px, calc(100% - 28px));
+        margin: 0 auto;
+        padding: 28px 0 44px;
+      }
+
+      .hero,
+      .browser,
+      .card,
+      .modal-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .hero {
+        border-radius: var(--radius-xl);
+        padding: 28px;
+        margin-bottom: 18px;
+      }
+
+      .eyebrow,
+      .pill,
+      .status,
+      .mini-tag,
+      .button,
+      .ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 38px;
+        padding: 0 14px;
+        border-radius: 999px;
+        font-size: 13px;
+      }
+
+      .eyebrow {
+        background: rgba(16,156,167,.09);
+        color: #0d7080;
+        border: 1px solid rgba(16,156,167,.16);
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        font-weight: 700;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      h1, h2, h3, p { margin: 0; }
+      h1 {
+        margin-top: 16px;
+        font-size: clamp(34px, 5vw, 58px);
+        line-height: .96;
+        letter-spacing: -.04em;
+        max-width: 11ch;
+      }
+
+      .lead {
+        margin-top: 14px;
+        max-width: 70ch;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .meta,
+      .signal-row,
+      .actions,
+      .meta-row,
+      .modal-actions,
+      .link-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .meta { margin-top: 18px; }
+
+      .pill {
+        background: rgba(255,255,255,.76);
+        border: 1px solid rgba(39,100,131,.1);
+        color: var(--muted);
+      }
+
+      .brand-card {
+        border-radius: var(--radius-lg);
+        padding: 14px;
+        background: rgba(255,255,255,.52);
+        border: 1px solid rgba(39,100,131,.08);
+      }
+
+      .brand-card img,
+      .app-icon img {
+        display: block;
+        width: 100%;
+        border-radius: 18px;
+      }
+
+      .signal-row { margin-top: 18px; }
+
+      .signal {
+        flex: 1 1 180px;
+        min-height: 96px;
+        padding: 16px;
+        border-radius: var(--radius-md);
+        background: rgba(255,255,255,.56);
+        border: 1px solid rgba(39,100,131,.08);
+      }
+
+      .signal strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 15px;
+      }
+
+      .signal span {
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 14px;
+      }
+
+      .browser {
+        border-radius: 34px;
+        padding: 14px;
+      }
+
+      .browser-top {
+        min-height: 62px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 0 16px;
+        border-radius: 24px;
+        background: rgba(255,255,255,.58);
+        border: 1px solid rgba(39,100,131,.08);
+      }
+
+      .dots { display: flex; gap: 8px; }
+      .dot { width: 12px; height: 12px; border-radius: 50%; }
+      .dot.red { background: #ff7f86; }
+      .dot.yellow { background: #ffcb69; }
+      .dot.green { background: #43cb8d; }
+
+      .urlbar {
+        flex: 1;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        border-radius: 999px;
+        color: var(--muted);
+        border: 1px solid rgba(39,100,131,.1);
+        background: rgba(255,255,255,.76);
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 16px;
+        padding-top: 16px;
+      }
+
+      .panel,
+      .card,
+      .modal-card {
+        border-radius: var(--radius-lg);
+      }
+
+      .left-column,
+      .right-column {
+        display: grid;
+        gap: 16px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .card h2,
+      .modal-card h2 {
+        font-size: 24px;
+        line-height: 1.1;
+        margin-bottom: 10px;
+      }
+
+      .card p,
+      .modal-card p {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .document-preview {
+        display: grid;
+        grid-template-columns: 1fr 160px;
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .rx-sheet {
+        padding: 18px;
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(244,250,255,.88));
+        border: 1px solid rgba(39,100,131,.1);
+      }
+
+      .sheet-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 14px;
+      }
+
+      .sheet-head strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 13px;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--teal);
+      }
+
+      .sheet-list {
+        display: grid;
+        gap: 10px;
+        margin: 14px 0;
+      }
+
+      .sheet-item {
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(238,246,251,.9);
+        border: 1px solid rgba(39,100,131,.08);
+      }
+
+      .qr-box {
+        width: 148px;
+        aspect-ratio: 1;
+        border-radius: 24px;
+        border: 1px solid rgba(39,100,131,.12);
+        background:
+          linear-gradient(90deg, #0f3146 10%, transparent 10%, transparent 18%, #0f3146 18%, #0f3146 26%, transparent 26%, transparent 34%, #0f3146 34%, #0f3146 42%, transparent 42%, transparent 50%, #0f3146 50%, #0f3146 58%, transparent 58%, transparent 66%, #0f3146 66%, #0f3146 74%, transparent 74%),
+          linear-gradient(#0f3146 10%, transparent 10%, transparent 18%, #0f3146 18%, #0f3146 26%, transparent 26%, transparent 34%, #0f3146 34%, #0f3146 42%, transparent 42%, transparent 50%, #0f3146 50%, #0f3146 58%, transparent 58%, transparent 66%, #0f3146 66%, #0f3146 74%, transparent 74%),
+          linear-gradient(135deg, rgba(73,213,236,.2), rgba(16,156,167,.08));
+        background-size: 28px 28px, 28px 28px, auto;
+        background-position: 0 0, 0 0, center;
+        box-shadow: inset 0 0 0 10px rgba(255,255,255,.78);
+      }
+
+      .barcode {
+        margin-top: 16px;
+        height: 76px;
+        border-radius: 16px;
+        border: 1px solid rgba(39,100,131,.12);
+        background:
+          repeating-linear-gradient(
+            90deg,
+            #0f3146 0,
+            #0f3146 2px,
+            transparent 2px,
+            transparent 4px,
+            #0f3146 4px,
+            #0f3146 7px,
+            transparent 7px,
+            transparent 10px,
+            #0f3146 10px,
+            #0f3146 11px,
+            transparent 11px,
+            transparent 13px,
+            #0f3146 13px,
+            #0f3146 17px,
+            transparent 17px,
+            transparent 21px
+          ),
+          linear-gradient(180deg, rgba(255,255,255,.96), rgba(239,247,252,.96));
+      }
+
+      .manual-code {
+        margin-top: 10px;
+        font-size: 12px;
+        letter-spacing: .2em;
+        color: var(--navy, #0f3146);
+        font-weight: 800;
+      }
+
+      .app-icon {
+        padding: 10px;
+        border-radius: 24px;
+        background: rgba(255,255,255,.64);
+        border: 1px solid rgba(39,100,131,.08);
+      }
+
+      .status {
+        background: rgba(63,187,135,.12);
+        color: #15764b;
+        border: 1px solid rgba(63,187,135,.2);
+        font-weight: 700;
+      }
+
+      .mini-tag {
+        min-height: 34px;
+        background: rgba(73,213,236,.12);
+        color: #0d7281;
+        border: 1px solid rgba(20,170,196,.16);
+        font-weight: 700;
+      }
+
+      .button,
+      .ghost {
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .button {
+        color: white;
+        background: linear-gradient(135deg, var(--teal), var(--blue));
+        border: 0;
+        box-shadow: 0 14px 34px rgba(16,156,167,.22);
+      }
+
+      .ghost {
+        color: var(--text);
+        background: rgba(255,255,255,.72);
+        border: 1px solid rgba(39,100,131,.1);
+      }
+
+      .modal-shell {
+        position: relative;
+        min-height: 620px;
+        border-radius: 24px;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(236,246,251,.68), rgba(247,251,255,.82));
+        border: 1px solid rgba(39,100,131,.08);
+      }
+
+      .desk {
+        height: 100%;
+        padding: 22px;
+        display: grid;
+        align-content: start;
+        gap: 14px;
+      }
+
+      .desk-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .desk-tile {
+        padding: 16px;
+        border-radius: 18px;
+        background: rgba(255,255,255,.68);
+        border: 1px solid rgba(39,100,131,.08);
+      }
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 22px;
+        background: rgba(9, 29, 45, .26);
+      }
+
+      .modal-card {
+        width: min(760px, 100%);
+        padding: 22px;
+        border-radius: 28px;
+        background: rgba(250,253,255,.92);
+      }
+
+      .modal-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+
+      .verify-grid {
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        gap: 16px;
+        margin-top: 14px;
+      }
+
+      .verify-box,
+      .verify-side,
+      .link-box {
+        padding: 16px;
+        border-radius: 18px;
+        background: rgba(255,255,255,.82);
+        border: 1px solid rgba(39,100,131,.08);
+      }
+
+      .list {
+        display: grid;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .list div {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        color: var(--muted);
+      }
+
+      .list strong { color: var(--text); }
+
+      .link-box code,
+      .verify-box code {
+        display: block;
+        margin-top: 10px;
+        padding: 12px;
+        border-radius: 14px;
+        background: #eff8fc;
+        border: 1px solid rgba(39,100,131,.08);
+        color: #0d5870;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+      }
+
+      .footer-note {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 1060px) {
+        .hero-grid,
+        .workspace,
+        .document-preview,
+        .verify-grid,
+        .desk-strip {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <span class="eyebrow">MATHEO IQ · Pharmakit desktop</span>
+        <h1>QR + code-barres + popup HTML</h1>
+        <p class="lead">
+          Cette surface verrouille le flux demandé: le QR et le code-barres sont générés en même temps sur l’ordonnance,
+          puis la pharmacie peut scanner l’un ou l’autre ou saisir le code manuel. Sur desktop, le scan ouvre une popup HTML
+          de validation rapide reliée au même lien verify.
+        </p>
+
+        <div class="meta">
+          <span class="pill">même token logique</span>
+          <span class="pill">scan mobile ou douchette desktop</span>
+          <span class="pill">fallback manuel inclus</span>
+          <span class="pill">prototype HTML, pas runtime live</span>
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <div class="signal-row">
+              <div class="signal"><strong>Émission conjointe</strong><span>Le QR et le code-barres sont sortis au même moment depuis la même ordonnance et le même folio de vérification.</span></div>
+              <div class="signal"><strong>Comptoir pharmacie</strong><span>Une douchette / scanner code-barres agit comme clavier ou ouvre directement la popup HTML Pharmakit.</span></div>
+              <div class="signal"><strong>Surface desktop</strong><span>Le verify link HTML reste visible pour qu’un poste ordi puisse ouvrir le flux même sans téléphone.</span></div>
+            </div>
+          </div>
+          <div class="brand-card">
+            <img src="../branding/assets-2026-04-20/matheo-iq-primary-logo-lockup-saas-hub-clinicas-mexico-v1.jpg" alt="MATHEO IQ logo lockup" />
+          </div>
+        </div>
+      </section>
+
+      <section class="browser">
+        <div class="browser-top">
+          <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+          <div class="urlbar">https://pharmakit.matheoiq.mx/desktop/rx-24025</div>
+          <span class="mini-tag">desk popup ready</span>
+        </div>
+
+        <div class="workspace">
+          <div class="left-column">
+            <article class="card">
+              <h2>Ordonnance émise</h2>
+              <p>Le PDF staff / patient contient maintenant les trois entrées de validation: QR, code-barres comptoir et code manuel fallback.</p>
+
+              <div class="document-preview">
+                <div class="rx-sheet">
+                  <div class="sheet-head">
+                    <div>
+                      <strong>MATHEO IQ RX</strong>
+                      <h3>RX-24025</h3>
+                    </div>
+                    <span class="status">Valide</span>
+                  </div>
+
+                  <div class="sheet-list">
+                    <div class="sheet-item"><strong>Paciente</strong><br />María González</div>
+                    <div class="sheet-item"><strong>Médicaments</strong><br />Amoxicilina 500 mg · Ibuprofeno 400 mg</div>
+                    <div class="sheet-item"><strong>Validación</strong><br />QR + Code128 + folio manual synchronisés</div>
+                  </div>
+
+                  <div class="barcode"></div>
+                  <div class="manual-code">RX24025 · MX9K2P</div>
+                </div>
+
+                <div class="app-icon">
+                  <img src="../branding/assets-2026-04-20/matheo-iq-app-icon-tile-v1.jpg" alt="MATHEO IQ app icon" />
+                  <div class="qr-box" style="margin-top: 12px;"></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <h2>Règle produit verrouillée</h2>
+              <p>Un pharmacien peut:</p>
+              <div class="list">
+                <div><strong>scanner QR</strong><span>mobile ou webcam</span></div>
+                <div><strong>scanner code-barres</strong><span>douchette USB / poste comptoir</span></div>
+                <div><strong>saisir le code</strong><span>si impression faible ou scan KO</span></div>
+              </div>
+              <div class="footer-note">Même logique serveur derrière les trois entrées, donc pas de divergence de statut.</div>
+            </article>
+          </div>
+
+          <div class="right-column">
+            <article class="card">
+              <h2>Pharmakit desktop</h2>
+              <p>La popup HTML sert au poste pharmacie, avec lien direct de validation et lecture rapide du statut.</p>
+              <div class="actions" style="margin-top: 16px;">
+                <button class="button" id="openModal">Ouvrir la popup HTML</button>
+                <a class="ghost" href="#verify-link">Voir le lien verify</a>
+              </div>
+            </article>
+
+            <div class="modal-shell">
+              <div class="desk">
+                <div class="desk-strip">
+                  <div class="desk-tile"><strong>Scan input</strong><p>QR camera ou barcode gun.</p></div>
+                  <div class="desk-tile"><strong>Popup verify</strong><p>Statut, médicaments, reliquat.</p></div>
+                  <div class="desk-tile"><strong>Action</strong><p>Délivrance complète ou partielle.</p></div>
+                </div>
+                <div class="link-box" id="verify-link">
+                  <strong>Lien HTML de validation</strong>
+                  <code>https://verify.matheoiq.com/rx/rx_24025_mx9k2p</code>
+                </div>
+              </div>
+
+              <div class="overlay" id="overlay">
+                <div class="modal-card">
+                  <div class="modal-head">
+                    <div>
+                      <span class="mini-tag">popup desktop</span>
+                      <h2>Validation rapide Pharmakit</h2>
+                      <p>Ouverte par scan QR, scan code-barres ou saisie manuelle.</p>
+                    </div>
+                    <span class="status">Ordonnance valide</span>
+                  </div>
+
+                  <div class="verify-grid">
+                    <div class="verify-box">
+                      <strong>RX-24025 · María González</strong>
+                      <div class="list">
+                        <div><strong>Médecin</strong><span>Dr. Herrera</span></div>
+                        <div><strong>État</strong><span>issued</span></div>
+                        <div><strong>Reste à délivrer</strong><span>2 lignes actives</span></div>
+                        <div><strong>Source de scan</strong><span>QR / Barcode / Manuel</span></div>
+                      </div>
+                      <code>verify_url = https://verify.matheoiq.com/rx/rx_24025_mx9k2p</code>
+                    </div>
+
+                    <div class="verify-side">
+                      <strong>Actions</strong>
+                      <div class="modal-actions" style="margin-top: 12px;">
+                        <a class="button" href="#">Délivrance complète</a>
+                        <a class="ghost" href="#">Partielle</a>
+                        <a class="ghost" href="#">Entrer code manuel</a>
+                      </div>
+                      <div class="footer-note">Prototype UX. Le vrai flux devra appeler le backend verify / dispense.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const openButton = document.getElementById('openModal');
+      const overlay = document.getElementById('overlay');
+      let visible = true;
+
+      openButton.addEventListener('click', () => {
+        visible = !visible;
+        overlay.style.display = visible ? 'flex' : 'none';
+        openButton.textContent = visible ? 'Fermer la popup HTML' : 'Ouvrir la popup HTML';
+      });
+    </script>
+  </body>
+</html>

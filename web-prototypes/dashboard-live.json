@@ -1,0 +1,99 @@
+{
+  "generatedAt": "2026-04-28T14:30:00Z",
+  "title": "MATHEO IQ Live Dashboard",
+  "subtitle": "Suivi du chantier Rail A en mode compliance-first pragmatique.",
+  "status": {
+    "rail": "Rail A actif",
+    "mode": "Compliance-first pragmatique",
+    "v2": "Semi-opérable",
+    "risk": "Pas gouv-first, pas prod-ready"
+  },
+  "headline": "Le chantier est maintenant mieux structuré, plus montrable, et prêt pour le prochain vrai branchement technique.",
+  "completed": [
+    "Package V2 structuré avec supabase/functions, n8n et docs",
+    "Edge Functions draft: enrich-lead, score-lead, verify-email, cleanup-unsubscribed",
+    "Workflow n8n plus branché avec queue WhatsApp prioritaire et cleanup cron",
+    "Plan 30 jours canonique verrouillé: Rail A only, compliance-first pragmatique",
+    "Compliance floor pilot-safe rédigé",
+    "Copy pack réutilisable rédigé (juridique, commercial, site ES)",
+    "Hub V2 créé pour naviguer desktop, mobile, patient flow et landing",
+    "Módulo Fiscal Centralizado SAT/CFDI 4.0 annexé et reviewé comme bloc transverse très utile pour billing-cfdi",
+    "Source technique facturation_1 annexée : queue CFDI offline-first + WatermelonDB + logique de sync/retry",
+    "Truth table canonique des modules créée : spécialités + billing-cfdi + états reçu/annexé/reviewé/priorité",
+    "Ortopedia reçue en source brute, annexée et reviewée (ORT01 mapa músculo + ORT02 rehabilitación)",
+    "Gastroenterología annexée en summary intake + review, avec recadrage anti-SaMD explicite"
+  ],
+  "currentFocus": [
+    "Finir le Bloc 1: privacy policy courte et disclaimer anti-SaMD",
+    "Brancher la V2 sur un vrai environnement test Supabase + n8n + provider WhatsApp",
+    "Valider un E2E pilot-safe réel"
+  ],
+  "moat": {
+    "internal": "consultation / NOM-004 -> prescription -> inventaire -> CFDI 4.0 -> SAT / REP",
+    "external": "continuité opérationnelle et documentaire entre clinique, prescription, stock et facturation"
+  },
+  "receivedModules": {
+    "annexedReviewed": [
+      "Dentistería",
+      "Dermatología",
+      "Ginecología",
+      "Laboratorio",
+      "Nutrición",
+      "Psicología",
+      "Centro Auditivo",
+      "Oncología",
+      "Neurología",
+      "Oftalmología",
+      "Pediatría",
+      "Urología",
+      "Cirugía plástica",
+      "Endocrinología",
+      "Geriatría / VGI",
+      "Reumatología",
+      "Infectología",
+      "Extensión A Crónicas",
+      "Extensión B Mental Rehab",
+      "Varices",
+      "Ortopedia"
+    ],
+    "repoPresentNotFullyReviewed": [
+      "Medicina General",
+      "Cardiología"
+    ],
+    "summaryOnlySensitive": [
+      "Clínica de Células Madre"
+    ]
+  },
+  "links": [
+    {
+      "label": "Hub V2",
+      "href": "./index.html",
+      "note": "Point d'entrée principal"
+    },
+    {
+      "label": "Desktop V2",
+      "href": "./matheoiq-platform-navigable-desktop-v2-2026-04-24.html",
+      "note": "Vue desktop premium la plus utile"
+    },
+    {
+      "label": "Mobile V1",
+      "href": "./matheoiq-mobile-app-glass-v1-2026-04-24.html",
+      "note": "Référence mobile"
+    },
+    {
+      "label": "Patient flow",
+      "href": "./matheoiq-template-patient-flow-v1-2026-04-23.html",
+      "note": "Parcours patient"
+    },
+    {
+      "label": "Truth table modules",
+      "href": "../MATHEO-IQ-truth-table-canonique-modules-2026-04-28.md",
+      "note": "Vue canonique des modules reçus / reviewés / à câbler"
+    }
+  ],
+  "notes": [
+    "Ce dashboard lit un JSON de statut, donc il est facile à mettre à jour sans refaire toute la page.",
+    "Le prochain gain réel n'est pas un nouveau mock, c'est le branchement environnement test + WhatsApp + E2E.",
+    "Le wording public doit rester prudent tant que l'automatisation complète n'est pas branchée et testée."
+  ]
+}

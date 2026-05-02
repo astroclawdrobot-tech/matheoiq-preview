@@ -1,59 +1,269 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MATHEO IQ • Preview Hub</title>
-  <style>
-    :root {
-      --bg: #07111b; --bg2: #0b1a28; --card: rgba(255,255,255,.07); --line: rgba(120,232,255,.14);
-      --text: #f5fbff; --muted: #b8cad8; --cyan: #78e8ff; --blue: #86a1ff; --shadow: 0 30px 90px rgba(0,0,0,.35);
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; font-family: Inter, system-ui, sans-serif; color: var(--text);
-      background: radial-gradient(circle at top left, rgba(46,201,191,.18), transparent 26%), radial-gradient(circle at top right, rgba(127,150,255,.16), transparent 24%), linear-gradient(180deg, var(--bg2), var(--bg)); }
-    .shell { max-width: 1100px; margin: 0 auto; padding: 40px 20px 64px; }
-    .hero, .card { border: 1px solid var(--line); border-radius: 28px; background: var(--card); box-shadow: var(--shadow); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-    .hero { padding: 28px; margin-bottom: 22px; }
-    .eyebrow { display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 999px; color: var(--cyan); background: rgba(120,232,255,.08); border: 1px solid rgba(120,232,255,.2); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    h1 { margin: 16px 0 10px; font-size: clamp(32px, 6vw, 56px); line-height: 1.02; }
-    p { color: var(--muted); line-height: 1.6; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    .card { grid-column: span 6; padding: 24px; text-decoration: none; color: inherit; }
-    .card.primary { grid-column: span 12; }
-    .label { color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    h2 { margin: 10px 0; font-size: 28px; }
-    .cta { color: var(--cyan); font-weight: 700; }
-    @media (max-width: 860px) { .card, .card.primary { grid-column: span 12; } }
-  </style>
-</head>
-<body>
-  <main class="shell">
-    <section class="hero">
-      <span class="eyebrow">MATHEO IQ • Public Preview</span>
-      <h1>Version navigable la plus évoluée</h1>
-      <p>Preview staff/admin publiée dans un repo public séparé. Focus actuel: inbox, patients, notes de conversation, agenda, confirmations, reminder queue, conflits de slot et garde-fous opérateur.</p>
-    </section>
-    <section class="grid">
-      <a class="card primary" href="./matheoiq-staff-admin-booking-reminders-v3-2026-05-01.html">
-        <span class="label">Latest preview</span>
-        <h2>Booking & reminders V3</h2>
-        <p>La surface la plus avancée pour l’instant, avec agenda du jour, confirmations, reminder queue, slot conflicts et logique opérateur avant branchement runtime complet.</p>
-        <span class="cta">Ouvrir la V3</span>
-      </a>
-      <a class="card" href="./matheoiq-staff-admin-app-navigable-v2-2026-05-01.html">
-        <span class="label">Previous step</span>
-        <h2>Staff/admin app V2</h2>
-        <p>Vue app staff/admin centrée sur inbox, patients liés, notes de conversation, booking next et signaux ops.</p>
-        <span class="cta">Ouvrir la V2</span>
-      </a>
-      <div class="card">
-        <span class="label">Status</span>
-        <h2>Vrai état du produit</h2>
-        <p>La preview est solide visuellement, mais le runtime Batch 3 reste à brancher bout en bout: providers, services, service_providers, appointments, reminder_jobs.</p>
-        <span class="cta">Rail A, front visible + backend à raccorder</span>
-      </div>
-    </section>
-  </main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MATHEO IQ V2 Preview Hub</title>
+    <style>
+      :root {
+        --bg: #ecf6fb;
+        --bg2: #f9fdff;
+        --card: rgba(255, 255, 255, 0.7);
+        --line: rgba(32, 89, 121, 0.14);
+        --text: #103247;
+        --muted: #5b7b8d;
+        --accent: #17a7c5;
+        --accent2: #4263eb;
+        --shadow: 0 24px 80px rgba(31, 85, 117, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(23,167,197,0.18), transparent 28%),
+          radial-gradient(circle at top right, rgba(66,99,235,0.14), transparent 24%),
+          linear-gradient(180deg, var(--bg2), var(--bg));
+      }
+
+      .shell {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 40px 20px 64px;
+      }
+
+      .hero,
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-radius: 28px;
+      }
+
+      .hero {
+        padding: 32px;
+        margin-bottom: 24px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(23, 167, 197, 0.1);
+        color: #0f6e83;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 18px 0 10px;
+        font-size: clamp(32px, 6vw, 56px);
+        line-height: 1.02;
+      }
+
+      .lead {
+        max-width: 760px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .meta span {
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.64);
+        border: 1px solid rgba(32,89,121,0.08);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 18px;
+      }
+
+      .card {
+        padding: 24px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 28px 90px rgba(31, 85, 117, 0.16);
+        border-color: rgba(23, 167, 197, 0.3);
+      }
+
+      .card.primary { grid-column: span 7; }
+      .card.secondary { grid-column: span 5; }
+      .card.third { grid-column: span 4; }
+
+      .label {
+        display: inline-block;
+        margin-bottom: 12px;
+        color: var(--accent2);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 0 0 10px;
+        font-size: 25px;
+        line-height: 1.15;
+      }
+
+      p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .footer-note {
+        margin-top: 22px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 920px) {
+        .card.primary, .card.secondary, .card.third { grid-column: span 12; }
+        .hero { padding: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <span class="eyebrow">MATHEO IQ V2 Preview</span>
+        <h1>Hub de navigation V2</h1>
+        <p class="lead">
+          Point d’entrée rapide pour naviguer la V2 premium, comparer les surfaces clés et ouvrir les vues les plus utiles sans chercher dans les fichiers.
+        </p>
+        <div class="meta">
+          <span>Rail A</span>
+          <span>WhatsApp-first</span>
+          <span>Preview temporaire</span>
+          <span>Desktop, app staff, mobile, patient flow</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <a class="card primary" href="./matheoiq-live-dashboard.html">
+          <span class="label">Live dashboard</span>
+          <h2>Suivi live du chantier</h2>
+          <p>Dashboard connecté à un JSON de statut pour suivre le Rail A, le focus courant, les blocs déjà accomplis et les prochaines étapes utiles.</p>
+          <span class="cta">Ouvrir le dashboard live</span>
+        </a>
+
+        <a class="card secondary" href="./matheoiq-platform-navigable-desktop-v2-2026-04-24.html">
+          <span class="label">Primary surface</span>
+          <h2>Platform navigable desktop V2</h2>
+          <p>La vue la plus utile pour naviguer la V2 actuelle, avec la structure desktop premium la plus avancée.</p>
+          <span class="cta">Ouvrir la V2 desktop</span>
+        </a>
+
+        <a class="card third" href="./matheoiq-staff-admin-booking-reminders-v3-2026-05-01.html">
+          <span class="label">Newest app surface</span>
+          <h2>Booking & reminders V3</h2>
+          <p>Nouvelle surface staff/admin focalisée sur agenda, confirmations, reminder queue, conflits de slot et garde-fous opérateur.</p>
+          <span class="cta">Ouvrir la V3 booking/reminders</span>
+        </a>
+
+        <a class="card third" href="./matheoiq-staff-admin-app-navigable-v2-2026-05-01.html">
+          <span class="label">App staff/admin</span>
+          <h2>Staff/admin app navigable V2</h2>
+          <p>Surface app précédente centrée sur inbox staff, patients liés, notes de conversation, booking next et signaux ops.</p>
+          <span class="cta">Ouvrir l'app staff/admin V2</span>
+        </a>
+
+        <a class="card third" href="./matheoiq-app-navigable-v1-2026-04-30.html">
+          <span class="label">App archive</span>
+          <h2>App mobile navigable V1</h2>
+          <p>Version précédente utile pour comparer l’évolution visuelle et la navigation avant la V2 staff/admin.</p>
+          <span class="cta">Ouvrir l'app V1</span>
+        </a>
+
+        <a class="card third" href="./matheoiq-pharmakit-desktop-v1-2026-04-30.html">
+          <span class="label">Pharmacy</span>
+          <h2>Pharmakit desktop V1</h2>
+          <p>Vue desktop pharmacie avec popup HTML de validation, QR + code-barres et fallback manuel.</p>
+          <span class="cta">Ouvrir le Pharmakit</span>
+        </a>
+
+        <a class="card third" href="./matheoiq-mobile-app-glass-v1-2026-04-24.html">
+          <span class="label">Mobile</span>
+          <h2>Mobile app glass V1</h2>
+          <p>Version mobile premium pour vérifier le langage visuel, les cartes flottantes et la cohérence produit.</p>
+          <span class="cta">Ouvrir la vue mobile</span>
+        </a>
+
+        <a class="card third" href="./matheoiq-template-patient-flow-v1-2026-04-23.html">
+          <span class="label">Patient flow</span>
+          <h2>Patient flow</h2>
+          <p>Parcours patient pour relire l’expérience côté coordination, intake et suivi.</p>
+          <span class="cta">Voir le flow</span>
+        </a>
+
+        <a class="card third" href="./matheoiq-landing-premium-2026-04-23.html">
+          <span class="label">Landing</span>
+          <h2>Landing premium</h2>
+          <p>Page d’entrée premium pour le cadrage commercial et la première impression visuelle.</p>
+          <span class="cta">Voir la landing</span>
+        </a>
+
+        <a class="card third" href="./matheoiq-platform-navigable-v3-2026-04-24.html">
+          <span class="label">Alt platform</span>
+          <h2>Platform V3</h2>
+          <p>Variante plateforme à garder sous la main pour comparaison rapide des surfaces et arbitrages visuels.</p>
+          <span class="cta">Comparer la variante</span>
+        </a>
+
+        <a class="card third" href="../_orchestration/MATHEO-IQ-structure-mermaid-canon-2026-04-29.html">
+          <span class="label">Structure</span>
+          <h2>Graphique structure canonique</h2>
+          <p>Vue visuelle de la structure MATHEO IQ et de l’ordre d’exécution P0 à P2, en format directement ouvrable.</p>
+          <span class="cta">Ouvrir le visuel</span>
+        </a>
+
+        <a class="card third" href="../_orchestration/MATHEO-IQ-roadmap-p0-p2-visual-2026-04-29.html">
+          <span class="label">Roadmap</span>
+          <h2>Roadmap visuelle P0 à P2</h2>
+          <p>Vue plus produit pour comprendre en un écran ce qu’on garde, ce qu’on recadre et ce qu’on découpe.</p>
+          <span class="cta">Ouvrir la roadmap</span>
+        </a>
+      </section>
+
+      <p class="footer-note">
+        Preview temporaire servie depuis le runtime Astro. Si le tunnel change, l’URL publique change, mais cette home reste le meilleur point d’entrée.
+      </p>
+    </main>
+  </body>
 </html>

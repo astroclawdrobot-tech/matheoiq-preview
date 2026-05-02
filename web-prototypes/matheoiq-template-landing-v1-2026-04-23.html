@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MATHEO IQ • Landing Template v1</title>
+  <style>
+    :root {
+      --bg: #07111a;
+      --bg-2: #0b1724;
+      --panel: rgba(16, 31, 48, 0.92);
+      --panel-2: rgba(23, 43, 66, 0.92);
+      --line: rgba(125, 171, 210, 0.28);
+      --text: #f7fbff;
+      --text-2: #dbe8f4;
+      --muted: #abc2d7;
+      --teal: #19c7c5;
+      --teal-2: #0da4a2;
+      --cyan: #73e6ff;
+      --ok: #59d48f;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+      --radius: 28px;
+      --font: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 82% 10%, rgba(25, 199, 197, 0.18), transparent 25%),
+        radial-gradient(circle at 18% 8%, rgba(29, 78, 137, 0.28), transparent 28%),
+        linear-gradient(180deg, var(--bg), #050b12 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 14px; z-index: 20;
+      margin: 18px auto 0; padding: 16px 20px;
+      width: min(1180px, calc(100% - 40px));
+      display: flex; align-items: center; justify-content: space-between;
+      border: 1px solid var(--line); border-radius: 22px;
+      background: rgba(9, 19, 30, 0.84); backdrop-filter: blur(10px); box-shadow: var(--shadow);
+    }
+    .brand { display: flex; gap: 12px; align-items: center; }
+    .logo {
+      width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--teal), var(--cyan)); color: #07202d; font-weight: 900;
+    }
+    .brand h1, .brand p { margin: 0; }
+    .brand h1 { font-size: 1rem; letter-spacing: .08em; }
+    .brand p { font-size: .82rem; color: var(--cyan); }
+    .nav-links { display: flex; gap: 18px; align-items: center; color: var(--text-2); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 46px; padding: 0 16px; border-radius: 16px; font-weight: 700;
+      border: 1px solid transparent; transition: .18s ease;
+    }
+    .btn.primary { background: linear-gradient(135deg, var(--teal), var(--teal-2)); color: #082126; }
+    .btn.secondary { border-color: var(--line); color: var(--text-2); background: rgba(255,255,255,.04); }
+    .hero {
+      padding: 64px 0 28px;
+      display: grid; grid-template-columns: 1.08fr .92fr; gap: 28px; align-items: stretch;
+    }
+    .panel {
+      border: 1px solid var(--line); border-radius: 34px; background: linear-gradient(180deg, var(--panel), rgba(10, 20, 31, .98));
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .hero-copy { padding: 42px; }
+    .eyebrow {
+      display: inline-flex; gap: 8px; align-items: center; margin-bottom: 18px; font-size: .8rem;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--cyan);
+    }
+    .hero h2 {
+      margin: 0; max-width: 11ch; line-height: .95; letter-spacing: -.05em;
+      font-size: clamp(3rem, 7vw, 5.4rem);
+    }
+    .hero p.lead {
+      margin: 22px 0 28px; color: var(--text-2); max-width: 58ch; font-size: 1.07rem; line-height: 1.72;
+    }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .trust {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px;
+    }
+    .trust-card, .card, .metric, .screen, .step {
+      border: 1px solid var(--line); background: rgba(255,255,255,.06); border-radius: 22px;
+    }
+    .trust-card { padding: 16px; }
+    .trust-card strong { display: block; margin-bottom: 8px; font-size: 1rem; }
+    .trust-card span { color: var(--muted); line-height: 1.55; font-size: .92rem; }
+    .hero-ui { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+    .topbar, .mini-row { display: flex; gap: 12px; align-items: center; justify-content: space-between; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px; min-height: 34px; padding: 0 12px;
+      border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.05); color: var(--text-2); font-size: .84rem;
+    }
+    .screen-grid { display: grid; grid-template-columns: .96fr 1.04fr; gap: 14px; min-height: 430px; }
+    .screen { padding: 16px; }
+    .screen h3, .section-head h3, .card h4, .step h4 { margin: 0 0 10px; }
+    .msg {
+      max-width: 88%; margin-bottom: 10px; padding: 13px 14px; border-radius: 16px; font-size: .94rem; line-height: 1.45;
+    }
+    .msg.user { background: rgba(255,255,255,.07); color: var(--text-2); }
+    .msg.bot { margin-left: auto; background: linear-gradient(135deg, var(--teal), var(--teal-2)); color: #082126; font-weight: 700; }
+    .stack { display: grid; gap: 10px; }
+    .ops-card {
+      padding: 14px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.05);
+    }
+    .ops-card strong { display: block; margin-bottom: 6px; }
+    .ops-card span { color: var(--muted); font-size: .92rem; }
+    section { padding: 28px 0; }
+    .section-head { margin-bottom: 18px; }
+    .section-head h3 { font-size: clamp(2rem, 4vw, 2.9rem); letter-spacing: -.04em; }
+    .section-head p { margin: 0; color: var(--muted); max-width: 68ch; line-height: 1.7; }
+    .grid-3, .grid-2 { display: grid; gap: 16px; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .card { padding: 22px; }
+    .card h4 { font-size: 1.05rem; }
+    .card p, .card li { color: var(--text-2); line-height: 1.68; }
+    .card ul { margin: 10px 0 0 18px; padding: 0; }
+    .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .step { padding: 18px; }
+    .num {
+      width: 34px; height: 34px; display: grid; place-items: center; border-radius: 999px;
+      background: linear-gradient(135deg, var(--teal), var(--cyan)); color: #082126; font-weight: 900; margin-bottom: 10px;
+    }
+    .footer-cta {
+      margin: 12px 0 60px; padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;
+      border: 1px solid var(--line); border-radius: 28px; background: linear-gradient(135deg, rgba(25,199,197,.18), rgba(32,72,112,.28));
+    }
+    .footer-cta p { margin: 8px 0 0; color: var(--text-2); }
+    @media (max-width: 1080px) {
+      .hero, .trust, .screen-grid, .grid-3, .grid-2, .flow { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero-copy { padding: 30px; }
+      .wrap, .nav { width: calc(100% - 24px); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand">
+      <div class="logo">M</div>
+      <div>
+        <h1>MATHEO IQ</h1>
+        <p>premium medical operations</p>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#producto">Producto</a>
+      <a href="#soberania">Soberanía</a>
+      <a href="#farmacias">Farmacias</a>
+      <a href="#demo" class="btn primary">Solicitar demo</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="panel hero-copy">
+        <div class="eyebrow">whatsapp-first • dark premium • mexico-ready</div>
+        <h2>Atención clínica organizada con una capa operativa premium.</h2>
+        <p class="lead">MATHEO IQ ayuda a consultorios y clínicas a ordenar recepción, recordatorios, documentación y seguimiento del paciente sin romper el flujo real del equipo.</p>
+        <div class="actions">
+          <a class="btn primary" href="#demo">Solicitar demo</a>
+          <a class="btn secondary" href="#producto">Ver producto</a>
+        </div>
+        <div class="trust">
+          <div class="trust-card"><strong>WhatsApp-first</strong><span>El canal del paciente sigue siendo el centro, no una app paralela artificial.</span></div>
+          <div class="trust-card"><strong>Compliance + Digital</strong><span>Documentación estructurada, flujo premium y gobernanza más seria.</span></div>
+          <div class="trust-card"><strong>Sovereignty-by-design</strong><span>IA controlada, redacción, trazabilidad y trayectoria de residencia local reforzada.</span></div>
+        </div>
+      </div>
+
+      <div class="panel hero-ui">
+        <div class="topbar">
+          <div>
+            <strong style="font-size:1rem">Vista demo</strong>
+            <div style="color:var(--muted);font-size:.9rem">Paciente → recepción → clínica → verificación</div>
+          </div>
+          <div class="pill">pilot ready</div>
+        </div>
+        <div class="mini-row">
+          <div class="metric card" style="padding:14px 16px;flex:1"><strong style="display:block;font-size:1.45rem">42%</strong><span style="color:var(--muted);font-size:.88rem">menos fricción operativa</span></div>
+          <div class="metric card" style="padding:14px 16px;flex:1"><strong style="display:block;font-size:1.45rem">-28%</strong><span style="color:var(--muted);font-size:.88rem">menos no-shows</span></div>
+          <div class="metric card" style="padding:14px 16px;flex:1"><strong style="display:block;font-size:1.45rem">&lt;5 min</strong><span style="color:var(--muted);font-size:.88rem">demo QR / farmacia</span></div>
+        </div>
+        <div class="screen-grid">
+          <div class="screen">
+            <h3>Conversación</h3>
+            <div class="msg user">Hola, necesito una cita de seguimiento y renovar receta.</div>
+            <div class="msg bot">Claro. ¿Prefieres seguimiento general o revisión con receta?</div>
+            <div class="msg user">Revisión con receta.</div>
+            <div class="msg bot">Perfecto. Te ayudo a organizarlo y, si hace falta, te paso con recepción.</div>
+          </div>
+          <div class="screen">
+            <h3>Operación clínica</h3>
+            <div class="stack">
+              <div class="ops-card"><strong>Recepción</strong><span>handoff, agenda, confirmación y documentos pendientes</span></div>
+              <div class="ops-card"><strong>Documentación</strong><span>datos previos, historial y nota estructurada bajo control clínico</span></div>
+              <div class="ops-card"><strong>Receta QR</strong><span>emisión, verificación pública y flujo con farmacia aliada</span></div>
+              <div class="ops-card"><strong>IA controlada</strong><span>redacción y extracción con exposición externa minimizada</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="producto">
+      <div class="section-head">
+        <h3>Un wedge simple, premium y defendible</h3>
+        <p>El objetivo no es vender un “sistema total” desde el día uno. El objetivo es mostrar una mejora visible en atención, documentación y coordinación del paciente.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card"><h4>Recepción con menos ruido</h4><p>Clasifica intención, ordena el flujo y reduce la carga de mensajes repetitivos en el equipo.</p></article>
+        <article class="card"><h4>Documentación estructurada</h4><p>Preconsulta, historial y seguimiento en un formato más útil para clínica y operación.</p></article>
+        <article class="card"><h4>Capa premium de confianza</h4><p>QR, auditoría, permisos y trayectoria de soberanía para justificar ticket más alto.</p></article>
+      </div>
+    </section>
+
+    <section id="soberania">
+      <div class="section-head">
+        <h3>Soberanía vendible, no declarativa</h3>
+        <p>La promesa fuerte no es “milagro compliance”. Es control disciplinado: datos sensibles mejor gobernados, IA intermediarizada y crecimiento hacia arquitectura local más sólida.</p>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <h4>Lo que sí se puede decir</h4>
+          <ul>
+            <li>gobernanza reforzada de datos sensibles</li>
+            <li>gatekeeper interno para IA</li>
+            <li>auditabilidad operativa</li>
+            <li>trayectoria de residencia local reforzada</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>Lo que no se debe exagerar</h4>
+          <ul>
+            <li>“100% conforme” sin prueba dura</li>
+            <li>“100% soberano” si no es exacto</li>
+            <li>claim médico/diagnóstico prematuro</li>
+            <li>integración nacional ya cerrada</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="farmacias">
+      <div class="section-head">
+        <h3>Farmacias aliadas como preuve terrain</h3>
+        <p>Una alianza bien escogida hace tangible el valor de la receta QR, la verificación y la continuidad operativa.</p>
+      </div>
+      <div class="flow">
+        <div class="step"><div class="num">1</div><h4>Paciente</h4><p style="color:var(--text-2)">recibe atención, seguimiento y receta organizada</p></div>
+        <div class="step"><div class="num">2</div><h4>Clínica</h4><p style="color:var(--text-2)">emite y documenta bajo control interno</p></div>
+        <div class="step"><div class="num">3</div><h4>Farmacia</h4><p style="color:var(--text-2)">verifica QR y valida lo mínimo necesario</p></div>
+        <div class="step"><div class="num">4</div><h4>Ecosistema</h4><p style="color:var(--text-2)">se prepara la futura interoperabilidad sin sobre-venderla</p></div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="footer-cta">
+        <div>
+          <strong style="font-size:1.55rem">Template modelo, plus clair et plus premium</strong>
+          <p>Base de landing pour site, deck et proposition commerciale MATHEO IQ.</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="#">Solicitar demo</a>
+          <a class="btn secondary" href="#">Ver kit farmacia</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MATHEO IQ • Plataforma navegable v1</title>
+  <style>
+    :root {
+      --bg: #050b12;
+      --bg-2: #0a1320;
+      --panel: rgba(16, 28, 42, 0.92);
+      --panel-2: rgba(20, 39, 60, 0.92);
+      --line: rgba(137, 182, 219, 0.22);
+      --line-strong: rgba(122, 228, 245, 0.34);
+      --text: #f8fbff;
+      --text-2: #d7e6f2;
+      --muted: #9bb3c6;
+      --teal: #1ac7c4;
+      --teal-2: #119b9a;
+      --cyan: #7ae8ff;
+      --blue: #5578ff;
+      --green: #56d692;
+      --amber: #f1bf69;
+      --rose: #ff8d99;
+      --shadow: 0 30px 120px rgba(0,0,0,.42);
+      --radius: 28px;
+      --font: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 82% 7%, rgba(26,199,196,.16), transparent 25%),
+        radial-gradient(circle at 18% 0%, rgba(85,120,255,.15), transparent 28%),
+        linear-gradient(180deg, var(--bg), var(--bg-2) 58%, #04080d 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1380px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      width: min(1380px, calc(100% - 32px));
+      margin: 16px auto 0;
+      padding: 16px 18px;
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(7, 14, 22, 0.84);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .mark {
+      width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center;
+      font-weight: 900; color: #072128;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+    }
+    .brand strong { display: block; letter-spacing: .1em; font-size: 1rem; }
+    .brand span { display: block; color: var(--cyan); font-size: .82rem; }
+    .top-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      min-height: 42px; padding: 0 15px; border-radius: 15px; display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--line); background: rgba(255,255,255,.04); color: var(--text-2); font-weight: 700;
+      cursor: pointer; transition: .16s ease;
+    }
+    .btn:hover { transform: translateY(-1px); border-color: var(--line-strong); }
+    .btn.primary { background: linear-gradient(135deg, var(--cyan), var(--teal)); color: #082126; border-color: transparent; }
+
+    .hero {
+      padding: 34px 0 18px;
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(180deg, var(--panel), rgba(8, 16, 26, .98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero-copy { padding: 34px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 13px; border-radius: 999px;
+      border: 1px solid rgba(122,232,255,.18);
+      background: rgba(122,232,255,.06);
+      color: var(--cyan); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin: 0; max-width: 13ch;
+      font-size: clamp(2.8rem, 5vw, 4.8rem); line-height: .95; letter-spacing: -.05em;
+    }
+    .hero p {
+      margin: 18px 0 0; max-width: 62ch;
+      color: var(--text-2); line-height: 1.75; font-size: 1.02rem;
+    }
+    .hero-right {
+      padding: 22px;
+      display: grid;
+      gap: 12px;
+      background:
+        radial-gradient(circle at 80% 14%, rgba(122,232,255,.12), transparent 24%),
+        linear-gradient(180deg, rgba(17,31,48,.84), rgba(10,20,31,.96));
+    }
+    .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .kpi {
+      padding: 16px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,255,255,.05);
+    }
+    .kpi strong { display: block; font-size: 1.45rem; margin-bottom: 5px; }
+    .kpi span { color: var(--muted); font-size: .86rem; line-height: 1.45; }
+    .mini-screen {
+      min-height: 260px; padding: 18px; border: 1px solid var(--line); border-radius: 24px; background: rgba(255,255,255,.05);
+      display: grid; align-content: start; gap: 10px;
+    }
+    .pill-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill {
+      display: inline-flex; align-items: center; min-height: 31px; padding: 0 11px; border-radius: 999px;
+      border: 1px solid var(--line); background: rgba(255,255,255,.05); color: var(--text-2); font-size: .82rem;
+    }
+    .mini-card {
+      padding: 13px 14px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.05);
+    }
+    .mini-card strong { display: block; margin-bottom: 5px; }
+    .mini-card span { color: var(--muted); font-size: .9rem; }
+
+    .shell {
+      padding: 10px 0 58px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .sidebar {
+      position: sticky; top: 106px;
+      padding: 20px; display: grid; gap: 14px;
+    }
+    .sidebar h2 { margin: 0 0 4px; font-size: 1rem; }
+    .sidebar p { margin: 0; color: var(--muted); line-height: 1.55; font-size: .92rem; }
+    .nav-list { display: grid; gap: 10px; }
+    .nav-item {
+      width: 100%; text-align: left; cursor: pointer;
+      padding: 14px 15px; border-radius: 18px; border: 1px solid transparent;
+      background: rgba(255,255,255,.04); color: var(--text-2); font: inherit;
+      transition: .18s ease;
+    }
+    .nav-item:hover { border-color: var(--line); transform: translateY(-1px); }
+    .nav-item.active {
+      background: linear-gradient(135deg, rgba(122,232,255,.14), rgba(26,199,196,.12));
+      border-color: var(--line-strong); color: var(--text);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .nav-item strong { display: block; margin-bottom: 4px; }
+    .nav-item span { color: var(--muted); font-size: .88rem; line-height: 1.45; }
+
+    .content {
+      min-height: 760px;
+      padding: 24px;
+    }
+    .view-head {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .view-head h2 { margin: 0 0 8px; font-size: 2rem; letter-spacing: -.04em; }
+    .view-head p { margin: 0; color: var(--muted); max-width: 70ch; line-height: 1.68; }
+    .status-chip {
+      display: inline-flex; align-items: center; min-height: 34px; padding: 0 12px; border-radius: 999px;
+      border: 1px solid var(--line); background: rgba(255,255,255,.05); color: var(--text-2); font-size: .84rem;
+    }
+    .view { display: none; }
+    .view.active { display: block; animation: fadeIn .28s ease; }
+
+    .grid-3, .grid-2, .flow, .metrics-grid {
+      display: grid; gap: 14px;
+    }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .flow { grid-template-columns: repeat(4, 1fr); }
+    .metrics-grid { grid-template-columns: repeat(4, 1fr); }
+    .card {
+      padding: 20px; border: 1px solid var(--line); border-radius: 24px; background: rgba(255,255,255,.05);
+    }
+    .card h3, .card h4 { margin: 0 0 10px; }
+    .card p, .card li { color: var(--text-2); line-height: 1.68; }
+    .card ul { margin: 10px 0 0 18px; padding: 0; }
+    .stat {
+      padding: 18px; border: 1px solid var(--line); border-radius: 22px; background: rgba(255,255,255,.05);
+    }
+    .stat strong { display: block; font-size: 1.75rem; margin-bottom: 6px; }
+    .stat span { color: var(--muted); line-height: 1.45; font-size: .9rem; }
+    .list { display: grid; gap: 10px; }
+    .row {
+      padding: 14px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.04);
+      display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: start;
+    }
+    .dot { width: 11px; height: 11px; border-radius: 999px; margin-top: 5px; }
+    .dot.green { background: var(--green); }
+    .dot.amber { background: var(--amber); }
+    .dot.rose { background: var(--rose); }
+    .row strong { display: block; margin-bottom: 4px; }
+    .row p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.5; }
+    .tag {
+      display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; border-radius: 999px;
+      background: rgba(255,255,255,.06); border: 1px solid var(--line); color: var(--text-2); font-size: .82rem;
+    }
+    .step-number {
+      width: 34px; height: 34px; display: grid; place-items: center; border-radius: 999px;
+      margin-bottom: 12px; font-weight: 900; color: #072128;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+    }
+    .quote-band {
+      margin: 0 0 14px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 26px;
+      background: linear-gradient(135deg, rgba(122,232,255,.08), rgba(26,199,196,.07), rgba(85,120,255,.08));
+    }
+    .quote-band strong { display: block; font-size: 1.18rem; margin-bottom: 8px; }
+    .quote-band p { margin: 0; color: var(--text-2); line-height: 1.68; }
+    .scene-footer {
+      margin-top: 16px; display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap;
+      padding: 18px 20px; border: 1px solid var(--line); border-radius: 22px; background: rgba(255,255,255,.04);
+    }
+    .scene-footer p { margin: 0; color: var(--muted); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 1120px) {
+      .hero, .shell, .metrics-grid, .grid-3, .grid-2, .flow, .kpis { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .wrap, .topbar { width: calc(100% - 22px); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark">M</div>
+      <div>
+        <strong>MATHEO IQ</strong>
+        <span>plataforma navegable • premium demo</span>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="btn" data-jump="overview">Vista general</button>
+      <button class="btn" data-jump="reception">Recepción</button>
+      <button class="btn primary" data-jump="product">Explorar plataforma</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="panel hero-copy">
+        <div class="eyebrow">navigable platform • sales demo • dark premium</div>
+        <h1>Una démo navigable qui raconte vraiment la plateforme.</h1>
+        <p>On quitte le simple screenshot. Cette version sert à présenter MATHEO IQ comme une plateforme explorée écran par écran, avec une histoire claire entre réception, clinique, receta QR, farmacias aliadas et gouvernance.</p>
+      </div>
+      <div class="panel hero-right">
+        <div class="kpis">
+          <div class="kpi"><strong>5</strong><span>vues principales cliquables</span></div>
+          <div class="kpi"><strong>1</strong><span>histoire cohérente de plateforme</span></div>
+          <div class="kpi"><strong>0</strong><span>besoin de backend pour la démo</span></div>
+        </div>
+        <div class="mini-screen">
+          <div class="pill-row">
+            <div class="pill">WhatsApp-first</div>
+            <div class="pill">QR Rx</div>
+            <div class="pill">Compliance + Digital</div>
+          </div>
+          <div class="mini-card"><strong>Vue plateforme</strong><span>explique le wedge principal sans sur-vendre une superapp irréaliste.</span></div>
+          <div class="mini-card"><strong>Vue opération</strong><span>montre la queue réception, le handoff et le contrôle clinique.</span></div>
+          <div class="mini-card"><strong>Vue écosystème</strong><span>ancre farmacias aliadas et trust layer dans quelque chose de visible.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell">
+      <aside class="panel sidebar">
+        <div>
+          <h2>Navigation démo</h2>
+          <p>Choisis un angle de présentation. Chaque vue est pensée pour servir une narration produit/commerciale.</p>
+        </div>
+
+        <div class="nav-list">
+          <button class="nav-item active" data-view-target="overview">
+            <strong>1. Overview plateforme</strong>
+            <span>positionnement, wedge, architecture visible</span>
+          </button>
+          <button class="nav-item" data-view-target="reception">
+            <strong>2. Réception & queue</strong>
+            <span>ordre opérationnel et diminution du bruit</span>
+          </button>
+          <button class="nav-item" data-view-target="patient">
+            <strong>3. Parcours patient</strong>
+            <span>entrée, clinique, suivi et continuité</span>
+          </button>
+          <button class="nav-item" data-view-target="pharmacy">
+            <strong>4. Receta QR & farmacias</strong>
+            <span>trust layer et preuve terrain</span>
+          </button>
+          <button class="nav-item" data-view-target="control">
+            <strong>5. Gouvernance & contrôle</strong>
+            <span>compliance prudente, audit, souveraineté-by-design</span>
+          </button>
+        </div>
+
+        <div class="card" style="padding:18px;">
+          <h3 style="font-size:1rem;">Ce que ça prépare</h3>
+          <p>Une vraie homepage navigable, un deck plus vivant, ou une démo commerciale où tu guides la lecture au lieu de montrer des images isolées.</p>
+        </div>
+      </aside>
+
+      <section class="panel content">
+        <article class="view active" id="view-overview">
+          <div class="view-head">
+            <div>
+              <h2>Overview plateforme</h2>
+              <p>MATHEO IQ se présente comme une couche opérative premium pour cliniques ambulatoires, pas comme un OS santé total dès le jour un.</p>
+            </div>
+            <div class="status-chip">vue 1 / 5</div>
+          </div>
+
+          <div class="quote-band">
+            <strong>Le bon récit est plus crédible, donc plus fort.</strong>
+            <p>WhatsApp-first, réception mieux organisée, documentation plus sérieuse, receta QR et gouvernance plus visible. C’est ça le wedge. Pas besoin de sur-raconter le reste.</p>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="stat"><strong>92%</strong><span>des échanges peuvent être remis dans un flux plus discipliné</span></div>
+            <div class="stat"><strong>-28%</strong><span>potentiel de baisse des no-shows via meilleur suivi</span></div>
+            <div class="stat"><strong>QR</strong><span>preuve visible de sérieux et de continuité</span></div>
+            <div class="stat"><strong>Audit</strong><span>couche premium au-dessus d’un simple bot</span></div>
+          </div>
+
+          <div class="grid-3" style="margin-top:14px;">
+            <div class="card"><h3>Canal réel</h3><p>Le patient reste sur WhatsApp. On améliore l’opération sans casser l’habitude d’usage.</p></div>
+            <div class="card"><h3>Opération visible</h3><p>Réception, tri, handoff et documentation deviennent des écrans montrables, pas juste un backend caché.</p></div>
+            <div class="card"><h3>Premium vendable</h3><p>Compliance + Digital devient un pack de valeur, sans faire de claims absolus.</p></div>
+          </div>
+
+          <div class="scene-footer">
+            <p>Suite logique : montre ensuite la vue Réception pour rendre le bénéfice concret.</p>
+            <button class="btn primary" data-jump="reception">Voir Réception</button>
+          </div>
+        </article>
+
+        <article class="view" id="view-reception">
+          <div class="view-head">
+            <div>
+              <h2>Réception & queue clinique</h2>
+              <p>Cette vue sert à vendre la réduction du chaos quotidien. C’est souvent là que la valeur devient immédiatement compréhensible pour une clinique.</p>
+            </div>
+            <div class="status-chip">vue 2 / 5</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <h3>Queue priorisée</h3>
+              <div class="list">
+                <div class="row"><div class="dot green"></div><div><strong>Renovación receta</strong><p>patient identifié, review rapide puis PDF/QR.</p></div><div class="tag">rápido</div></div>
+                <div class="row"><div class="dot amber"></div><div><strong>Seguimiento postconsulta</strong><p>reagendado, rappel et clarification réception.</p></div><div class="tag">recepción</div></div>
+                <div class="row"><div class="dot rose"></div><div><strong>Paciente nuevo</strong><p>ficha minimale, motif et documentation avant handoff.</p></div><div class="tag">alta prioridad</div></div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Ce que ça change</h3>
+              <ul>
+                <li>moins de messages perdus dans le bruit</li>
+                <li>meilleure visibilité sur ce qui doit être repris par un humain</li>
+                <li>réception plus rapide sans réponse robotique froide</li>
+                <li>préparation plus propre de la clinique</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-3" style="margin-top:14px;">
+            <div class="card"><h4>Intentions</h4><p>cita, recordatorio, renovación, recepción, urgencia relative.</p></div>
+            <div class="card"><h4>Escalade</h4><p>handoff humain quand il faut, avec contexte déjà rangé.</p></div>
+            <div class="card"><h4>SLA</h4><p>base claire pour une future vue observabilité et discipline interne.</p></div>
+          </div>
+
+          <div class="scene-footer">
+            <p>Suite logique : montrer le parcours patient pour relier réception et clinique.</p>
+            <button class="btn primary" data-jump="patient">Voir parcours patient</button>
+          </div>
+        </article>
+
+        <article class="view" id="view-patient">
+          <div class="view-head">
+            <div>
+              <h2>Parcours patient</h2>
+              <p>Cette vue raconte l’expérience côté patient, mais sans glisser vers une promesse de superapp. On montre de la continuité, pas de la magie fake.</p>
+            </div>
+            <div class="status-chip">vue 3 / 5</div>
+          </div>
+
+          <div class="flow">
+            <div class="card"><div class="step-number">1</div><h4>Entrada</h4><p>motivo, tri léger, premier contact simple.</p></div>
+            <div class="card"><div class="step-number">2</div><h4>Recepción</h4><p>agenda, handoff et organisation initiale.</p></div>
+            <div class="card"><div class="step-number">3</div><h4>Clínica</h4><p>note structurée, clinician-controlled workflow.</p></div>
+            <div class="card"><div class="step-number">4</div><h4>Seguimiento</h4><p>rappel, continuité, prochaine action claire.</p></div>
+          </div>
+
+          <div class="grid-2" style="margin-top:14px;">
+            <div class="card"><h3>Pourquoi ça marche en démo</h3><p>Parce qu’on voit tout de suite le passage du message brut vers une relation patient mieux rangée.</p></div>
+            <div class="card"><h3>Limite saine</h3><p>Pas de diagnostic autonome, pas de conduite automatique, pas de claim médical déplacé.</p></div>
+          </div>
+
+          <div class="scene-footer">
+            <p>Suite logique : ouvrir Receta QR & farmacias pour montrer la couche premium visible.</p>
+            <button class="btn primary" data-jump="pharmacy">Voir Receta QR</button>
+          </div>
+        </article>
+
+        <article class="view" id="view-pharmacy">
+          <div class="view-head">
+            <div>
+              <h2>Receta QR & farmacias aliadas</h2>
+              <p>Ici on ancre MATHEO IQ dans quelque chose de tangible, montrable et commercialisable. C’est une excellente vue de démo.</p>
+            </div>
+            <div class="status-chip">vue 4 / 5</div>
+          </div>
+
+          <div class="quote-band">
+            <strong>La farmacia aliada transforme la feature en preuve terrain.</strong>
+            <p>La recette QR n’est plus juste un module abstrait, elle devient un maillon concret entre clinique, patient et vérification minimale.</p>
+          </div>
+
+          <div class="grid-3">
+            <div class="card"><h3>Émission</h3><p>folio, QR, note clinique et remise au patient dans un flux plus sérieux.</p></div>
+            <div class="card"><h3>Vérification</h3><p>page publique minimale, sans exposer plus que nécessaire.</p></div>
+            <div class="card"><h3>Écosystème</h3><p>première brique d’un réseau de farmacias aliadas vendable localement.</p></div>
+          </div>
+
+          <div class="grid-2" style="margin-top:14px;">
+            <div class="card"><h3>Ce que tu peux montrer</h3><ul><li>QR visible</li><li>validation simple</li><li>logique de parcours pharmacie</li><li>kit partenaire</li></ul></div>
+            <div class="card"><h3>Ce qu’il faut garder prudent</h3><ul><li>pas de claim légal absolu</li><li>pas de remplacement des workflows réglementés complexes</li><li>pas de survente de réseau national déjà en place</li></ul></div>
+          </div>
+
+          <div class="scene-footer">
+            <p>Suite logique : terminer avec la vue Gouvernance pour verrouiller le discours premium.</p>
+            <button class="btn primary" data-jump="control">Voir Gouvernance</button>
+          </div>
+        </article>
+
+        <article class="view" id="view-control">
+          <div class="view-head">
+            <div>
+              <h2>Gouvernance, audit & souveraineté-by-design</h2>
+              <p>Dernière vue pour donner de la densité au positionnement. Pas pour faire du fear marketing, mais pour montrer du sérieux.</p>
+            </div>
+            <div class="status-chip">vue 5 / 5</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <h3>Ce qu’on affirme proprement</h3>
+              <ul>
+                <li>workflow clinician-controlled</li>
+                <li>gouvernance renforcée des données sensibles</li>
+                <li>auditabilité et permissions</li>
+                <li>trajectoire de souveraineté-by-design</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Ce qu’on évite</h3>
+              <ul>
+                <li>"100% conforme" sans preuve stricte</li>
+                <li>IA clinique autonome</li>
+                <li>promesse réglementaire absolue</li>
+                <li>narratif de plateforme totale déjà finalisée</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-3" style="margin-top:14px;">
+            <div class="card"><h4>Logs & audit</h4><p>visibles et raccordables à une future couche observability.</p></div>
+            <div class="card"><h4>Permissions</h4><p>accès mieux cadrés, surfaces séparées, traces utiles.</p></div>
+            <div class="card"><h4>Positionnement</h4><p>Compliance + Digital vendu comme pack premium discipliné.</p></div>
+          </div>
+
+          <div class="scene-footer">
+            <p>La boucle complète est prête. Cette base peut maintenant devenir une homepage ou une vraie démo commerciale guidée.</p>
+            <button class="btn primary" data-jump="overview">Revenir au début</button>
+          </div>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const items = [...document.querySelectorAll('[data-view-target]')];
+    const views = [...document.querySelectorAll('.view')];
+    const jumps = [...document.querySelectorAll('[data-jump]')];
+
+    function activate(viewName) {
+      items.forEach((item) => item.classList.toggle('active', item.dataset.viewTarget === viewName));
+      views.forEach((view) => view.classList.toggle('active', view.id === `view-${viewName}`));
+      window.history.replaceState({}, '', `#${viewName}`);
+    }
+
+    items.forEach((item) => item.addEventListener('click', () => activate(item.dataset.viewTarget)));
+    jumps.forEach((btn) => btn.addEventListener('click', () => activate(btn.dataset.jump)));
+
+    const initial = window.location.hash.replace('#', '');
+    if (initial && document.getElementById(`view-${initial}`)) activate(initial);
+  </script>
+</body>
+</html>

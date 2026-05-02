@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MATHEO IQ • Mobile app glass v1</title>
+  <style>
+    :root {
+      --bg: #eef5fb;
+      --bg-2: #f8fbff;
+      --glass: rgba(255,255,255,0.58);
+      --glass-strong: rgba(255,255,255,0.78);
+      --line: rgba(116, 154, 190, 0.22);
+      --line-strong: rgba(30, 182, 198, 0.28);
+      --text: #163046;
+      --text-2: #34536b;
+      --muted: #68839a;
+      --teal: #0fa4a3;
+      --cyan: #3fd3ea;
+      --blue: #4d75e8;
+      --navy: #17384f;
+      --soft-shadow: 0 24px 60px rgba(76, 111, 151, 0.18);
+      --card-shadow: 0 18px 34px rgba(88, 123, 160, 0.16);
+      --font: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(63,211,234,.16), transparent 28%),
+        radial-gradient(circle at 86% 8%, rgba(77,117,232,.12), transparent 28%),
+        linear-gradient(180deg, #f9fcff, var(--bg) 54%, #edf4fb 100%);
+    }
+    .wrap {
+      width: min(1500px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 32px 0 48px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line-strong);
+      color: var(--teal);
+      font-size: .78rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0;
+      max-width: 12ch;
+      font-size: clamp(2.8rem, 5vw, 4.9rem);
+      line-height: .92;
+      letter-spacing: -.05em;
+    }
+    .hero p {
+      margin: 16px 0 0;
+      color: var(--text-2);
+      max-width: 70ch;
+      line-height: 1.75;
+      font-size: 1.02rem;
+    }
+    .chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+      color: var(--text-2);
+      box-shadow: var(--card-shadow);
+      font-size: .86rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .phone {
+      padding: 14px;
+      border-radius: 42px;
+      background: linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.38));
+      border: 1px solid rgba(255,255,255,.9);
+      box-shadow: var(--soft-shadow);
+      backdrop-filter: blur(18px);
+    }
+    .device {
+      min-height: 760px;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(180deg, var(--bg-2), #eef6fb 100%);
+      border: 1px solid rgba(140, 173, 205, 0.18);
+    }
+    .notch {
+      width: 120px;
+      height: 26px;
+      border-radius: 0 0 18px 18px;
+      background: rgba(20, 39, 59, 0.94);
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+    }
+    .screen {
+      padding: 26px 18px 18px;
+      min-height: 760px;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(63,211,234,.18), transparent 24%),
+        radial-gradient(circle at 18% 0%, rgba(77,117,232,.12), transparent 26%),
+        linear-gradient(180deg, rgba(249,252,255,.92), rgba(237,244,251,.96));
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding-top: 6px;
+    }
+    .top strong { display: block; font-size: 1rem; }
+    .top span { color: var(--muted); font-size: .82rem; }
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      color: white;
+      font-weight: 800;
+      box-shadow: var(--card-shadow);
+    }
+    .glass {
+      border: 1px solid rgba(255,255,255,.68);
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--card-shadow);
+      border-radius: 24px;
+    }
+    .hero-card {
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+    }
+    .hero-card h2 {
+      margin: 0;
+      font-size: 1.28rem;
+      line-height: 1.12;
+    }
+    .hero-card p {
+      margin: 0;
+      color: var(--text-2);
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .stat {
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(255,255,255,.75);
+      box-shadow: var(--card-shadow);
+    }
+    .stat strong { display: block; font-size: 1.35rem; margin-bottom: 4px; }
+    .stat span { color: var(--muted); font-size: .8rem; line-height: 1.4; }
+    .chart {
+      padding: 16px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(20,56,81,.94), rgba(16,46,70,.94));
+      color: white;
+      box-shadow: var(--card-shadow);
+    }
+    .chart .bars {
+      margin-top: 12px;
+      height: 120px;
+      display: flex;
+      align-items: end;
+      gap: 8px;
+    }
+    .bar {
+      flex: 1;
+      border-radius: 12px 12px 6px 6px;
+      background: linear-gradient(180deg, var(--cyan), var(--teal));
+      opacity: .94;
+    }
+    .list {
+      display: grid;
+      gap: 10px;
+    }
+    .list-item {
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(255,255,255,.75);
+      box-shadow: var(--card-shadow);
+      display: grid;
+      gap: 6px;
+    }
+    .list-item strong { display: block; font-size: .94rem; }
+    .list-item span { color: var(--muted); font-size: .82rem; line-height: 1.4; }
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(255,255,255,.8);
+      color: var(--text-2);
+      font-size: .76rem;
+    }
+    .chat {
+      display: grid;
+      gap: 10px;
+    }
+    .bubble {
+      max-width: 88%;
+      padding: 12px 14px;
+      border-radius: 18px;
+      font-size: .88rem;
+      line-height: 1.45;
+      box-shadow: var(--card-shadow);
+    }
+    .bubble.user {
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.85);
+      color: var(--text-2);
+    }
+    .bubble.bot {
+      margin-left: auto;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      color: white;
+    }
+    .record-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .record-box {
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.64);
+      border: 1px solid rgba(255,255,255,.82);
+      box-shadow: var(--card-shadow);
+    }
+    .record-box strong { display: block; font-size: .84rem; margin-bottom: 5px; }
+    .record-box span { color: var(--muted); font-size: .76rem; }
+    .rx-card {
+      padding: 20px 16px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(24,63,94,.96), rgba(18,48,73,.96));
+      color: white;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+    }
+    .crest {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 16px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,255,255,.46));
+      color: var(--navy);
+      display: grid;
+      place-items: center;
+      font-size: 1.9rem;
+      font-weight: 900;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    }
+    .rx-card h3 { margin: 0 0 6px; }
+    .rx-card p { margin: 0; color: rgba(255,255,255,.82); font-size: .84rem; line-height: 1.45; }
+    .qr {
+      width: 116px;
+      height: 116px;
+      margin: 16px auto 0;
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.9) 10%, transparent 10%, transparent 20%, rgba(255,255,255,.9) 20%, rgba(255,255,255,.9) 30%, transparent 30%, transparent 40%, rgba(255,255,255,.9) 40%, rgba(255,255,255,.9) 50%, transparent 50%),
+        linear-gradient(rgba(255,255,255,.92) 10%, transparent 10%, transparent 20%, rgba(255,255,255,.92) 20%, rgba(255,255,255,.92) 30%, transparent 30%, transparent 40%, rgba(255,255,255,.92) 40%, rgba(255,255,255,.92) 50%, transparent 50%),
+        rgba(255,255,255,.16);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+    }
+    .bottom-nav {
+      margin-top: auto;
+      padding: 10px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(255,255,255,.86);
+      box-shadow: var(--card-shadow);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .nav-pill {
+      min-height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: .78rem;
+      color: var(--muted);
+      background: rgba(255,255,255,.55);
+    }
+    .nav-pill.active {
+      color: white;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      font-weight: 700;
+    }
+    @media (max-width: 1300px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { grid-template-columns: 1fr; }
+      .chips { justify-content: flex-start; }
+    }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">mobile + app direction locked</div>
+        <h1>Déclinaison mobile/app dans la DA finale premium glass.</h1>
+        <p>Cette première série traduit la cible approuvée en écrans mobile plus désirables, plus showroom-ready et plus cohérents avec une vraie app MATHEO IQ. On garde le core produit, mais dans une enveloppe claire, glossy, médicale et haut de gamme.</p>
+      </div>
+      <div class="chips">
+        <div class="chip">light premium medical</div>
+        <div class="chip">glassmorphism</div>
+        <div class="chip">mobile-first app</div>
+        <div class="chip">teal / cyan / cobalt</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="phone">
+        <div class="device">
+          <div class="notch"></div>
+          <div class="screen">
+            <div class="top">
+              <div><strong>MATHEO IQ</strong><span>Dashboard móvil</span></div>
+              <div class="avatar">M</div>
+            </div>
+            <div class="glass hero-card">
+              <h2>Tu aliado en salud</h2>
+              <p>Vista premium para recepción, seguimiento, receta QR y continuidad operativa.</p>
+            </div>
+            <div class="mini-stats">
+              <div class="stat"><strong>220</strong><span>consultas hoy</span></div>
+              <div class="stat"><strong>87%</strong><span>confirmadas</span></div>
+              <div class="stat"><strong>14</strong><span>handoffs</span></div>
+              <div class="stat"><strong>36</strong><span>QR validados</span></div>
+            </div>
+            <div class="chart">
+              <strong>Actividad semanal</strong>
+              <div class="bars">
+                <div class="bar" style="height:45%"></div>
+                <div class="bar" style="height:72%"></div>
+                <div class="bar" style="height:64%"></div>
+                <div class="bar" style="height:86%"></div>
+                <div class="bar" style="height:58%"></div>
+                <div class="bar" style="height:92%"></div>
+              </div>
+            </div>
+            <div class="bottom-nav">
+              <div class="nav-pill active">Inicio</div>
+              <div class="nav-pill">Inbox</div>
+              <div class="nav-pill">Pacientes</div>
+              <div class="nav-pill">Más</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="phone">
+        <div class="device">
+          <div class="notch"></div>
+          <div class="screen">
+            <div class="top">
+              <div><strong>Inbox clínico</strong><span>WhatsApp-first flow</span></div>
+              <div class="avatar">R</div>
+            </div>
+            <div class="tag-row">
+              <div class="tag">Recepción</div>
+              <div class="tag">Prioridad alta</div>
+              <div class="tag">Paciente nuevo</div>
+            </div>
+            <div class="chat">
+              <div class="bubble user">Hola, quiero reagendar mi cita y saber si mi receta sigue activa.</div>
+              <div class="bubble bot">Claro. Primero reviso tu seguimiento y luego te confirmo si se puede renovar desde clínica.</div>
+              <div class="bubble user">Perfecto, gracias.</div>
+              <div class="bubble bot">Ya preparé el contexto para recepción y clínica. Te acompaño con la siguiente acción.</div>
+            </div>
+            <div class="list-item">
+              <strong>Siguiente acción</strong>
+              <span>Recepción confirma slot disponible y clínica revisa vigencia de receta.</span>
+            </div>
+            <div class="list-item">
+              <strong>Contexto listo</strong>
+              <span>Paciente identificado, motivo claro, handoff preparado, seguimiento pendiente.</span>
+            </div>
+            <div class="bottom-nav">
+              <div class="nav-pill">Inicio</div>
+              <div class="nav-pill active">Inbox</div>
+              <div class="nav-pill">Pacientes</div>
+              <div class="nav-pill">Más</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="phone">
+        <div class="device">
+          <div class="notch"></div>
+          <div class="screen">
+            <div class="top">
+              <div><strong>Patient record</strong><span>Ficha clínica premium</span></div>
+              <div class="avatar">P</div>
+            </div>
+            <div class="glass hero-card">
+              <h2>María Gómez</h2>
+              <p>Seguimiento general • última visita hoy • estado estable</p>
+            </div>
+            <div class="record-grid">
+              <div class="record-box"><strong>Última visita</strong><span>24 abr 2026</span></div>
+              <div class="record-box"><strong>Próxima cita</strong><span>29 abr 2026</span></div>
+              <div class="record-box"><strong>Receta activa</strong><span>RX-24025</span></div>
+              <div class="record-box"><strong>Farmacia aliada</strong><span>Centro</span></div>
+            </div>
+            <div class="list">
+              <div class="list-item"><strong>Resumen clínico</strong><span>Nota breve, seguimiento organizado y continuidad lista para staff y clínica.</span></div>
+              <div class="list-item"><strong>Compliance + Digital</strong><span>Documentación, receta QR y gobernanza visible en un seul flow.</span></div>
+            </div>
+            <div class="bottom-nav">
+              <div class="nav-pill">Inicio</div>
+              <div class="nav-pill">Inbox</div>
+              <div class="nav-pill active">Pacientes</div>
+              <div class="nav-pill">Más</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="phone">
+        <div class="device">
+          <div class="notch"></div>
+          <div class="screen">
+            <div class="top">
+              <div><strong>Receta QR</strong><span>Trust layer visible</span></div>
+              <div class="avatar">Q</div>
+            </div>
+            <div class="rx-card">
+              <div class="crest">MIQ</div>
+              <h3>RX-24025</h3>
+              <p>Emitida para María Gómez • seguimiento activo • validación disponible para farmacia aliada.</p>
+              <div class="qr"></div>
+            </div>
+            <div class="list">
+              <div class="list-item"><strong>Estado</strong><span>Vigente • verificación pública mínima habilitada</span></div>
+              <div class="list-item"><strong>Farmacia aliada</strong><span>Centro • última validación hace 11 min</span></div>
+              <div class="list-item"><strong>Premium layer</strong><span>Receta, continuidad, trazabilidad y objeto produit concrètement montrable.</span></div>
+            </div>
+            <div class="bottom-nav">
+              <div class="nav-pill">Inicio</div>
+              <div class="nav-pill">Inbox</div>
+              <div class="nav-pill">Pacientes</div>
+              <div class="nav-pill active">Más</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

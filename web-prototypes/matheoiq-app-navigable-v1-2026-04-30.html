@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MATHEO IQ • App navigable v1</title>
+  <style>
+    :root {
+      --bg: #06111b;
+      --bg-soft: #0b1a28;
+      --panel: rgba(13, 24, 38, 0.88);
+      --panel-2: rgba(19, 35, 54, 0.92);
+      --line: rgba(125, 195, 235, 0.16);
+      --line-strong: rgba(99, 231, 225, 0.32);
+      --text: #f4fbff;
+      --text-2: #d7e6f0;
+      --muted: #8ea6b7;
+      --cyan: #7be7ff;
+      --teal: #23c7c3;
+      --blue: #5f82ff;
+      --green: #59d68c;
+      --amber: #f2c06d;
+      --rose: #ff8c99;
+      --shadow: 0 40px 120px rgba(0, 0, 0, 0.42);
+      --card: 0 18px 34px rgba(0,0,0,.20);
+      --radius: 28px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(35,199,195,.12), transparent 26%),
+        radial-gradient(circle at 82% 0%, rgba(95,130,255,.14), transparent 26%),
+        linear-gradient(180deg, #040a12, #071320 50%, #03070d 100%);
+    }
+
+    .shell {
+      min-height: 100%;
+      width: min(1280px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 22px 0 34px;
+      display: grid;
+      grid-template-columns: minmax(260px, 360px) minmax(320px, 430px) minmax(260px, 360px);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .info,
+    .side-panel,
+    .phone-frame {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), rgba(8, 15, 24, 0.96));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 28px;
+    }
+
+    .info,
+    .side-panel {
+      padding: 18px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(123,231,255,.18);
+      background: rgba(123,231,255,.08);
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .brand-lockup {
+      margin-top: 16px;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--card);
+    }
+
+    .brand-lockup img {
+      display: block;
+      width: 100%;
+      border-radius: 14px;
+    }
+
+    .asset-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.45;
+    }
+
+    h1, h2, h3, h4, p { margin: 0; }
+    h1 {
+      margin-top: 16px;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: .98;
+      letter-spacing: -.05em;
+    }
+
+    .info p {
+      margin-top: 14px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    .bullet-list {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .bullet {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .phone-frame {
+      padding: 14px;
+      position: relative;
+      justify-self: center;
+      width: 100%;
+      max-width: 430px;
+    }
+
+    .device {
+      min-height: 860px;
+      border-radius: 34px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 82% 10%, rgba(35,199,195,.12), transparent 24%),
+        radial-gradient(circle at 16% 2%, rgba(95,130,255,.14), transparent 28%),
+        linear-gradient(180deg, #091625, #0d1c2d 62%, #08131f 100%);
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 124px;
+      height: 28px;
+      border-radius: 0 0 18px 18px;
+      background: rgba(2, 6, 10, .92);
+      z-index: 10;
+    }
+
+    .screen {
+      min-height: 860px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 14px;
+      padding: 26px 16px 14px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding-top: 8px;
+    }
+
+    .topbar strong { display: block; font-size: 1rem; }
+    .topbar span { color: var(--muted); font-size: .82rem; }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      color: #062028;
+      font-weight: 900;
+      box-shadow: var(--card);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .views {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .view {
+      display: none;
+      gap: 12px;
+      align-content: start;
+      animation: fade .18s ease;
+    }
+
+    .view.active { display: grid; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-card,
+    .card,
+    .stat,
+    .list-item,
+    .message,
+    .timeline-item,
+    .doc-row,
+    .task-row,
+    .nav-btn {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: 22px;
+      box-shadow: var(--card);
+    }
+
+    .hero-card {
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(123,231,255,.10), rgba(35,199,195,.10), rgba(95,130,255,.10));
+    }
+
+    .hero-card h2 {
+      font-size: 1.35rem;
+      line-height: 1.08;
+      margin-bottom: 8px;
+    }
+
+    .hero-card p,
+    .card p,
+    .list-item span,
+    .message p,
+    .timeline-item p,
+    .doc-row p,
+    .task-row p {
+      color: var(--text-2);
+      line-height: 1.55;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      padding: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span { color: var(--muted); font-size: .8rem; line-height: 1.4; }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .section-title h3 { font-size: .95rem; letter-spacing: .02em; }
+    .section-title small { color: var(--muted); }
+
+    .list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .list-item,
+    .card,
+    .message,
+    .timeline-item,
+    .doc-row,
+    .task-row {
+      padding: 14px;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--text-2);
+      font-size: .76rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 700;
+    }
+
+    .ok { background: rgba(89,214,140,.12); color: var(--green); border: 1px solid rgba(89,214,140,.18); }
+    .warn { background: rgba(242,192,109,.12); color: var(--amber); border: 1px solid rgba(242,192,109,.18); }
+    .risk { background: rgba(255,140,153,.12); color: var(--rose); border: 1px solid rgba(255,140,153,.18); }
+    .info-badge { background: rgba(123,231,255,.12); color: var(--cyan); border: 1px solid rgba(123,231,255,.18); }
+
+    .message {
+      display: grid;
+      gap: 6px;
+    }
+
+    .message-top,
+    .row-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .muted { color: var(--muted); font-size: .82rem; }
+
+    .bottom-nav {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      padding-top: 4px;
+    }
+
+    .nav-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      padding: 10px 6px 11px;
+      cursor: pointer;
+      font: inherit;
+      display: grid;
+      justify-items: center;
+      gap: 5px;
+      transition: .15s ease;
+    }
+
+    .nav-btn strong { font-size: .72rem; font-weight: 700; }
+    .nav-btn span { font-size: .68rem; }
+
+    .nav-btn.active {
+      color: var(--text);
+      border-color: var(--line-strong);
+      background: linear-gradient(135deg, rgba(123,231,255,.12), rgba(35,199,195,.08));
+      transform: translateY(-1px);
+    }
+
+    .micro-chart {
+      height: 90px;
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .micro-chart i {
+      display: block;
+      flex: 1;
+      border-radius: 12px 12px 6px 6px;
+      background: linear-gradient(180deg, var(--cyan), var(--teal));
+      opacity: .95;
+    }
+
+    .side-panel h3 {
+      margin-bottom: 12px;
+      font-size: 1.02rem;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .link-list a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      display: grid;
+      gap: 5px;
+    }
+
+    .link-list a span { color: var(--muted); font-size: .84rem; line-height: 1.45; }
+
+    @media (max-width: 1080px) {
+      .shell {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .info, .side-panel {
+        width: min(720px, 100%);
+      }
+      .phone-frame { width: min(430px, 100%); }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="info">
+      <span class="eyebrow">MATHEO IQ app navigable</span>
+      <div class="brand-lockup">
+        <img src="../branding/assets-2026-04-20/matheo-iq-primary-logo-lockup-saas-hub-clinicas-mexico-v1.jpg" alt="MATHEO IQ primary logo lockup" />
+      </div>
+      <div class="asset-note">Prototype aligné sur le lockup branding et la palette teal cyan dark premium déjà validés.</div>
+      <h1>Version app mobile navigable</h1>
+      <p>
+        Prototype mobile interactif pour montrer une vraie logique produit MATHEO IQ : accueil, inbox staff,
+        patients, documents portail sécurisé, billing CFDI et centre ops. C’est une surface de navigation,
+        pas une preuve de runtime branché.
+      </p>
+      <div class="bullet-list">
+        <div class="bullet"><strong>But</strong><br/>Te donner une vraie version app à faire tourner et naviguer, pas juste des écrans statiques.</div>
+        <div class="bullet"><strong>Scope</strong><br/>Centré Rail A : secure portal first, coordination staff, docs, facturation minimale, ops.</div>
+        <div class="bullet"><strong>Utilisation</strong><br/>Change d’onglet en bas du téléphone pour simuler les écrans app.</div>
+      </div>
+    </section>
+
+    <section class="phone-frame">
+      <div class="device">
+        <div class="notch"></div>
+        <div class="screen">
+          <header class="topbar">
+            <div>
+              <strong>MATHEO IQ</strong>
+              <span id="topbar-subtitle">Accueil opératoire Rail A</span>
+            </div>
+            <div class="avatar">
+              <img src="../branding/assets-2026-04-20/matheo-iq-app-icon-tile-v1.jpg" alt="MATHEO IQ app icon" />
+            </div>
+          </header>
+
+          <section class="views">
+            <div class="view active" data-view="home" data-subtitle="Accueil opératoire Rail A">
+              <div class="hero-card">
+                <div class="badge info-badge">Rail A actif</div>
+                <h2>Clinic OS pilot-safe</h2>
+                <p>Coordination staff, intake documents, secure portal, billing CFDI minimal et suivi ops.</p>
+                <div class="pill-row">
+                  <span class="pill">WhatsApp first</span>
+                  <span class="pill">Portal first if sensitive</span>
+                  <span class="pill">Audit by default</span>
+                </div>
+              </div>
+              <div class="stat-grid">
+                <div class="stat"><strong>18</strong><span>items inbox staff</span></div>
+                <div class="stat"><strong>6</strong><span>documents à trier</span></div>
+                <div class="stat"><strong>4</strong><span>CFDI draft today</span></div>
+                <div class="stat"><strong>2</strong><span>alertes ops</span></div>
+              </div>
+              <div class="card">
+                <div class="section-title"><h3>Pulse du jour</h3><small>vue fondatrice</small></div>
+                <div class="micro-chart">
+                  <i style="height:38%"></i>
+                  <i style="height:55%"></i>
+                  <i style="height:70%"></i>
+                  <i style="height:48%"></i>
+                  <i style="height:82%"></i>
+                  <i style="height:66%"></i>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-item">
+                  <div class="row-between"><strong>Inbox staff prioritaire</strong><span class="badge warn">6 urgents</span></div>
+                  <span>Documents entrants, coordination patient, pièces à passer en portail sécurisé.</span>
+                </div>
+                <div class="list-item">
+                  <div class="row-between"><strong>Billing minimal</strong><span class="badge ok">stable</span></div>
+                  <span>Draft, review humaine, émission CFDI, journal d’audit.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="view" data-view="inbox" data-subtitle="Inbox staff et coordination">
+              <div class="section-title"><h3>Inbox staff</h3><small>triage et coordination</small></div>
+              <div class="list">
+                <div class="message">
+                  <div class="message-top"><strong>WhatsApp patient</strong><span class="badge warn">restricted</span></div>
+                  <p>“Je joins mon résultat de labo” → bascule portail sécurisé, pas de détail clinique dans le chat.</p>
+                  <span class="muted">2 min ago</span>
+                </div>
+                <div class="message">
+                  <div class="message-top"><strong>Staff request</strong><span class="badge info-badge">follow up</span></div>
+                  <p>Confirmer disponibilité médecin et replanifier rendez-vous de demain.</p>
+                  <span class="muted">8 min ago</span>
+                </div>
+                <div class="message">
+                  <div class="message-top"><strong>Email entrant</strong><span class="badge risk">portal only</span></div>
+                  <p>Attachment sensible détectée, quarantaine + notification minimale envoyée.</p>
+                  <span class="muted">12 min ago</span>
+                </div>
+              </div>
+              <div class="card">
+                <div class="section-title"><h3>Actions rapides</h3><small>staff workspace</small></div>
+                <div class="pill-row">
+                  <span class="pill">Reclasser</span>
+                  <span class="pill">Assigner</span>
+                  <span class="pill">Envoyer portail</span>
+                  <span class="pill">Créer tâche</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="view" data-view="patients" data-subtitle="Patients et portail sécurisé">
+              <div class="section-title"><h3>Patients</h3><small>surface patient safe</small></div>
+              <div class="list">
+                <div class="list-item">
+                  <div class="row-between"><strong>Lucía Hernández</strong><span class="badge ok">portal active</span></div>
+                  <span>Ordonnance, facture, documents partagés via portail sécurisé.</span>
+                </div>
+                <div class="list-item">
+                  <div class="row-between"><strong>Daniel Ortega</strong><span class="badge warn">review doc</span></div>
+                  <span>Nouvelle pièce reçue, classification sensibilité en attente de validation staff.</span>
+                </div>
+                <div class="list-item">
+                  <div class="row-between"><strong>María López</strong><span class="badge info-badge">follow up</span></div>
+                  <span>Rappel consultation + coordination légère autorisée sur WhatsApp.</span>
+                </div>
+              </div>
+              <div class="card">
+                <div class="section-title"><h3>Règle canonique</h3><small>anti dérive</small></div>
+                <p>Si le contenu devient sensible ou ambigu, on force le portail sécurisé. WhatsApp reste coordination légère.</p>
+              </div>
+            </div>
+
+            <div class="view" data-view="docs" data-subtitle="Documents et billing CFDI">
+              <div class="section-title"><h3>Documents et billing</h3><small>core minimal propre</small></div>
+              <div class="list">
+                <div class="doc-row">
+                  <div class="row-between"><strong>CFDI consultation</strong><span class="badge ok">draft</span></div>
+                  <p>Prêt pour review humaine avant émission.</p>
+                </div>
+                <div class="doc-row">
+                  <div class="row-between"><strong>Ordonnance PDF</strong><span class="badge info-badge">portal shared</span></div>
+                  <p>Visible dans le portail patient, journal d’accès activé.</p>
+                </div>
+                <div class="doc-row">
+                  <div class="row-between"><strong>Pièce jointe WhatsApp</strong><span class="badge risk">quarantine</span></div>
+                  <p>En attente de classification staff avant exposition.</p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="section-title"><h3>Workflow billing</h3><small>pas de magie fake</small></div>
+                <div class="pill-row">
+                  <span class="pill">draft</span>
+                  <span class="pill">review</span>
+                  <span class="pill">emit CFDI</span>
+                  <span class="pill">audit log</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="view" data-view="ops" data-subtitle="Ops, runbooks et command center">
+              <div class="section-title"><h3>Ops center</h3><small>pilotage runtime</small></div>
+              <div class="list">
+                <div class="task-row">
+                  <div class="row-between"><strong>Webhook health</strong><span class="badge ok">green</span></div>
+                  <p>Twilio inbound et routing OK.</p>
+                </div>
+                <div class="task-row">
+                  <div class="row-between"><strong>Queue documents</strong><span class="badge warn">6 pending</span></div>
+                  <p>Triage attachments et enrichissement à finir.</p>
+                </div>
+                <div class="task-row">
+                  <div class="row-between"><strong>CFDI smoke</strong><span class="badge info-badge">sandbox</span></div>
+                  <p>Validation environnement avant branchement live.</p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="section-title"><h3>Next</h3><small>discipline Rail A</small></div>
+                <p>Finir messaging réel, auth/tests, document intake branché, CFDI propre. HR/Gov reste hors core.</p>
+              </div>
+            </div>
+          </section>
+
+          <nav class="bottom-nav" aria-label="App navigation">
+            <button class="nav-btn active" data-target="home"><span>◉</span><strong>Home</strong></button>
+            <button class="nav-btn" data-target="inbox"><span>✉</span><strong>Inbox</strong></button>
+            <button class="nav-btn" data-target="patients"><span>👤</span><strong>Patients</strong></button>
+            <button class="nav-btn" data-target="docs"><span>▣</span><strong>Docs</strong></button>
+            <button class="nav-btn" data-target="ops"><span>◆</span><strong>Ops</strong></button>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side-panel">
+      <span class="eyebrow">Liens rapides</span>
+      <h3>Ouvrir les autres surfaces</h3>
+      <div class="link-list">
+        <a href="./matheoiq-platform-navigable-desktop-v2-2026-04-24.html">
+          <strong>Platform desktop V2</strong>
+          <span>Vue desktop premium déjà existante.</span>
+        </a>
+        <a href="./matheoiq-platform-navigable-v3-2026-04-24.html">
+          <strong>Platform V3</strong>
+          <span>Variante plus large pour comparaison produit.</span>
+        </a>
+        <a href="./matheoiq-mobile-app-glass-v1-2026-04-24.html">
+          <strong>Mobile glass V1</strong>
+          <span>Langage visuel mobile statique de référence.</span>
+        </a>
+        <a href="../_orchestration/MATHEO-IQ-roadmap-p0-p2-visual-2026-04-29.html">
+          <strong>Roadmap visuelle</strong>
+          <span>Pour garder le cap entre core et annexes futures.</span>
+        </a>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll('.nav-btn');
+    const views = document.querySelectorAll('.view');
+    const subtitle = document.getElementById('topbar-subtitle');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const target = button.dataset.target;
+
+        buttons.forEach((b) => b.classList.toggle('active', b === button));
+        views.forEach((view) => {
+          const active = view.dataset.view === target;
+          view.classList.toggle('active', active);
+          if (active) subtitle.textContent = view.dataset.subtitle || 'MATHEO IQ';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
