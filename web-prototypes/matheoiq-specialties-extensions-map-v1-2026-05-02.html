@@ -174,6 +174,39 @@
       .status.reviewed { color: var(--green); background: rgba(27,156,109,.10); border-color: rgba(27,156,109,.22); }
       .status.future { color: var(--rose); background: rgba(212,88,120,.1); border-color: rgba(212,88,120,.22); }
       .status.partial { color: var(--accent-2); background: rgba(75,99,240,.08); border-color: rgba(75,99,240,.18); }
+      .action-card {
+        grid-column: span 6;
+        border-radius: var(--radius-lg);
+        padding: 20px;
+      }
+      .action-card h3 {
+        font-size: 22px;
+        line-height: 1.12;
+      }
+      .action-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .action-item {
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255,255,255,.72);
+        border: 1px solid rgba(25,87,118,.08);
+      }
+      .action-item strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: var(--accent-2);
+      }
+      .action-item p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
       .note {
         margin-top: 28px;
         padding: 20px 22px;
@@ -182,7 +215,7 @@
       .note p { margin: 0; color: var(--muted); line-height: 1.7; }
       @media (max-width: 1040px) {
         .stat { grid-column: span 6; }
-        .card, .card.large { grid-column: span 12; }
+        .card, .card.large, .action-card { grid-column: span 12; }
       }
       @media (max-width: 720px) {
         .stat { grid-column: span 12; }
@@ -229,11 +262,74 @@
       </section>
 
       <nav class="nav" aria-label="Sections specialty">
+        <a class="nav-link" href="#pilotage">Pilotage</a>
         <a class="nav-link" href="#p1">Proches du core</a>
         <a class="nav-link" href="#p2">Specialties crédibles</a>
         <a class="nav-link" href="#extensions">Extensions</a>
         <a class="nav-link" href="#future">Future lanes</a>
       </nav>
+
+      <section id="pilotage" class="section">
+        <div class="section-head">
+          <h2>Pilotage rapide par bloc</h2>
+          <p>Même logique que dans la map opératoire interne, mais rendue visible ici pour t’aider à lire la structure globale sans deviner: quoi faire, quoi ne pas faire, et quel est le prochain move par grand bloc specialty.</p>
+        </div>
+        <div class="grid">
+          <article class="action-card glass">
+            <div class="top"><div><span class="label">Bloc 1</span><h3>Proches du core</h3></div><span class="status construction">En construction</span></div>
+            <div class="action-list">
+              <div class="action-item"><strong>Action</strong><p>Faire apparaître tôt ces modules dans la navigation plateforme et dans les démos, car ils renforcent directement le cœur Rail A.</p></div>
+              <div class="action-item"><strong>Ne pas faire</strong><p>Ne pas attendre le wiring complet de toutes les spécialités avant de rendre visibles Dentistería, Ginecología, Laboratorio, Psicología, Medicina General et Cardiología.</p></div>
+              <div class="action-item"><strong>Prochain move</strong><p>Les transformer ensuite en cartes cliquables dans la platform desktop avec statut et vue de détail légère.</p></div>
+            </div>
+          </article>
+
+          <article class="action-card glass">
+            <div class="top"><div><span class="label">Bloc 2</span><h3>Pack 3 specialty</h3></div><span class="status construction">En construction</span></div>
+            <div class="action-list">
+              <div class="action-item"><strong>Action</strong><p>Montrer Endocrinología, Nefrología, Alergología, Anestesiología et Nutrición comme profondeur specialty visible et premium.</p></div>
+              <div class="action-item"><strong>Ne pas faire</strong><p>Ne pas les présenter comme moteurs autonomes de guidance clinique, surtout sur la néphro, l’anaphylaxie ou l’anesthésie.</p></div>
+              <div class="action-item"><strong>Prochain move</strong><p>Créer une vue pack par pack avec tuiles, descriptions et badges de maturité.</p></div>
+            </div>
+          </article>
+
+          <article class="action-card glass">
+            <div class="top"><div><span class="label">Bloc 3</span><h3>Pack 4 specialty</h3></div><span class="status reviewed">Reviewé, à intégrer</span></div>
+            <div class="action-list">
+              <div class="action-item"><strong>Action</strong><p>Utiliser Reumatología, Hematología, Urgencias/Triage et Radiología pour donner un vrai signal plateforme multi-packs et enterprise.</p></div>
+              <div class="action-item"><strong>Ne pas faire</strong><p>Ne pas sur-vendre le caractère live de ces blocs tant que le wiring runtime et les garde-fous sensibles ne sont pas en place.</p></div>
+              <div class="action-item"><strong>Prochain move</strong><p>Les faire remonter comme pack visible directement depuis la navigation specialty globale.</p></div>
+            </div>
+          </article>
+
+          <article class="action-card glass">
+            <div class="top"><div><span class="label">Bloc 4</span><h3>Extensions & moat</h3></div><span class="status construction">En construction</span></div>
+            <div class="action-list">
+              <div class="action-item"><strong>Action</strong><p>Garder Extensión A Crónicas et Extensión B Mental Rehab visibles pour faire sentir que MATHEO IQ dépasse le simple socle clinique générique.</p></div>
+              <div class="action-item"><strong>Ne pas faire</strong><p>Ne pas laisser ces extensions diluer le focus d’exécution avant le core runtime, booking et ops.</p></div>
+              <div class="action-item"><strong>Prochain move</strong><p>Les brancher ensuite comme “extensions activables” dans une vue de structure globale.</p></div>
+            </div>
+          </article>
+
+          <article class="action-card glass">
+            <div class="top"><div><span class="label">Bloc 5</span><h3>Future lanes</h3></div><span class="status future">Future lane</span></div>
+            <div class="action-list">
+              <div class="action-item"><strong>Action</strong><p>Afficher Medicina Alternativa Core et Clínica de Células Madre comme futures lanes structurées, pas comme blocs oubliés.</p></div>
+              <div class="action-item"><strong>Ne pas faire</strong><p>Ne pas les mélanger au noyau Rail A go-live ni aux promesses court terme.</p></div>
+              <div class="action-item"><strong>Prochain move</strong><p>Les conserver comme branches visibles de la plateforme pour donner la vraie vue d’ensemble, avec statut future lane explicite.</p></div>
+            </div>
+          </article>
+
+          <article class="action-card glass">
+            <div class="top"><div><span class="label">Bloc 6</span><h3>Lecture honnête de la plateforme</h3></div><span class="status partial">Structuré, pas tout câblé</span></div>
+            <div class="action-list">
+              <div class="action-item"><strong>Action</strong><p>Rendre la breadth visible maintenant, même si l’intégration runtime est progressive, pour que la structure MATHEO IQ se lise enfin d’un coup d’œil.</p></div>
+              <div class="action-item"><strong>Ne pas faire</strong><p>Ne pas cacher les spécialités jusqu’au dernier moment, sinon la plateforme paraît plus étroite qu’elle ne l’est vraiment.</p></div>
+              <div class="action-item"><strong>Prochain move</strong><p>Continuer à lier cette vue globale aux surfaces platform/staff pour que le tout devienne une vraie carte produit navigable.</p></div>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <section id="p1" class="section">
         <div class="section-head">
