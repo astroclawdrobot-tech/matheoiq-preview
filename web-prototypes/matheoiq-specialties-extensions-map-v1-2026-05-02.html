@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MATHEO IQ • Specialties & Extensions Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #edf7fb;
+        --bg-2: #f8fcff;
+        --surface: rgba(255,255,255,.78);
+        --surface-2: rgba(255,255,255,.92);
+        --line: rgba(25,87,118,.12);
+        --line-strong: rgba(23,167,197,.24);
+        --text: #0f3145;
+        --muted: #58798c;
+        --accent: #16a8c7;
+        --accent-2: #4b63f0;
+        --green: #1b9c6d;
+        --amber: #cc8a1f;
+        --rose: #d45878;
+        --shadow: 0 22px 72px rgba(28,81,112,.12);
+        --radius-xl: 32px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --font-ui: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font-ui);
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(22,168,199,.14), transparent 26%),
+          radial-gradient(circle at top right, rgba(75,99,240,.12), transparent 24%),
+          linear-gradient(180deg, var(--bg-2), var(--bg));
+      }
+      h1,h2,h3,h4 { font-family: var(--font-display); margin: 0; }
+      code,.mono { font-family: var(--font-mono); }
+      .shell { max-width: 1280px; margin: 0 auto; padding: 32px 20px 72px; }
+      .glass {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+      .hero {
+        border-radius: var(--radius-xl);
+        padding: 32px;
+        margin-bottom: 24px;
+      }
+      .eyebrow, .pill, .status, .nav-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 32px;
+        padding: 0 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        border: 1px solid rgba(25,87,118,.1);
+        text-decoration: none;
+      }
+      .eyebrow {
+        background: rgba(22,168,199,.1);
+        color: #0d6d82;
+        border-color: rgba(22,168,199,.2);
+      }
+      .hero h1 {
+        margin-top: 18px;
+        font-size: clamp(34px, 6vw, 58px);
+        line-height: .98;
+        letter-spacing: -.04em;
+      }
+      .lead {
+        max-width: 860px;
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.65;
+      }
+      .meta, .nav { display: flex; flex-wrap: wrap; gap: 10px; }
+      .meta { margin-top: 20px; }
+      .nav { margin: 0 0 24px; }
+      .pill, .nav-link {
+        background: rgba(255,255,255,.7);
+        color: var(--muted);
+      }
+      .stats {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 16px;
+      }
+      .stat {
+        grid-column: span 3;
+        border-radius: var(--radius-lg);
+        padding: 18px;
+      }
+      .stat strong {
+        display: block;
+        margin-top: 10px;
+        font-size: 30px;
+        line-height: 1;
+      }
+      .stat p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+      .section { margin-top: 34px; }
+      .section-head { margin-bottom: 16px; }
+      .section-head h2 { font-size: 28px; line-height: 1.08; }
+      .section-head p { margin: 8px 0 0; color: var(--muted); line-height: 1.6; max-width: 780px; }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 16px;
+      }
+      .card {
+        grid-column: span 4;
+        border-radius: var(--radius-lg);
+        padding: 20px;
+      }
+      .card.large { grid-column: span 6; }
+      .top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .label {
+        display: inline-block;
+        margin-bottom: 10px;
+        color: var(--accent-2);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      .card h3 {
+        font-size: 22px;
+        line-height: 1.12;
+      }
+      .card p {
+        margin: 0 0 14px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.8);
+        border: 1px solid rgba(25,87,118,.1);
+        color: var(--text);
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .status.construction { color: var(--amber); background: rgba(255,191,86,.12); border-color: rgba(204,138,31,.22); }
+      .status.reviewed { color: var(--green); background: rgba(27,156,109,.10); border-color: rgba(27,156,109,.22); }
+      .status.future { color: var(--rose); background: rgba(212,88,120,.1); border-color: rgba(212,88,120,.22); }
+      .status.partial { color: var(--accent-2); background: rgba(75,99,240,.08); border-color: rgba(75,99,240,.18); }
+      .note {
+        margin-top: 28px;
+        padding: 20px 22px;
+        border-radius: var(--radius-lg);
+      }
+      .note p { margin: 0; color: var(--muted); line-height: 1.7; }
+      @media (max-width: 1040px) {
+        .stat { grid-column: span 6; }
+        .card, .card.large { grid-column: span 12; }
+      }
+      @media (max-width: 720px) {
+        .stat { grid-column: span 12; }
+        .hero { padding: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero glass">
+        <span class="eyebrow">MATHEO IQ • Specialties & Extensions</span>
+        <h1>Vue globale de la structure specialty</h1>
+        <p class="lead">
+          Cette page sert à rendre visibles les nombreuses spécialités et extensions déjà recensées, avec une lecture honnête de leur état. L’objectif n’est pas de faire croire qu’elles sont toutes live, mais de montrer clairement la profondeur de la structure MATHEO IQ, avec le bon statut: <strong>en construction</strong>, <strong>reviewé</strong>, <strong>à consolider</strong> ou <strong>future lane</strong>.
+        </p>
+        <div class="meta">
+          <span class="pill">25 spécialités / extensions</span>
+          <span class="pill">4 packs + 1 standalone ORL</span>
+          <span class="pill">Core d’abord, breadth visible ensuite</span>
+          <span class="pill">Statut honnête, pas de surclaim runtime</span>
+        </div>
+        <div class="stats">
+          <article class="stat glass">
+            <span class="label">Registry</span>
+            <strong>25</strong>
+            <p>Spécialités et extensions déjà canonisées dans le registre MATHEO IQ.</p>
+          </article>
+          <article class="stat glass">
+            <span class="label">Pack map</span>
+            <strong>4 + ORL</strong>
+            <p>Quatre packs specialty plus une verticale standalone déjà identifiée.</p>
+          </article>
+          <article class="stat glass">
+            <span class="label">Runtime</span>
+            <strong>Core first</strong>
+            <p>Le socle patients, conversations, booking et ops a été priorisé avant le câblage large des specialty packs.</p>
+          </article>
+          <article class="stat glass">
+            <span class="label">Lecture</span>
+            <strong>En construction</strong>
+            <p>La plupart des blocs sont bien présents côté structure, mais pas encore intégrés partout dans la plateforme.</p>
+          </article>
+        </div>
+      </section>
+
+      <nav class="nav" aria-label="Sections specialty">
+        <a class="nav-link" href="#p1">Proches du core</a>
+        <a class="nav-link" href="#p2">Specialties crédibles</a>
+        <a class="nav-link" href="#extensions">Extensions</a>
+        <a class="nav-link" href="#future">Future lanes</a>
+      </nav>
+
+      <section id="p1" class="section">
+        <div class="section-head">
+          <h2>Modules proches du core, à intégrer tôt</h2>
+          <p>Ces blocs donnent déjà une vraie profondeur structurelle à la plateforme et sont les meilleurs candidats pour apparaître vite dans l’expérience MATHEO IQ large.</p>
+        </div>
+        <div class="grid">
+          <article class="card glass">
+            <div class="top"><div><span class="label">P1</span><h3>Dentistería</h3></div><span class="status construction">En construction</span></div>
+            <p>Bloc très concret, fort sur consultation, documentation et continuité clinique, avec bonne valeur démo.</p>
+            <div class="tags"><span class="tag">specialty crédible</span><span class="tag">forte valeur clinique</span><span class="tag">CFDI-friendly</span></div>
+          </article>
+          <article class="card glass">
+            <div class="top"><div><span class="label">P1</span><h3>Ginecología</h3></div><span class="status construction">En construction</span></div>
+            <p>Très bon fit pour dossier clinique structuré, suivi et continuité documentaire, avec utilité commerciale claire.</p>
+            <div class="tags"><span class="tag">clinique documentaire</span><span class="tag">specialty crédible</span></div>
+          </article>
+          <article class="card glass">
+            <div class="top"><div><span class="label">P1</span><h3>Laboratorio</h3></div><span class="status construction">En construction</span></div>
+            <p>Module transverse fort pour résultats, continuité de dossier et lecture clinique élargie au-delà du core.</p>
+            <div class="tags"><span class="tag">transverse clinique</span><span class="tag">résultats</span></div>
+          </article>
+          <article class="card glass">
+            <div class="top"><div><span class="label">P1</span><h3>Psicología</h3></div><span class="status construction">En construction</span></div>
+            <p>Très cohérent avec une cible psy solo, à garder clinician-facing et sans glisser vers de l’autonomie sensible.</p>
+            <div class="tags"><span class="tag">segment prioritaire possible</span><span class="tag">clinician-facing</span></div>
+          </article>
+          <article class="card glass">
+            <div class="top"><div><span class="label">P1</span><h3>Medicina General</h3></div><span class="status partial">À consolider</span></div>
+            <p>Présent côté repo mais pas encore consolidé proprement dans la lecture intake canonique finale.</p>
+            <div class="tags"><span class="tag">core attendu</span><span class="tag">repo present</span></div>
+          </article>
+          <article class="card glass">
+            <div class="top"><div><span class="label">P1</span><h3>Cardiología</h3></div><span class="status partial">À consolider</span></div>
+            <p>Important côté core/specialty, déjà visible côté repo, mais pas encore stabilisé comme bloc intégré final.</p>
+            <div class="tags"><span class="tag">important</span><span class="tag">repo present</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="p2" class="section">
+        <div class="section-head">
+          <h2>Specialties crédibles déjà présentes dans la structure</h2>
+          <p>Ces blocs existent déjà dans le registre et renforcent fortement la largeur perçue de MATHEO IQ. Ils méritent d’apparaître visiblement dans la plateforme, même avec un statut “en construction”.</p>
+        </div>
+        <div class="grid">
+          <article class="card large glass"><div class="top"><div><span class="label">Pack 3</span><h3>Endocrinología</h3></div><span class="status construction">En construction</span></div><p>Bloc chronique fort, bon signal commercial et bonne profondeur specialty sans sortir du cadre clinician-facing.</p><div class="tags"><span class="tag">chronique</span><span class="tag">CGM/TIR</span><span class="tag">specialty crédible</span></div></article>
+          <article class="card large glass"><div class="top"><div><span class="label">Pack 3</span><h3>Nefrología</h3></div><span class="status construction">En construction</span></div><p>Très distinctive avec CKD-EPI, électrolytes et suivi hémodialyse, mais à garder sous supervision forte sur l’interprétation.</p><div class="tags"><span class="tag">CKD-EPI</span><span class="tag">Kt/V</span><span class="tag">dialyse</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">Pack 3</span><h3>Alergología</h3></div><span class="status construction">En construction</span></div><p>Spécialité visuellement distinctive, surtout utile pour enrichir la perception premium de la plateforme.</p><div class="tags"><span class="tag">prick test</span><span class="tag">clinician-supervised</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">Pack 3</span><h3>Anestesiología</h3></div><span class="status construction">En construction</span></div><p>Un des blocs les plus opérables, avec ASA, Mallampati et checklist OMS, sans devenir moteur autonome de risque.</p><div class="tags"><span class="tag">ASA</span><span class="tag">OMS checklist</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">Pack 3</span><h3>Nutrición</h3></div><span class="status construction">En construction</span></div><p>Bloc crédible et vendable, bon candidat pour apparaître tôt comme specialty transverse et lifestyle clinique.</p><div class="tags"><span class="tag">TMB</span><span class="tag">macros</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">Pack 4</span><h3>Reumatología</h3></div><span class="status reviewed">Reviewé, à intégrer</span></div><p>Spécialité premium forte avec scoring métier, très bonne candidate pour enrichir la profondeur structurelle visible.</p><div class="tags"><span class="tag">DAS28</span><span class="tag">specialty premium</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">Pack 4</span><h3>Hematología</h3></div><span class="status reviewed">Reviewé, à intégrer</span></div><p>Visuellement puissante, mais sensible sur la logique transfusionnelle. À montrer honnêtement comme bloc en construction.</p><div class="tags"><span class="tag">transfusion</span><span class="tag">haute sensibilité</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">Pack 4</span><h3>Urgencias / Triage</h3></div><span class="status reviewed">Reviewé, à intégrer</span></div><p>Très fort en signal opérationnel, mais à cadrer strictement pour ne pas sur-vendre un moteur de décision sensible.</p><div class="tags"><span class="tag">triage</span><span class="tag">opérable</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">Pack 4</span><h3>Radiología</h3></div><span class="status reviewed">Reviewé, à intégrer</span></div><p>Très bon signal plateforme/enterprise, idéal pour montrer la largeur du système même sans wiring imagerie complet.</p><div class="tags"><span class="tag">imaging</span><span class="tag">enterprise signal</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">Standalone</span><h3>ORL</h3></div><span class="status construction">En construction</span></div><p>Verticale standalone déjà crédible pour démontrer depth specialty et lecture clinique structurée.</p><div class="tags"><span class="tag">standalone</span><span class="tag">audiologie / ORL</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Dermatología</h3></div><span class="status construction">En construction</span></div><p>Spécialité démonstrative forte, très utile pour le rendu premium et la perception de profondeur clinique.</p><div class="tags"><span class="tag">showcase</span><span class="tag">visual depth</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Centro Auditivo</h3></div><span class="status construction">En construction</span></div><p>Bloc specialty crédible et bien différencié, utile pour prouver une largeur réelle de plateforme.</p><div class="tags"><span class="tag">audiología</span><span class="tag">specialty crédible</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Oncología</h3></div><span class="status construction">En construction</span></div><p>Valeur premium forte, à garder sous contrôle clinicien et à afficher avec un wording prudent.</p><div class="tags"><span class="tag">premium</span><span class="tag">prudent</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Neurología</h3></div><span class="status construction">En construction</span></div><p>Specialty premium crédible, utile pour densifier la vue globale même sans runtime complet.</p><div class="tags"><span class="tag">premium</span><span class="tag">review-first</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Oftalmología</h3></div><span class="status construction">En construction</span></div><p>Bloc simple mais crédible, bon candidat pour compléter le paysage specialty visible.</p><div class="tags"><span class="tag">showcase</span><span class="tag">simple bloc</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Pediatría</h3></div><span class="status construction">En construction</span></div><p>Apporte une lecture patient/famille importante dans la structure globale de la plateforme.</p><div class="tags"><span class="tag">patient/famille</span><span class="tag">specialty crédible</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Urología</h3></div><span class="status construction">En construction</span></div><p>Spécialité crédible et lisible, bonne candidate pour enrichir le catalogue visible sans promesse excessive.</p><div class="tags"><span class="tag">specialty crédible</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Cirugía Plástica</h3></div><span class="status construction">En construction</span></div><p>Très démonstratif côté clinique premium, mais à présenter comme extension depth, pas comme noyau produit.</p><div class="tags"><span class="tag">private clinic premium</span><span class="tag">showcase</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Geriatría / VGI</h3></div><span class="status construction">En construction</span></div><p>Utile pour dossier structuré et suivi longitudinal, ajoute de la profondeur clinique réelle à la map.</p><div class="tags"><span class="tag">longitudinal</span><span class="tag">dossier structuré</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Gastroenterología</h3></div><span class="status construction">En construction</span></div><p>Très bonne profondeur specialty sur scores et documentation, avec recadrage anti-SaMD explicite.</p><div class="tags"><span class="tag">summary-based</span><span class="tag">prudent</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Infectología</h3></div><span class="status construction">En construction</span></div><p>Bloc fort mais sensible, à garder clairement comme support clinician-facing et non moteur autonome.</p><div class="tags"><span class="tag">explicite anti-SaMD</span><span class="tag">review-first</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P2</span><h3>Ortopedia</h3></div><span class="status construction">En construction</span></div><p>Source brute confirmée, specialty secondaire crédible, encore non branchée live mais utile pour la vue globale.</p><div class="tags"><span class="tag">source confirmée</span><span class="tag">non branché live</span></div></article>
+          <article class="card glass"><div class="top"><div><span class="label">P3</span><h3>Varices</h3></div><span class="status construction">En construction</span></div><p>Plus démo que core immédiat, mais utile pour montrer la logique d’extension clinique ciblée.</p><div class="tags"><span class="tag">démo</span><span class="tag">plus tard</span></div></article>
+        </div>
+      </section>
+
+      <section id="extensions" class="section">
+        <div class="section-head">
+          <h2>Extensions qui élargissent le moat</h2>
+          <p>Ces blocs ne sont pas le cœur immédiat, mais ils rendent la structure MATHEO IQ beaucoup plus large et plus défendable quand ils sont visibles dans la carte produit.</p>
+        </div>
+        <div class="grid">
+          <article class="card large glass"><div class="top"><div><span class="label">Extension</span><h3>Extensión A Crónicas</h3></div><span class="status construction">En construction</span></div><p>Peut renforcer fortement le moat chronic care plus tard, surtout quand le socle core + booking sera bien stabilisé.</p><div class="tags"><span class="tag">chronic care</span><span class="tag">moat</span></div></article>
+          <article class="card large glass"><div class="top"><div><span class="label">Extension</span><h3>Extensión B Mental Rehab</h3></div><span class="status construction">En construction</span></div><p>Extension prudente à garder clinician-facing, très utile pour élargir la structure sans glisser vers de l’autonomie sensible.</p><div class="tags"><span class="tag">mental rehab</span><span class="tag">prudent</span></div></article>
+        </div>
+      </section>
+
+      <section id="future" class="section">
+        <div class="section-head">
+          <h2>Future lanes / hors scope actuel</h2>
+          <p>Ces blocs existent dans la matière MATHEO IQ, mais il vaut mieux les montrer avec un statut explicite plutôt que de les faire passer pour intégrés aujourd’hui.</p>
+        </div>
+        <div class="grid">
+          <article class="card large glass"><div class="top"><div><span class="label">Future vertical</span><h3>Medicina Alternativa Core</h3></div><span class="status future">Future lane</span></div><p>Homeopatía, Acupuntura/MTC et Naturista forment une vraie coque specialty, utile comme source et comme breadth visible, mais pas comme noyau go-live Rail A.</p><div class="tags"><span class="tag">optionnelle</span><span class="tag">future vertical</span><span class="tag">sensible</span></div></article>
+          <article class="card large glass"><div class="top"><div><span class="label">Régulée</span><h3>Clínica de Células Madre</h3></div><span class="status future">Future lane</span></div><p>Lane régulée et sensible, à garder visible dans la structure globale comme piste future, mais clairement hors exécution immédiate.</p><div class="tags"><span class="tag">summary-only</span><span class="tag">fort recadrage</span></div></article>
+        </div>
+      </section>
+
+      <section class="note glass">
+        <p>
+          Lecture honnête: cette vue rend enfin la breadth specialty visible dans la plateforme publique, mais elle ne veut pas dire que chaque spécialité est déjà branchée runtime, testée E2E, ou prête en prod. Elle sert à montrer la vraie <strong>structure globale</strong> de MATHEO IQ, avec le bon statut de construction et de maturité.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
