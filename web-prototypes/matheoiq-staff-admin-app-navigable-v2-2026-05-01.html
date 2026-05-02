@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MATHEO IQ • Staff/Admin app navigable v2</title>
+  <style>
+    :root {
+      --bg: #05111a;
+      --bg-soft: #0b1826;
+      --panel: rgba(10, 20, 32, 0.92);
+      --panel-2: rgba(15, 29, 45, 0.94);
+      --line: rgba(111, 196, 237, 0.16);
+      --line-strong: rgba(111, 196, 237, 0.3);
+      --text: #f5fbff;
+      --text-2: #d4e4ef;
+      --muted: #88a4b8;
+      --cyan: #75e8ff;
+      --teal: #28c7bf;
+      --blue: #6786ff;
+      --green: #59d68c;
+      --amber: #f2c06d;
+      --rose: #ff8c99;
+      --shadow: 0 36px 120px rgba(0, 0, 0, 0.44);
+      --card: 0 18px 34px rgba(0, 0, 0, 0.22);
+      --radius: 28px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(40,199,191,.14), transparent 24%),
+        radial-gradient(circle at 100% 0%, rgba(103,134,255,.16), transparent 24%),
+        linear-gradient(180deg, #030912, #08131e 50%, #02060b 100%);
+    }
+
+    .shell {
+      width: min(1380px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 34px;
+      display: grid;
+      grid-template-columns: minmax(280px, 350px) minmax(360px, 430px) minmax(320px, 420px);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel,
+    .phone-frame {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), rgba(7, 15, 24, 0.96));
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .panel { padding: 18px; }
+    .phone-frame { padding: 14px; position: relative; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(117,232,255,.18);
+      background: rgba(117,232,255,.08);
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, h4, p { margin: 0; }
+    h1 {
+      margin-top: 16px;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: .98;
+      letter-spacing: -.05em;
+    }
+
+    .lead {
+      margin-top: 14px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    .brand-lockup {
+      margin-top: 16px;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--card);
+    }
+
+    .brand-lockup img,
+    .icon-tile img {
+      display: block;
+      width: 100%;
+      border-radius: 14px;
+    }
+
+    .icon-tile {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: var(--card);
+      flex: 0 0 auto;
+    }
+
+    .bullet-list,
+    .metric-list,
+    .ops-list,
+    .view-stack,
+    .right-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .bullet,
+    .metric,
+    .ops-card,
+    .detail-card,
+    .nav-chip,
+    .hero-card,
+    .toolbar,
+    .stat,
+    .list-item,
+    .message,
+    .note,
+    .slot,
+    .timeline-item {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: 22px;
+      box-shadow: var(--card);
+    }
+
+    .bullet,
+    .metric,
+    .ops-card,
+    .detail-card,
+    .hero-card,
+    .toolbar,
+    .stat,
+    .list-item,
+    .message,
+    .note,
+    .slot,
+    .timeline-item {
+      padding: 14px;
+    }
+
+    .bullet strong,
+    .metric strong,
+    .ops-card strong,
+    .detail-card strong,
+    .list-item strong,
+    .message strong,
+    .note strong,
+    .slot strong,
+    .timeline-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: .95rem;
+    }
+
+    .bullet p,
+    .metric p,
+    .ops-card p,
+    .detail-card p,
+    .message p,
+    .note p,
+    .slot p,
+    .timeline-item p,
+    .list-item span {
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .subtle {
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.45;
+    }
+
+    .metric-grid,
+    .stat-grid,
+    .slot-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .metric-grid,
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .slot-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .stat strong,
+    .metric strong {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .status-row,
+    .pill-row,
+    .toolbar-row,
+    .timeline-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .pill,
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.08);
+      font-size: .76rem;
+      color: var(--text-2);
+    }
+
+    .pill.cyan, .tag.cyan { color: var(--cyan); }
+    .pill.green, .tag.green { color: var(--green); }
+    .pill.amber, .tag.amber { color: var(--amber); }
+    .pill.rose, .tag.rose { color: var(--rose); }
+    .pill.blue, .tag.blue { color: #b5c6ff; }
+
+    .device {
+      min-height: 900px;
+      border-radius: 34px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 84% 10%, rgba(40,199,191,.12), transparent 24%),
+        radial-gradient(circle at 12% 0%, rgba(103,134,255,.12), transparent 28%),
+        linear-gradient(180deg, #091522, #0c1a29 58%, #08131f 100%);
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 122px;
+      height: 28px;
+      border-radius: 0 0 18px 18px;
+      background: rgba(2,6,10,.92);
+      z-index: 10;
+    }
+
+    .screen {
+      min-height: 900px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 12px;
+      padding: 26px 16px 14px;
+    }
+
+    .topbar,
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .app-title strong { display: block; font-size: 1rem; }
+    .app-title span { color: var(--muted); font-size: .82rem; }
+
+    .hero-card {
+      background: linear-gradient(135deg, rgba(117,232,255,.12), rgba(40,199,191,.11), rgba(103,134,255,.10));
+    }
+
+    .hero-card h2 {
+      font-size: 1.28rem;
+      line-height: 1.08;
+      margin-bottom: 8px;
+    }
+
+    .nav-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .nav-chip {
+      padding: 10px 8px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      transition: transform .18s ease, border-color .18s ease, color .18s ease, background .18s ease;
+    }
+
+    .nav-chip.active {
+      color: var(--text);
+      border-color: var(--line-strong);
+      background: linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.06));
+      transform: translateY(-1px);
+    }
+
+    .views { position: relative; overflow: hidden; }
+    .view { display: none; gap: 12px; align-content: start; animation: fade .18s ease; }
+    .view.active { display: grid; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .section-title h3 { font-size: .94rem; }
+    .section-title small { color: var(--muted); }
+
+    .list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .list-item {
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+
+    .list-item:hover,
+    .list-item.selected {
+      transform: translateY(-1px);
+      border-color: var(--line-strong);
+      background: rgba(255,255,255,.07);
+    }
+
+    .list-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .right-stack {
+      align-content: start;
+    }
+
+    .detail-card h3 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .timeline-item + .timeline-item,
+    .note + .note,
+    .message + .message { margin-top: 10px; }
+
+    .message.inbound { border-color: rgba(117,232,255,.24); }
+    .message.outbound { border-color: rgba(103,134,255,.24); }
+
+    .bottom-nav {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      padding-top: 4px;
+    }
+
+    .bottom-nav button {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      padding: 11px 8px;
+      border-radius: 18px;
+      font: inherit;
+      font-size: .73rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .bottom-nav button.active {
+      color: var(--text);
+      border-color: var(--line-strong);
+      background: rgba(255,255,255,.09);
+    }
+
+    .linkish {
+      color: var(--cyan);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 1180px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-frame {
+        max-width: 430px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell { width: min(100%, calc(100% - 12px)); }
+      .metric-grid,
+      .stat-grid,
+      .slot-grid,
+      .nav-row,
+      .bottom-nav { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="panel">
+      <span class="eyebrow">App front • Staff/Admin V2</span>
+      <h1>MATHEO IQ app staff/admin plus crédible</h1>
+      <p class="lead">
+        Cette version pousse enfin l’app vers un usage opérateur réel, aligné avec ce qu’on vient de structurer dans le backend, autour des patients, conversations, notes, booking et ops.
+      </p>
+
+      <div class="brand-lockup">
+        <img src="../branding/assets-2026-04-20/matheo-iq-primary-logo-lockup-saas-hub-clinicas-mexico-v1.jpg" alt="MATHEO IQ primary logo lockup" />
+      </div>
+
+      <div class="bullet-list" style="margin-top:16px;">
+        <article class="bullet">
+          <strong>Ce qui a changé</strong>
+          <p>On ne montre plus juste une app jolie. On montre une app qui colle au chantier live: patient match, conversation notes, inbox staff, booking, reminders et monitoring ops.</p>
+        </article>
+        <article class="bullet">
+          <strong>Focus produit</strong>
+          <p>Inbox, Patients, Conversations, Booking, Ops. C’est la tranche la plus crédible pour un usage staff/admin avant CRM et onboarding plus lourds.</p>
+        </article>
+        <article class="bullet">
+          <strong>Alignement backend</strong>
+          <p>Le prototype reflète maintenant les évolutions du repo live: `clinics`, `clinic_settings`, `patients`, `patient_id`, `conversation_notes`, et API messaging enrichie.</p>
+        </article>
+      </div>
+
+      <div class="metric-grid" style="margin-top:16px;">
+        <div class="metric">
+          <strong>Batch 2</strong>
+          <p class="subtle">Pont patient/conversation/message posé dans le repo live.</p>
+        </div>
+        <div class="metric">
+          <strong>Surface visée</strong>
+          <p class="subtle">Staff-admin mobile first, mais lisible aussi en desktop.</p>
+        </div>
+        <div class="metric">
+          <strong>Ce soir</strong>
+          <p class="subtle">App front visible, plus crédible que le simple v1 preview.</p>
+        </div>
+        <div class="metric">
+          <strong>Ensuite</strong>
+          <p class="subtle">Brancher booking + reminders au même langage d’interface.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="phone-frame">
+      <div class="device">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="topbar">
+            <div class="avatar-row">
+              <div class="icon-tile">
+                <img src="../branding/assets-2026-04-20/matheo-iq-app-icon-tile-v1.jpg" alt="MATHEO IQ app icon" />
+              </div>
+              <div class="app-title">
+                <strong>MATHEO IQ Staff</strong>
+                <span>Clinica Norte • Production preview</span>
+              </div>
+            </div>
+            <span class="pill green">sync OK</span>
+          </div>
+
+          <section class="hero-card">
+            <h2>App staff/admin V2</h2>
+            <p>Navigation mobile crédible autour de l’inbox patient, des notes de conversation, du booking et des signaux ops.</p>
+            <div class="pill-row" style="margin-top:10px;">
+              <span class="pill cyan">patients liés</span>
+              <span class="pill blue">conversation notes</span>
+              <span class="pill amber">booking next</span>
+            </div>
+          </section>
+
+          <nav class="nav-row" id="topNav">
+            <div class="nav-chip active" data-view="inbox">Inbox</div>
+            <div class="nav-chip" data-view="patients">Patients</div>
+            <div class="nav-chip" data-view="booking">Booking</div>
+            <div class="nav-chip" data-view="ops">Ops</div>
+            <div class="nav-chip" data-view="settings">Config</div>
+          </nav>
+
+          <section class="views">
+            <div class="view active" id="view-inbox">
+              <div class="toolbar">
+                <div>
+                  <strong style="display:block;">Inbox prioritaire</strong>
+                  <span class="subtle">6 conversations, 2 urgentes</span>
+                </div>
+                <div class="status-row">
+                  <span class="tag rose">needs human</span>
+                  <span class="tag cyan">notes live</span>
+                </div>
+              </div>
+
+              <div class="list" id="inboxList">
+                <article class="list-item selected" data-detail="c1">
+                  <div class="list-head">
+                    <div>
+                      <strong>Patricia Moreno</strong>
+                      <span>Recibí su mensaje, pero necesito cambiar mi cita de mañana.</span>
+                    </div>
+                    <span class="tag rose">urgent</span>
+                  </div>
+                  <div class="pill-row">
+                    <span class="pill cyan">patient matched</span>
+                    <span class="pill blue">2 notes</span>
+                    <span class="pill amber">booking issue</span>
+                  </div>
+                </article>
+
+                <article class="list-item" data-detail="c2">
+                  <div class="list-head">
+                    <div>
+                      <strong>Luis Herrera</strong>
+                      <span>Quiero confirmar si la doctora puede verme hoy por la tarde.</span>
+                    </div>
+                    <span class="tag amber">high</span>
+                  </div>
+                  <div class="pill-row">
+                    <span class="pill cyan">patient matched</span>
+                    <span class="pill green">service candidate</span>
+                    <span class="pill blue">1 note</span>
+                  </div>
+                </article>
+
+                <article class="list-item" data-detail="c3">
+                  <div class="list-head">
+                    <div>
+                      <strong>Numero nuevo</strong>
+                      <span>Hola, quisiera saber costos de consulta inicial.</span>
+                    </div>
+                    <span class="tag blue">new</span>
+                  </div>
+                  <div class="pill-row">
+                    <span class="pill amber">unmatched</span>
+                    <span class="pill cyan">admin only</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="view" id="view-patients">
+              <div class="toolbar">
+                <div>
+                  <strong style="display:block;">Patients</strong>
+                  <span class="subtle">Directorio canónico por clínica</span>
+                </div>
+                <span class="tag green">127 active</span>
+              </div>
+
+              <div class="stat-grid">
+                <div class="stat"><strong>127</strong><span>Patients linked</span></div>
+                <div class="stat"><strong>14</strong><span>Needs update</span></div>
+              </div>
+
+              <div class="list">
+                <article class="list-item">
+                  <div class="list-head">
+                    <div>
+                      <strong>Patricia Moreno</strong>
+                      <span>+52 55 2481 9921 • Última cita: mañana</span>
+                    </div>
+                    <span class="tag cyan">matched</span>
+                  </div>
+                </article>
+                <article class="list-item">
+                  <div class="list-head">
+                    <div>
+                      <strong>Luis Herrera</strong>
+                      <span>+52 55 3374 4410 • Alergia anotada</span>
+                    </div>
+                    <span class="tag amber">review</span>
+                  </div>
+                </article>
+                <article class="list-item">
+                  <div class="list-head">
+                    <div>
+                      <strong>Sofía Vega</strong>
+                      <span>+52 55 9021 1104 • Seguimiento en 7 días</span>
+                    </div>
+                    <span class="tag green">ok</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="view" id="view-booking">
+              <div class="toolbar">
+                <div>
+                  <strong style="display:block;">Booking</strong>
+                  <span class="subtle">Providers, services, slots, reminders</span>
+                </div>
+                <span class="tag amber">Batch 3 next</span>
+              </div>
+
+              <div class="stat-grid">
+                <div class="stat"><strong>3</strong><span>Providers today</span></div>
+                <div class="stat"><strong>9</strong><span>Pending confirmations</span></div>
+              </div>
+
+              <div class="section-title">
+                <h3>Slots disponibles</h3>
+                <small>Dr. Ruiz • Dermatología</small>
+              </div>
+              <div class="slot-grid">
+                <div class="slot"><strong>10:30</strong><p>Consulta inicial</p></div>
+                <div class="slot"><strong>11:10</strong><p>Seguimiento</p></div>
+                <div class="slot"><strong>16:00</strong><p>Consulta inicial</p></div>
+                <div class="slot"><strong>16:40</strong><p>Seguimiento</p></div>
+              </div>
+
+              <div class="timeline-item">
+                <strong>Rappel prévu</strong>
+                <p>Patricia Moreno • confirmation request + reminder two hours • not yet dispatched.</p>
+              </div>
+            </div>
+
+            <div class="view" id="view-ops">
+              <div class="toolbar">
+                <div>
+                  <strong style="display:block;">Ops / Runtime</strong>
+                  <span class="subtle">Ce qu’on veut rendre visible pour l’équipe</span>
+                </div>
+                <span class="tag green">healthy</span>
+              </div>
+
+              <div class="stat-grid">
+                <div class="stat"><strong>006</strong><span>Clinic core migration</span></div>
+                <div class="stat"><strong>007</strong><span>Patient bridge migration</span></div>
+                <div class="stat"><strong>2</strong><span>Needs human now</span></div>
+                <div class="stat"><strong>0</strong><span>Critical queue errors</span></div>
+              </div>
+
+              <div class="ops-list">
+                <div class="ops-card">
+                  <strong>Messaging API</strong>
+                  <p>Conversation detail now exposes patient match + conversation notes.</p>
+                </div>
+                <div class="ops-card">
+                  <strong>Next hardening</strong>
+                  <p>Booking schema, controlled statuses, anti-double-booking, then jobs/dead-letter/event log.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="view" id="view-settings">
+              <div class="toolbar">
+                <div>
+                  <strong style="display:block;">Clinic settings</strong>
+                  <span class="subtle">FAQ, booking rules, reminders, escalation</span>
+                </div>
+                <span class="tag cyan">per clinic</span>
+              </div>
+
+              <div class="list">
+                <div class="list-item">
+                  <strong>Reminder rules</strong>
+                  <span>J-1 confirmation + T-2h reminder + review request after completed appointment.</span>
+                </div>
+                <div class="list-item">
+                  <strong>Escalation rules</strong>
+                  <span>Medical uncertainty -> portal/human. Scheduling conflict -> operator assign. Sensitive doc -> review-first inbox.</span>
+                </div>
+                <div class="list-item">
+                  <strong>Branding</strong>
+                  <span>MATHEO IQ staff layer with clinic-specific title, number, language and timezone.</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="bottom-nav" id="bottomNav">
+            <button class="active" data-view="inbox">Inbox</button>
+            <button data-view="patients">Patients</button>
+            <button data-view="booking">Booking</button>
+            <button data-view="ops">Ops</button>
+            <button data-view="settings">Config</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel right-stack">
+      <div class="detail-card" id="detailCard">
+        <h3>Conversation detail</h3>
+        <p class="subtle" id="detailMeta">Patricia Moreno • matched patient • urgent reschedule</p>
+
+        <div class="message inbound">
+          <strong>Inbound</strong>
+          <p id="detailMessage">Recibí su mensaje, pero necesito cambiar mi cita de mañana.</p>
+        </div>
+
+        <div class="note">
+          <strong>Staff note 1</strong>
+          <p id="detailNote1">Patient is already linked. Booking team should propose afternoon alternatives before cancelling current slot.</p>
+        </div>
+
+        <div class="note">
+          <strong>Staff note 2</strong>
+          <p id="detailNote2">If slot moves, trigger reminder refresh and keep original consult reason in booking context.</p>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <h3>Pourquoi cette v2 aide plus</h3>
+        <div class="timeline-item">
+          <strong>1. Plus staff que “marketing app”</strong>
+          <p>On voit une interface de travail, pas seulement une coquille premium.</p>
+        </div>
+        <div class="timeline-item">
+          <strong>2. Plus proche du backend réel</strong>
+          <p>Le patient match et les notes de conversation reflètent déjà le Batch 2 posé dans le repo live.</p>
+        </div>
+        <div class="timeline-item">
+          <strong>3. Bonne base pour le prochain front visible</strong>
+          <p>On peut maintenant faire suivre cette surface par une vraie vue booking/reminders sans repartir de zéro.</p>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <h3>Entrée prototype</h3>
+        <p class="subtle">Cette version a été ajoutée au hub de preview pour l’ouvrir plus facilement.</p>
+        <p style="margin-top:10px;"><a class="linkish" href="./index.html">Ouvrir le hub des prototypes</a></p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const details = {
+      c1: {
+        meta: 'Patricia Moreno • matched patient • urgent reschedule',
+        message: 'Recibí su mensaje, pero necesito cambiar mi cita de mañana.',
+        note1: 'Patient is already linked. Booking team should propose afternoon alternatives before cancelling current slot.',
+        note2: 'If slot moves, trigger reminder refresh and keep original consult reason in booking context.'
+      },
+      c2: {
+        meta: 'Luis Herrera • matched patient • same-day availability check',
+        message: 'Quiero confirmar si la doctora puede verme hoy por la tarde.',
+        note1: 'Check same-day provider availability and confirm service duration before offering a slot.',
+        note2: 'If same-day is impossible, propose tomorrow morning and keep the thread in high priority.'
+      },
+      c3: {
+        meta: 'Numero nuevo • unmatched lead/patient • pricing question',
+        message: 'Hola, quisiera saber costos de consulta inicial.',
+        note1: 'Not matched yet. Keep in administrative route unless the patient starts sharing clinical information.',
+        note2: 'This can later branch to CRM or patient creation, but not before the conversation is classified properly.'
+      }
+    };
+
+    const setView = (view) => {
+      document.querySelectorAll('.view').forEach((el) => {
+        el.classList.toggle('active', el.id === `view-${view}`);
+      });
+      document.querySelectorAll('[data-view]').forEach((el) => {
+        el.classList.toggle('active', el.dataset.view === view);
+      });
+    };
+
+    document.querySelectorAll('#topNav .nav-chip, #bottomNav button').forEach((el) => {
+      el.addEventListener('click', () => setView(el.dataset.view));
+    });
+
+    document.querySelectorAll('#inboxList .list-item').forEach((el) => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#inboxList .list-item').forEach((row) => row.classList.remove('selected'));
+        el.classList.add('selected');
+        const d = details[el.dataset.detail];
+        document.getElementById('detailMeta').textContent = d.meta;
+        document.getElementById('detailMessage').textContent = d.message;
+        document.getElementById('detailNote1').textContent = d.note1;
+        document.getElementById('detailNote2').textContent = d.note2;
+      });
+    });
+  </script>
+</body>
+</html>

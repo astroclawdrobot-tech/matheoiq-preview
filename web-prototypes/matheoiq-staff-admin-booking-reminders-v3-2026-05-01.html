@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MATHEO IQ • Staff/admin booking & reminders V3</title>
+  <style>
+    :root {
+      --bg: #041019;
+      --bg-2: #091624;
+      --panel: rgba(10, 20, 31, 0.9);
+      --panel-2: rgba(14, 27, 41, 0.92);
+      --line: rgba(117, 232, 255, 0.14);
+      --line-strong: rgba(117, 232, 255, 0.28);
+      --text: #f4fbff;
+      --text-2: #d7e5ef;
+      --muted: #8fa8b9;
+      --cyan: #78e8ff;
+      --teal: #2ec9bf;
+      --green: #65da95;
+      --amber: #f2c874;
+      --rose: #ff99a4;
+      --blue: #7f96ff;
+      --shadow: 0 36px 120px rgba(0, 0, 0, 0.42);
+      --card: 0 18px 34px rgba(0, 0, 0, 0.24);
+      --radius: 28px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: var(--font);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(46,201,191,.13), transparent 24%),
+        radial-gradient(circle at 100% 0%, rgba(127,150,255,.15), transparent 28%),
+        linear-gradient(180deg, #030912, #08131f 50%, #02060b 100%);
+    }
+
+    .shell {
+      width: min(1420px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 36px;
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) minmax(380px, 460px) minmax(320px, 440px);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel,
+    .phone {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), rgba(7, 15, 25, 0.96));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .panel { padding: 18px; }
+    .phone { padding: 14px; }
+
+    .eyebrow,
+    .chip,
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 28px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.07);
+      color: var(--text-2);
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      border-color: rgba(120,232,255,.2);
+      background: rgba(120,232,255,.08);
+    }
+
+    .green { color: var(--green); }
+    .amber { color: var(--amber); }
+    .rose { color: var(--rose); }
+    .cyan { color: var(--cyan); }
+    .blue { color: #b7c4ff; }
+
+    h1, h2, h3, h4, p { margin: 0; }
+    h1 {
+      margin-top: 16px;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 0.98;
+      letter-spacing: -.05em;
+    }
+
+    .lead {
+      margin-top: 14px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    .stack,
+    .metric-grid,
+    .list,
+    .detail-stack,
+    .two-col {
+      display: grid;
+      gap: 12px;
+    }
+
+    .metric-grid,
+    .two-col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card,
+    .metric,
+    .item,
+    .detail,
+    .toolbar,
+    .tab,
+    .stat,
+    .slot,
+    .note,
+    .timeline {
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--card);
+      padding: 14px;
+    }
+
+    .card strong,
+    .metric strong,
+    .item strong,
+    .detail strong,
+    .stat strong,
+    .slot strong,
+    .note strong,
+    .timeline strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .card p,
+    .metric p,
+    .item p,
+    .detail p,
+    .note p,
+    .timeline p,
+    .item span,
+    .slot p {
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.45;
+    }
+
+    .logo-box {
+      margin-top: 16px;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+    }
+
+    .logo-box img,
+    .app-icon img {
+      display: block;
+      width: 100%;
+      border-radius: 14px;
+    }
+
+    .app-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+      flex: 0 0 auto;
+      box-shadow: var(--card);
+    }
+
+    .device {
+      min-height: 920px;
+      border-radius: 34px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 86% 8%, rgba(46,201,191,.12), transparent 24%),
+        radial-gradient(circle at 12% 0%, rgba(127,150,255,.13), transparent 28%),
+        linear-gradient(180deg, #091522, #0c1a29 58%, #08131f 100%);
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 124px;
+      height: 28px;
+      border-radius: 0 0 18px 18px;
+      background: rgba(2, 6, 10, .94);
+      z-index: 10;
+    }
+
+    .screen {
+      min-height: 920px;
+      display: grid;
+      grid-template-rows: auto auto auto 1fr auto;
+      gap: 12px;
+      padding: 26px 16px 14px;
+    }
+
+    .topbar,
+    .toolbar,
+    .row,
+    .item-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .row { flex-wrap: wrap; }
+
+    .title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title-group strong { display: block; }
+    .title-group span { color: var(--muted); font-size: .82rem; }
+
+    .hero {
+      border-radius: 22px;
+      padding: 15px;
+      border: 1px solid rgba(120,232,255,.16);
+      background: linear-gradient(135deg, rgba(120,232,255,.13), rgba(46,201,191,.11), rgba(127,150,255,.1));
+      box-shadow: var(--card);
+    }
+
+    .hero h2 {
+      font-size: 1.28rem;
+      line-height: 1.08;
+      margin-bottom: 8px;
+    }
+
+    .tabs,
+    .bottom-nav {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .tab,
+    .bottom-nav button {
+      padding: 10px 8px;
+      text-align: center;
+      font: inherit;
+      font-size: .74rem;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, color .18s ease, background .18s ease;
+    }
+
+    .tab.active,
+    .bottom-nav button.active {
+      color: var(--text);
+      border-color: var(--line-strong);
+      background: rgba(255,255,255,.09);
+      transform: translateY(-1px);
+    }
+
+    .views .view { display: none; gap: 12px; }
+    .views .view.active { display: grid; }
+
+    .item {
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+
+    .item:hover,
+    .item.selected {
+      transform: translateY(-1px);
+      border-color: var(--line-strong);
+      background: rgba(255,255,255,.07);
+    }
+
+    .slot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .bottom-nav button {
+      appearance: none;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+    }
+
+    a.link {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 1180px) {
+      .shell { grid-template-columns: 1fr; }
+      .phone { max-width: 460px; margin: 0 auto; }
+    }
+
+    @media (max-width: 560px) {
+      .shell { width: min(100%, calc(100% - 12px)); }
+      .metric-grid,
+      .two-col,
+      .tabs,
+      .bottom-nav,
+      .slot-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="panel">
+      <span class="eyebrow">App front • Booking/Reminders V3</span>
+      <h1>Une vraie surface staff pour agenda, confirmations et rappels</h1>
+      <p class="lead">
+        Je pousse la V2 vers quelque chose de plus utile: une app staff/admin qui montre enfin la logique booking réelle, la file de reminders, les conflits de slot, et le travail opérateur avant envoi.
+      </p>
+
+      <div class="logo-box">
+        <img src="../branding/assets-2026-04-20/matheo-iq-primary-logo-lockup-saas-hub-clinicas-mexico-v1.jpg" alt="MATHEO IQ logo" />
+      </div>
+
+      <div class="stack" style="margin-top:16px;">
+        <div class="card">
+          <strong>Objectif visible</strong>
+          <p>Montrer la prochaine tranche produit avant même que le Batch 3 soit branché en DB: providers, services, appointments, reminder jobs, contrôles opérateur et signaux anti-double-booking.</p>
+        </div>
+        <div class="card">
+          <strong>Alignement backend</strong>
+          <p>La surface parle déjà le bon langage pour la suite du repo live: <code>providers</code>, <code>services</code>, <code>service_providers</code>, <code>appointments</code>, <code>reminder_jobs</code>.</p>
+        </div>
+        <div class="card">
+          <strong>Ce qu’on évite</strong>
+          <p>Pas de faux “prod-ready”. C’est une surface de pilotage crédible, pensée pour brancher le vrai runtime ensuite.</p>
+        </div>
+      </div>
+
+      <div class="metric-grid" style="margin-top:16px;">
+        <div class="metric">
+          <strong>18</strong>
+          <p class="muted">RDV du jour</p>
+        </div>
+        <div class="metric">
+          <strong>7</strong>
+          <p class="muted">Reminders à traiter</p>
+        </div>
+        <div class="metric">
+          <strong>2</strong>
+          <p class="muted">Conflits potentiels</p>
+        </div>
+        <div class="metric">
+          <strong>94%</strong>
+          <p class="muted">Taux confirmation J-1</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="phone">
+      <div class="device">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="topbar">
+            <div class="title-group">
+              <div class="app-icon">
+                <img src="../branding/assets-2026-04-20/matheo-iq-app-icon-tile-v1.jpg" alt="MATHEO IQ icon" />
+              </div>
+              <div>
+                <strong>MATHEO IQ Booking</strong>
+                <span>Clinica Norte • Staff queue</span>
+              </div>
+            </div>
+            <span class="chip green">ops stable</span>
+          </div>
+
+          <section class="hero">
+            <h2>Agenda staff/admin V3</h2>
+            <p>Une vue app plus réaliste pour réserver, confirmer, relancer et surveiller les rendez-vous sans casser la discipline clinique.</p>
+            <div class="row" style="margin-top:10px;">
+              <span class="tag cyan">appointments</span>
+              <span class="tag amber">reminder_jobs</span>
+              <span class="tag rose">double-booking guard</span>
+            </div>
+          </section>
+
+          <nav class="tabs" id="tabs">
+            <div class="tab active" data-view="day">Day</div>
+            <div class="tab" data-view="confirm">Confirm</div>
+            <div class="tab" data-view="reminders">Reminders</div>
+            <div class="tab" data-view="rules">Rules</div>
+            <div class="tab" data-view="ops">Ops</div>
+          </nav>
+
+          <section class="views">
+            <div class="view active" id="view-day">
+              <div class="toolbar">
+                <div>
+                  <strong style="display:block;">Agenda de hoy</strong>
+                  <span class="muted">Viernes 1 mayo • 18 citas • 3 doctores</span>
+                </div>
+                <span class="tag blue">view day</span>
+              </div>
+
+              <div class="list" id="agendaList">
+                <article class="item selected" data-detail="apt1">
+                  <div class="item-head">
+                    <div>
+                      <strong>10:30 • Patricia Moreno</strong>
+                      <span>Dermatología inicial • Dra. Ruiz</span>
+                    </div>
+                    <span class="tag amber">reschedule risk</span>
+                  </div>
+                  <div class="row">
+                    <span class="chip cyan">confirmed</span>
+                    <span class="chip amber">needs new slot</span>
+                  </div>
+                </article>
+
+                <article class="item" data-detail="apt2">
+                  <div class="item-head">
+                    <div>
+                      <strong>16:00 • Luis Herrera</strong>
+                      <span>Seguimiento • Dra. Ruiz</span>
+                    </div>
+                    <span class="tag rose">slot clash</span>
+                  </div>
+                  <div class="row">
+                    <span class="chip green">payment ok</span>
+                    <span class="chip rose">provider overlap</span>
+                  </div>
+                </article>
+
+                <article class="item" data-detail="apt3">
+                  <div class="item-head">
+                    <div>
+                      <strong>17:20 • Sofía Vega</strong>
+                      <span>Nutrición • Lic. Campos</span>
+                    </div>
+                    <span class="tag cyan">ready</span>
+                  </div>
+                  <div class="row">
+                    <span class="chip green">J-1 sent</span>
+                    <span class="chip cyan">T-2h pending</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="view" id="view-confirm">
+              <div class="toolbar">
+                <div>
+                  <strong style="display:block;">Confirmations</strong>
+                  <span class="muted">Messages avant verrouillage de slot</span>
+                </div>
+                <span class="tag amber">7 pending</span>
+              </div>
+
+              <div class="list">
+                <div class="item">
+                  <strong>J-1 confirmation</strong>
+                  <p>Patricia Moreno • réponse reçue, changement horaire demandé. Ne pas annuler automatiquement.</p>
+                </div>
+                <div class="item">
+                  <strong>T-2h reminder</strong>
+                  <p>Luis Herrera • bloqué tant que le conflit provider/service n’est pas résolu.</p>
+                </div>
+                <div class="item">
+                  <strong>No-show recovery</strong>
+                  <p>2 patients à relancer avec proposition de nouveau créneau et trace opérateur.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="view" id="view-reminders">
+              <div class="toolbar">
+                <div>
+                  <strong style="display:block;">Reminder queue</strong>
+                  <span class="muted">Avant worker durable DB-backed</span>
+                </div>
+                <span class="tag cyan">dispatch preview</span>
+              </div>
+
+              <div class="list">
+                <div class="item">
+                  <strong>11:45 • Reminder J-1</strong>
+                  <p>Sofía Vega • WhatsApp ES-MX • status: queued_for_review</p>
+                </div>
+                <div class="item">
+                  <strong>13:10 • Reminder T-2h</strong>
+                  <p>Luis Herrera • status: blocked_by_conflict</p>
+                </div>
+                <div class="item">
+                  <strong>18:30 • Post-visit follow-up</strong>
+                  <p>Dra. Ruiz agenda • review request only, no clinical content.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="view" id="view-rules">
+              <div class="toolbar">
+                <div>
+                  <strong style="display:block;">Rules & guards</strong>
+                  <span class="muted">Ce qu’on devra faire respecter en vrai</span>
+                </div>
+                <span class="tag green">policy-aware</span>
+              </div>
+
+              <div class="two-col">
+                <div class="stat"><strong>slot_end > slot_start</strong><span class="muted">Validation agenda</span></div>
+                <div class="stat"><strong>status contrôlés</strong><span class="muted">booked, confirmed, completed...</span></div>
+                <div class="stat"><strong>anti-overlap</strong><span class="muted">Provider/service lock</span></div>
+                <div class="stat"><strong>reminder discipline</strong><span class="muted">no sensitive content</span></div>
+              </div>
+
+              <div class="note">
+                <strong>Important</strong>
+                <p>Si le contexte devient sensible ou ambigu, la surface doit pousser vers revue humaine ou portail sécurisé, pas vers un message trop riche en WhatsApp.</p>
+              </div>
+            </div>
+
+            <div class="view" id="view-ops">
+              <div class="toolbar">
+                <div>
+                  <strong style="display:block;">Ops mapping</strong>
+                  <span class="muted">Pont visible vers le vrai chantier backend</span>
+                </div>
+                <span class="tag blue">Batch 3</span>
+              </div>
+
+              <div class="list">
+                <div class="item">
+                  <strong>Tables à brancher</strong>
+                  <p>providers, services, service_providers, appointments, reminder_jobs.</p>
+                </div>
+                <div class="item">
+                  <strong>Après booking</strong>
+                  <p>jobs durables, dead-letter, event_log DB-backed, puis hardening auth/RLS/tests.</p>
+                </div>
+                <div class="item">
+                  <strong>Ce que cette vue prépare</strong>
+                  <p>Une future UI de dispatch/reminders crédible sans retomber dans un simple mock marketing.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="bottom-nav" id="bottomNav">
+            <button class="active" data-view="day">Day</button>
+            <button data-view="confirm">Confirm</button>
+            <button data-view="reminders">Queue</button>
+            <button data-view="rules">Rules</button>
+            <button data-view="ops">Ops</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel detail-stack">
+      <div class="detail" id="detailCard">
+        <h3>Détail rendez-vous</h3>
+        <p class="muted" id="detailMeta">Patricia Moreno • dermatología inicial • 10:30</p>
+        <div class="note">
+          <strong id="detailStatus">État</strong>
+          <p id="detailStatusText">Confirmed, but patient requested a move. The operator should propose alternatives before touching the original slot.</p>
+        </div>
+        <div class="note">
+          <strong id="detailGuard">Guard</strong>
+          <p id="detailGuardText">Do not release slot until a replacement slot is held or the operator confirms the cancellation path.</p>
+        </div>
+        <div class="note">
+          <strong id="detailReminder">Reminder chain</strong>
+          <p id="detailReminderText">J-1 delivered. T-2h should be recalculated if a new appointment time is assigned.</p>
+        </div>
+      </div>
+
+      <div class="detail">
+        <h3>Pourquoi cette V3 est utile</h3>
+        <div class="timeline">
+          <strong>1. On voit le prochain vrai module</strong>
+          <p>Le front ne parle plus seulement d’inbox. Il montre déjà la mécanique booking/reminders qu’on doit brancher juste après.</p>
+        </div>
+        <div class="timeline">
+          <strong>2. On rend les garde-fous visibles</strong>
+          <p>Conflits de slot, confirmations, restrictions message, et intervention staff deviennent des objets de l’interface.</p>
+        </div>
+        <div class="timeline">
+          <strong>3. Bonne base pour le repo ensuite</strong>
+          <p>Ça prépare très bien la traduction en endpoints et tables sans partir dans un faux gros CRM.</p>
+        </div>
+      </div>
+
+      <div class="detail">
+        <h3>Ouverture rapide</h3>
+        <p class="muted">J’ajoute aussi cette version au hub de preview pour l’ouvrir sans fouiller.</p>
+        <p style="margin-top:10px;"><a class="link" href="./index.html">Ouvrir le hub des prototypes</a></p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const appointmentDetails = {
+      apt1: {
+        meta: 'Patricia Moreno • dermatología inicial • 10:30',
+        status: 'État',
+        statusText: 'Confirmed, but patient requested a move. The operator should propose alternatives before touching the original slot.',
+        guard: 'Guard',
+        guardText: 'Do not release slot until a replacement slot is held or the operator confirms the cancellation path.',
+        reminder: 'Reminder chain',
+        reminderText: 'J-1 delivered. T-2h should be recalculated if a new appointment time is assigned.'
+      },
+      apt2: {
+        meta: 'Luis Herrera • seguimiento • 16:00',
+        status: 'État',
+        statusText: 'Same-day follow-up is ready, but provider overlap was detected with another service block.',
+        guard: 'Guard',
+        guardText: 'The app should block automatic confirmation while the provider conflict is unresolved.',
+        reminder: 'Reminder chain',
+        reminderText: 'T-2h reminder must remain in blocked_by_conflict until slot integrity is restored.'
+      },
+      apt3: {
+        meta: 'Sofía Vega • nutrición • 17:20',
+        status: 'État',
+        statusText: 'Appointment is stable and ready for normal reminder flow.',
+        guard: 'Guard',
+        guardText: 'Service duration and provider mapping look consistent. No overlap detected.',
+        reminder: 'Reminder chain',
+        reminderText: 'J-1 sent, T-2h pending, post-visit review request scheduled without clinical details.'
+      }
+    };
+
+    const setView = (view) => {
+      document.querySelectorAll('.view').forEach((el) => {
+        el.classList.toggle('active', el.id === `view-${view}`);
+      });
+      document.querySelectorAll('[data-view]').forEach((el) => {
+        el.classList.toggle('active', el.dataset.view === view);
+      });
+    };
+
+    document.querySelectorAll('#tabs .tab, #bottomNav button').forEach((el) => {
+      el.addEventListener('click', () => setView(el.dataset.view));
+    });
+
+    document.querySelectorAll('#agendaList .item').forEach((el) => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#agendaList .item').forEach((row) => row.classList.remove('selected'));
+        el.classList.add('selected');
+        const d = appointmentDetails[el.dataset.detail];
+        document.getElementById('detailMeta').textContent = d.meta;
+        document.getElementById('detailStatus').textContent = d.status;
+        document.getElementById('detailStatusText').textContent = d.statusText;
+        document.getElementById('detailGuard').textContent = d.guard;
+        document.getElementById('detailGuardText').textContent = d.guardText;
+        document.getElementById('detailReminder').textContent = d.reminder;
+        document.getElementById('detailReminderText').textContent = d.reminderText;
+      });
+    });
+  </script>
+</body>
+</html>
