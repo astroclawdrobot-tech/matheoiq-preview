@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MATHEO IQ • Doctor/Clinic Onboarding V4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:#102e44; --muted:#668297; --soft:#f0f8ff; --ice:#e0ffff; --teal:#008080; --navy:#1a3f68; --charcoal:#2d3436;
+      --cyan:#25c8d8; --green:#39c98a; --amber:#f3b84b; --rose:#ed6b7d; --blue:#6277ff;
+      --bg:#edf8fb; --panel:rgba(255,255,255,.78); --panel-strong:rgba(255,255,255,.94); --line:rgba(26,63,104,.13); --line-strong:rgba(0,128,128,.24);
+      --shadow:0 24px 80px rgba(26,63,104,.14); --shadow-soft:0 16px 44px rgba(26,63,104,.10);
+      --radius-xl:34px; --radius-lg:24px; --radius-md:18px;
+      --font-ui:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --font-display:"Plus Jakarta Sans","Inter",sans-serif; --font-mono:"JetBrains Mono",monospace;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;min-height:100vh;font-family:var(--font-ui);color:var(--ink);background:radial-gradient(circle at 8% 0%,rgba(0,128,128,.16),transparent 26%),radial-gradient(circle at 92% 10%,rgba(98,119,255,.14),transparent 30%),linear-gradient(180deg,#fbfeff,var(--bg) 54%,#e8f7f8)}
+    a{color:inherit} .shell{width:min(1440px,calc(100% - 28px));margin:0 auto;padding:26px 0 42px;display:grid;grid-template-columns:330px minmax(480px,1fr) 360px;gap:18px;align-items:start}
+    .glass{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .panel{border-radius:var(--radius-xl);padding:20px}.hero{position:sticky;top:18px}.logo{display:flex;gap:14px;align-items:center}.logo img{width:58px;height:58px;border-radius:18px;object-fit:cover;box-shadow:var(--shadow-soft)}
+    .eyebrow,.chip,.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}.eyebrow{padding:8px 12px;background:rgba(0,128,128,.1);border:1px solid rgba(0,128,128,.18);color:var(--teal);font-size:12px}.chip,.pill{min-height:30px;padding:0 12px;background:rgba(255,255,255,.66);border:1px solid rgba(26,63,104,.09);color:var(--muted);font-size:11px}.pill{letter-spacing:0;text-transform:none;font-weight:700;color:var(--ink)}
+    h1,h2,h3,h4{font-family:var(--font-display);margin:0}h1{font-size:clamp(34px,4.5vw,58px);line-height:.96;letter-spacing:-.055em;margin:18px 0 12px}h2{font-size:24px;letter-spacing:-.03em}h3{font-size:18px;letter-spacing:-.025em}p{margin:0}.lead{color:var(--muted);line-height:1.65;font-size:15px}.mono,code{font-family:var(--font-mono)}
+    .stack{display:grid;gap:12px}.mt{margin-top:18px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric,.card,.step,.row,.device,.note{border:1px solid var(--line);background:rgba(255,255,255,.62);border-radius:var(--radius-lg);box-shadow:var(--shadow-soft)}.metric{padding:14px}.metric strong{display:block;font-size:24px}.metric span{color:var(--muted);font-size:12px;font-weight:700}
+    .nav{display:grid;gap:9px;margin-top:18px}.nav button{border:1px solid var(--line);background:rgba(255,255,255,.58);border-radius:18px;padding:13px 14px;text-align:left;color:var(--ink);font-weight:800;cursor:pointer;transition:.18s ease;display:flex;justify-content:space-between;align-items:center}.nav button:hover,.nav button.active{transform:translateY(-1px);border-color:var(--line-strong);background:linear-gradient(135deg,rgba(0,128,128,.12),rgba(98,119,255,.08))}.nav small{display:block;margin-top:4px;color:var(--muted);font-weight:600}.dot{width:10px;height:10px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 5px rgba(0,128,128,.1)}
+    .main{border-radius:var(--radius-xl);padding:16px;min-height:900px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.crumbs{display:flex;gap:8px;flex-wrap:wrap}.status-ok{color:var(--green)}.status-warn{color:var(--amber)}.status-info{color:var(--blue)}
+    .workspace{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.card{padding:16px}.card-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:12px}.sub{color:var(--muted);font-size:13px;line-height:1.5}.progress{height:9px;background:#dbeff5;border-radius:999px;overflow:hidden}.progress i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--teal),var(--cyan),var(--blue));width:var(--w,60%)}
+    .form-grid{display:grid;gap:10px}.field{padding:12px;border-radius:16px;background:rgba(240,248,255,.8);border:1px solid rgba(26,63,104,.1)}.field label{display:block;font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.06em}.field strong{display:block;margin-top:5px;font-size:14px}.field code{font-size:12px;color:var(--teal)}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .timeline{display:grid;gap:10px}.step{padding:13px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}.num{width:34px;height:34px;border-radius:14px;display:grid;place-items:center;background:var(--navy);color:white;font-weight:900}.step.done .num{background:var(--green)}.step.review .num{background:var(--amber)}.step.public .num{background:var(--teal)}.step p{color:var(--muted);font-size:12px;margin-top:2px}.badge{display:inline-flex;align-items:center;min-height:26px;padding:0 10px;border-radius:999px;font-size:11px;font-weight:900}.badge.green{background:rgba(57,201,138,.13);color:#138553}.badge.amber{background:rgba(243,184,75,.15);color:#9a680d}.badge.blue{background:rgba(98,119,255,.12);color:#4052d6}.badge.rose{background:rgba(237,107,125,.14);color:#b03448}.badge.gray{background:rgba(26,63,104,.08);color:var(--muted)}
+    .screen{display:none;animation:enter .28s ease-out}.screen.active{display:block}@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .phone-wrap{position:sticky;top:18px}.device{padding:14px;border-radius:38px;background:linear-gradient(180deg,#0e2a3f,#081722);color:white;min-height:760px}.phone-screen{height:732px;border-radius:30px;background:linear-gradient(180deg,#f8feff,#edf8fb);color:var(--ink);overflow:hidden;border:1px solid rgba(255,255,255,.18)}.phone-head{padding:18px;background:linear-gradient(135deg,var(--navy),var(--teal));color:white}.phone-head small{opacity:.8}.phone-body{padding:14px;display:grid;gap:12px}.mobile-card{border-radius:20px;padding:14px;background:white;border:1px solid var(--line);box-shadow:var(--shadow-soft)}.mobile-list{display:grid;gap:9px}.mobile-row{display:flex;justify-content:space-between;gap:10px;padding:11px;border-radius:16px;background:#f4fbff;border:1px solid rgba(26,63,104,.08)}
+    .queue{display:grid;gap:10px}.row{padding:13px;display:flex;justify-content:space-between;gap:12px;align-items:center}.avatar{width:38px;height:38px;border-radius:15px;background:linear-gradient(135deg,var(--teal),var(--blue));color:white;display:grid;place-items:center;font-weight:900}.person{display:flex;gap:11px;align-items:center}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;border-radius:14px;min-height:38px;padding:0 13px;font-weight:900;cursor:pointer}.btn.primary{background:linear-gradient(135deg,var(--teal),var(--navy));color:white}.btn.soft{background:#eef8fb;color:var(--navy);border:1px solid var(--line)}
+    .right{border-radius:var(--radius-xl);padding:18px;position:sticky;top:18px}.event{padding:12px;border-radius:18px;background:rgba(255,255,255,.58);border:1px solid var(--line)}.event+.event{margin-top:10px}.event time{font-family:var(--font-mono);font-size:11px;color:var(--muted)}.event strong{display:block;margin:5px 0}.note{padding:14px;background:linear-gradient(135deg,rgba(0,128,128,.08),rgba(98,119,255,.06))}
+    @media(max-width:1180px){.shell{grid-template-columns:1fr}.hero,.phone-wrap,.right{position:static}.workspace{grid-template-columns:1fr}.device{min-height:auto}.phone-screen{height:auto;min-height:640px}}@media(max-width:620px){.shell{width:min(100% - 18px,1440px);padding-top:12px}.panel,.main,.right{border-radius:24px}.two,.metrics{grid-template-columns:1fr}.topbar{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <aside class="panel glass hero">
+      <div class="logo">
+        <img src="../branding/assets-2026-04-20/matheo-iq-app-icon-tile-v1.jpg" alt="MATHEO IQ icon" />
+        <div><span class="eyebrow">V4 navigable</span><p class="sub mt" style="margin-top:8px">Doctor / Clinic onboarding</p></div>
+      </div>
+      <h1>Activer une clinique, publier le médecin, valider la licence séparément.</h1>
+      <p class="lead">Prototype visuel aligné avec le runtime P0 : <strong>clinic activation</strong>, <strong>professional directory public</strong>, <strong>cédula/licence en review séparée</strong>, puis badge vérifié après validation.</p>
+      <div class="metrics mt">
+        <div class="metric"><strong>5</strong><span>écrans navigables</span></div>
+        <div class="metric"><strong>P0</strong><span>flow réel backend</span></div>
+        <div class="metric"><strong>0</strong><span>blocage public licence</span></div>
+        <div class="metric"><strong>SEP</strong><span>audit/cache, prudent</span></div>
+      </div>
+      <nav class="nav" aria-label="Prototype screens">
+        <button class="active" data-screen="activation">Activation <small>clinic + fiscal + WhatsApp</small><span class="dot"></span></button>
+        <button data-screen="doctor">Médecin <small>profil public, cédula en review</small><span class="dot"></span></button>
+        <button data-screen="review">Review licence <small>validation dissociée du public</small><span class="dot"></span></button>
+        <button data-screen="directory">Annuaire <small>badge vérifié</small><span class="dot"></span></button>
+        <button data-screen="ops">Ops <small>audit trail + API contract</small><span class="dot"></span></button>
+      </nav>
+      <p class="sub mt">Note honnête : ceci est une preview statique navigable. Elle reflète le flow codé localement, pas encore une UI branchée live.</p>
+    </aside>
+
+    <section class="main glass">
+      <div class="topbar">
+        <div class="crumbs"><span class="pill">MATHEO IQ</span><span class="pill">Rail A</span><span class="pill">Express + pg</span></div>
+        <span class="badge green">Smoke tests OK</span>
+      </div>
+
+      <div id="activation" class="screen active">
+        <div class="workspace">
+          <div class="stack">
+            <div class="card">
+              <div class="card-head"><div><h2>Activation clinique en 3 minutes</h2><p class="sub">Créer la clinique, son profil fiscal, les paramètres de booking et les defaults de facture.</p></div><span class="badge green">activated</span></div>
+              <div class="progress" aria-label="Activation progress"><i style="--w:100%"></i></div>
+            </div>
+            <div class="card form-grid">
+              <div class="two">
+                <div class="field"><label>Clinique</label><strong>Clínica San Miguel Playa</strong></div>
+                <div class="field"><label>Status</label><strong class="status-ok">active</strong></div>
+              </div>
+              <div class="two">
+                <div class="field"><label>RFC</label><strong>AAA010101AAA</strong></div>
+                <div class="field"><label>Régimen fiscal</label><strong>601 • General de Ley</strong></div>
+              </div>
+              <div class="two">
+                <div class="field"><label>WhatsApp</label><strong>skip=true / prêt à brancher</strong></div>
+                <div class="field"><label>Invoice defaults</label><strong>Consulta médica • MXN 800</strong></div>
+              </div>
+            </div>
+            <div class="card timeline">
+              <div class="step done"><div class="num">1</div><div><strong>Clinic identity</strong><p>Nom, ville, timezone, contact.</p></div><span class="badge green">ok</span></div>
+              <div class="step done"><div class="num">2</div><div><strong>Fiscal profile</strong><p>RFC, legal name, postal code, régimen fiscal.</p></div><span class="badge green">ok</span></div>
+              <div class="step done"><div class="num">3</div><div><strong>Invoice profile</strong><p>Line items, CFDI defaults, branding facture.</p></div><span class="badge green">ok</span></div>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="note"><strong>Backend mirror</strong><p class="sub"><code>POST /api/onboarding/doctor-clinic</code> déclenche l’activation clinique puis attache les médecins au directory.</p></div>
+            <div class="card"><h3>Checklist activation</h3><div class="mt stack"><span class="badge green">clinicIdentity</span><span class="badge green">contact</span><span class="badge green">fiscalProfile</span><span class="badge green">invoiceDefaults</span><span class="badge green">whatsappReady</span></div></div>
+            <div class="card"><h3>Sortie attendue</h3><p class="sub mt">La clinique est active et le médecin peut apparaître publiquement ; le statut licence reste séparé jusqu’à validation.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="doctor" class="screen">
+        <div class="workspace">
+          <div class="stack">
+            <div class="card"><div class="card-head"><div><h2>Profil médecin public attaché au directory</h2><p class="sub">On réutilise <code>providers</code> comme racine canonique. La présence publique est découplée de la vérification licence.</p></div><span class="badge amber">manual review</span></div></div>
+            <div class="card form-grid">
+              <div class="field"><label>Nom affiché</label><strong>Dra Valeria Morales</strong></div>
+              <div class="two"><div class="field"><label>Spécialité</label><strong>Medicina General</strong></div><div class="field"><label>Expérience</label><strong>7 ans</strong></div></div>
+              <div class="two"><div class="field"><label>Cédula</label><strong>SEP-8842-1930</strong></div><div class="field"><label>Visibility</label><strong>public</strong></div></div>
+              <div class="field"><label>Disponibilité</label><strong>Lun, Mar, Mer, Ven • 09:00–13:00</strong></div>
+            </div>
+            <div class="card"><h3>Education</h3><p class="sub mt">UNAM • Medicina • 2017 • certified=true</p></div>
+          </div>
+          <div class="stack">
+            <div class="card"><h3>Guardrail produit</h3><p class="sub mt">Le médecin peut apparaître dans l’annuaire avec un statut <code>manual_review_required</code>. Le badge vérifié vient ensuite, après validation licence.</p></div>
+            <div class="timeline">
+              <div class="step done"><div class="num">A</div><div><strong>Provider créé</strong><p>Provider root + directory profile.</p></div><span class="badge green">ok</span></div>
+              <div class="step review"><div class="num">B</div><div><strong>Verification record</strong><p>SEP/cédula stockée comme audit/cache.</p></div><span class="badge amber">pending</span></div>
+              <div class="step public"><div class="num">C</div><div><strong>Public directory</strong><p>Visible, sans badge vérifié tant que la licence est en review.</p></div><span class="badge blue">public</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="review" class="screen">
+        <div class="workspace">
+          <div class="stack">
+            <div class="card"><div class="card-head"><div><h2>Review licence / cédula</h2><p class="sub">File d’attente interne pour confirmer la validité licence. Cette décision ne bloque pas l’apparition publique.</p></div><span class="badge amber">needs admin</span></div></div>
+            <div class="queue">
+              <div class="row"><div class="person"><div class="avatar">VM</div><div><strong>Dra Valeria Morales</strong><p class="sub">Cédula SEP-8842-1930 • Medicina General</p></div></div><span class="badge amber">manual_review_required</span></div>
+              <div class="row"><div><strong>Source</strong><p class="sub mono">professional_verifications.source = SEP</p></div><span class="badge blue">cache/audit</span></div>
+              <div class="row"><div><strong>Publicité actuelle</strong><p class="sub">visibility_status = public</p></div><span class="badge blue">public, unverified</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Action admin</h3>
+            <p class="sub mt">Le bouton “Confirm licence” représente l’endpoint protégé <code>POST /api/professionals/:id/verification-review</code>. Il change le statut licence, pas la visibilité.</p>
+            <div class="actions mt"><button class="btn primary" data-screen-link="directory">Confirm licence</button><button class="btn soft">Keep in review</button><button class="btn soft">Reject</button></div>
+            <div class="timeline mt">
+              <div class="step review"><div class="num">1</div><div><strong>Review status</strong><p>pending → approved</p></div><span class="badge amber">decision</span></div>
+              <div class="step public"><div class="num">2</div><div><strong>Verification status</strong><p>manual_review_required → verified_exact</p></div><span class="badge green">verified</span></div>
+              <div class="step public"><div class="num">3</div><div><strong>Visibility</strong><p>reste public, décision dissociée</p></div><span class="badge blue">unchanged</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="directory" class="screen">
+        <div class="workspace">
+          <div class="stack">
+            <div class="card"><div class="card-head"><div><h2>Annuaire public, badge licence après approval</h2><p class="sub">Le médecin est visible dès l’onboarding ; la validation explicite ajoute le statut verified.</p></div><span class="badge green">public + verified</span></div></div>
+            <div class="row"><div class="person"><div class="avatar">VM</div><div><strong>Dra Valeria Morales</strong><p class="sub">Medicina General • Playa del Carmen • Español / English</p></div></div><span class="badge green">verified_exact</span></div>
+            <div class="card form-grid"><div class="two"><div class="field"><label>Consultation</label><strong>$800 MXN</strong></div><div class="field"><label>Rating</label><strong>5.0 • 1 review</strong></div></div><div class="field"><label>Public slug</label><code>dra-valeria-morales-42</code></div></div>
+          </div>
+          <div class="stack"><div class="note"><strong>Ce que ça prouve</strong><p class="sub">Le cycle complet public/manual-review → approved/verified est représentable en démo sans mélanger visibilité et validité licence.</p></div><div class="card"><h3>Public endpoints</h3><p class="sub mt"><code>GET /api/public/directory/search?verified=true</code><br/><code>GET /api/public/directory/providers/:slug</code></p></div></div>
+        </div>
+      </div>
+
+      <div id="ops" class="screen">
+        <div class="workspace">
+          <div class="stack">
+            <div class="card"><h2>Ops / audit trail</h2><p class="sub mt">Vue pour rassurer : tout le cycle laisse une trace lisible, et les statuts sont séparés proprement.</p></div>
+            <div class="timeline">
+              <div class="step done"><div class="num">✓</div><div><strong>clinic_activation_submitted</strong><p>Clinique + fiscal + invoice profile</p></div><span class="badge green">event</span></div>
+              <div class="step done"><div class="num">✓</div><div><strong>doctor_clinic_onboarding_professionals_attached</strong><p>Professionals linked to clinic activation</p></div><span class="badge green">event</span></div>
+              <div class="step public"><div class="num">✓</div><div><strong>verification-review approved</strong><p>Reviewer, notes, visibility decoupled flag, verified_at</p></div><span class="badge green">audit</span></div>
+            </div>
+          </div>
+          <div class="card"><h3>Smoke tests derrière cette V4</h3><p class="sub mt"><code>SMOKE_DOCTOR_CLINIC_ONBOARDING_OK</code><br/><code>SMOKE_PROFESSIONAL_APPROVAL_OK</code><br/><code>SMOKE_PROFESSIONALS_OK</code></p><p class="sub mt">Prochaine vraie UI : pending review queue + fiche médecin + bouton approval protégé.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="right glass phone-wrap">
+      <div class="device">
+        <div class="phone-screen">
+          <div class="phone-head"><small>MATHEO IQ mobile preview</small><h2 id="phone-title">Activation</h2><p id="phone-sub" style="opacity:.82;margin-top:6px">Checklist clinique complète</p></div>
+          <div class="phone-body" id="phone-body"></div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const phone = {
+      activation:{title:'Activation',sub:'Checklist clinique complète',items:[['Clinic','active','green'],['Fiscal profile','ready','green'],['Invoice defaults','ready','green'],['WhatsApp','configured later','blue']]},
+      doctor:{title:'Médecin',sub:'Profil public, licence en review',items:[['Dra Valeria','provider active','green'],['Cédula','SEP-8842-1930','blue'],['Visibility','public','blue'],['Verification','manual review','amber']]},
+      review:{title:'Review',sub:'Validation licence séparée',items:[['Queue','1 pending','amber'],['SEP record','audit/cache','blue'],['Public search','visible','blue'],['Action','confirm licence','green']]},
+      directory:{title:'Annuaire',sub:'Public avant et après approval',items:[['Visibility','public','green'],['Verification','verified_exact','green'],['Profile','accessible','green'],['Search filter','verified=true','blue']]},
+      ops:{title:'Ops',sub:'Événements et preuves',items:[['Schema','000 → 013 OK','green'],['Smoke onboarding','OK','green'],['Smoke approval','OK','green'],['Next UI','review queue','blue']]}
+    };
+    function renderPhone(key){const data=phone[key];document.getElementById('phone-title').textContent=data.title;document.getElementById('phone-sub').textContent=data.sub;document.getElementById('phone-body').innerHTML=`<div class="mobile-card"><strong>${data.title}</strong><p class="sub" style="margin-top:6px">${data.sub}</p></div><div class="mobile-list">${data.items.map(([a,b,c])=>`<div class="mobile-row"><div><strong>${a}</strong><p class="sub">${b}</p></div><span class="badge ${c}">${c==='green'?'ok':c==='amber'?'review':c==='rose'?'blocked':'info'}</span></div>`).join('')}</div>`}
+    function show(key){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===key));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===key));renderPhone(key)}
+    document.querySelectorAll('[data-screen]').forEach(btn=>btn.addEventListener('click',()=>show(btn.dataset.screen)));
+    document.querySelectorAll('[data-screen-link]').forEach(btn=>btn.addEventListener('click',()=>show(btn.dataset.screenLink)));
+    renderPhone('activation');
+  </script>
+</body>
+</html>
