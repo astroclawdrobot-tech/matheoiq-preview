@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-30T15:25:00Z",
+  "summary": {
+    "connectedClinics": 8,
+    "readyClinics": 5,
+    "pendingCredentialClinics": 2,
+    "pausedClinics": 1,
+    "verifiedDoctors": 42,
+    "onlineDoctors": 17,
+    "aiDispatchCoveragePct": 94,
+    "humanEscalationRatePct": 6
+  },
+  "clinics": [
+    {"id":"CLN-CDMX-001","name":"Clínica Norte CDMX","city":"CDMX","status":"ready","connected":"Supabase + Stripe test","doctorsVerified":9,"doctorsOnline":4,"queueOpen":7,"avgEtaMin":28,"risk":"low","nextAction":"Activar piloto cerrado"},
+    {"id":"CLN-PDC-001","name":"Red Médica Playa","city":"Playa del Carmen","status":"ready","connected":"Supabase + maps ready","doctorsVerified":6,"doctorsOnline":3,"queueOpen":4,"avgEtaMin":22,"risk":"low","nextAction":"Validar zona 8 km"},
+    {"id":"CLN-GDL-002","name":"Médicos GDL Sur","city":"Guadalajara","status":"credentialing","connected":"Auth + clinic profile","doctorsVerified":3,"doctorsOnline":0,"queueOpen":0,"avgEtaMin":null,"risk":"medium","nextAction":"Completar verificación cédula/RCP"},
+    {"id":"CLN-MTY-001","name":"Monterrey Care Network","city":"Monterrey","status":"ready","connected":"Supabase + payments test","doctorsVerified":11,"doctorsOnline":5,"queueOpen":9,"avgEtaMin":31,"risk":"low","nextAction":"Prueba dispatch wave 1"},
+    {"id":"CLN-QRO-001","name":"Querétaro Mobile Health","city":"Querétaro","status":"paused","connected":"Profile only","doctorsVerified":2,"doctorsOnline":0,"queueOpen":0,"avgEtaMin":null,"risk":"high","nextAction":"Revisar cobertura legal/operativa"}
+  ]
+}

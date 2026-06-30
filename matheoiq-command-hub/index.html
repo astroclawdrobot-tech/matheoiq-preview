@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MatheoIQ Médico Móvil — Command Hub</title>
+<style>
+:root{--bg:#eefbff;--bg2:#f8feff;--nav:#0d3440;--nav2:#102f55;--teal:#008080;--blue:#1A3F68;--cyan:#E0FFFF;--ice:#F0F8FF;--text:#12313b;--muted:#63808a;--line:rgba(26,63,104,.13);--card:rgba(255,255,255,.78);--good:#0c9b72;--warn:#d28a05;--bad:#d94141;--shadow:0 22px 70px rgba(26,63,104,.14);--r:26px}*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);background:radial-gradient(circle at 8% 5%,rgba(0,128,128,.18),transparent 30%),radial-gradient(circle at 88% 12%,rgba(26,63,104,.16),transparent 28%),linear-gradient(180deg,var(--bg2),var(--bg));min-height:100vh}.shell{display:grid;grid-template-columns:292px minmax(0,1fr);gap:18px;padding:18px;min-height:100vh}.side{border-radius:0 var(--r) var(--r) 0;background:linear-gradient(180deg,var(--nav),var(--nav2));color:white;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:18px}.brand{display:flex;gap:14px;align-items:center}.logo{width:58px;height:58px;border-radius:20px;background:linear-gradient(135deg,var(--teal),#22c4c4);display:grid;place-items:center;font-size:27px;font-weight:900;box-shadow:0 12px 30px rgba(0,0,0,.22)}.brand h1{font-size:23px;line-height:1;margin:0}.brand p{font-size:11px;margin:5px 0 0;color:rgba(255,255,255,.68);letter-spacing:.12em;text-transform:uppercase}.nav{display:flex;flex-direction:column;gap:9px;margin-top:8px}.nav a{color:rgba(255,255,255,.82);text-decoration:none;padding:13px 14px;border-radius:17px;border:1px solid transparent;font-weight:750;font-size:13px;display:flex;justify-content:space-between}.nav a:hover,.nav a.active{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:white}.note{margin-top:auto;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);border-radius:20px;padding:15px;font-size:12px;line-height:1.55;color:rgba(255,255,255,.78)}main{padding:8px 8px 50px}.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin:6px 0 22px}.eyebrow{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(0,128,128,.12);color:var(--teal);font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.title{font-size:clamp(34px,5vw,60px);line-height:.96;letter-spacing:-.04em;margin:14px 0 12px;color:var(--blue)}.lead{max-width:890px;color:var(--muted);font-size:16px;line-height:1.65;margin:0}.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.chip{padding:10px 13px;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid var(--line);font-size:12px;font-weight:800;color:var(--blue)}.chip.good{color:var(--good);background:rgba(12,155,114,.1)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{grid-column:span 4;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);backdrop-filter:blur(16px);overflow:hidden}.card.big{grid-column:span 8}.card.full{grid-column:span 12}.hd{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center;background:rgba(255,255,255,.36)}.hd h2,.hd h3{margin:0;font-size:15px;color:var(--blue)}.bd{padding:20px}.kpi{font-size:38px;font-weight:900;color:var(--blue);letter-spacing:-.04em}.sub{font-size:12px;color:var(--muted);line-height:1.55;margin-top:5px}.tag{display:inline-flex;align-items:center;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.tag.good{background:rgba(12,155,114,.12);color:var(--good)}.tag.warn{background:rgba(210,138,5,.13);color:var(--warn)}.tag.bad{background:rgba(217,65,65,.12);color:var(--bad)}.tag.neu{background:rgba(26,63,104,.08);color:var(--blue)}.table{width:100%;border-collapse:separate;border-spacing:0 9px}.table th{text-align:left;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.12em;padding:0 10px}.table td{background:rgba(255,255,255,.7);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:13px 10px;font-size:12px}.table td:first-child{border-left:1px solid var(--line);border-radius:15px 0 0 15px;font-weight:850;color:var(--blue)}.table td:last-child{border-right:1px solid var(--line);border-radius:0 15px 15px 0}.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.step{padding:13px;border-radius:18px;background:rgba(255,255,255,.7);border:1px solid var(--line);font-size:12px;line-height:1.45}.step b{display:block;color:var(--blue);margin-bottom:5px}.phone{border-radius:34px;background:#111;color:white;padding:18px;min-height:610px;box-shadow:0 24px 70px rgba(0,0,0,.24)}.phone-top{text-align:center;font-size:20px;font-weight:900;margin:10px 0 18px}.ride-box{border:2px solid rgba(255,255,255,.9);border-radius:22px;padding:16px;margin:14px 0}.ride-line{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)}.ride-line:last-child{border-bottom:none}.dot{width:14px;height:14px;border-radius:50%;background:white}.sq{width:14px;height:14px;border-radius:4px;background:white}.mobile-pill{display:inline-flex;background:#272727;border-radius:999px;padding:12px 16px;margin:0 6px 12px 0;font-weight:800}.choice{padding:15px;border-radius:18px;background:#202020;margin:10px 0;color:#eaeaea}.choice small{display:block;color:#9ba1a6;margin-top:4px}.btn{display:inline-flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:linear-gradient(135deg,var(--teal),var(--blue));color:white;padding:12px 16px;text-decoration:none;font-weight:900}.section{margin-top:18px}.guard{display:grid;grid-template-columns:1fr 1fr;gap:12px}.guard div{padding:14px;border-radius:18px;background:rgba(255,255,255,.68);border:1px solid var(--line);font-size:12px;line-height:1.55}.guard b{color:var(--blue)}@media(max-width:980px){.shell{grid-template-columns:1fr}.side{border-radius:var(--r)}.card,.card.big{grid-column:span 12}.top{flex-direction:column}.flow{grid-template-columns:1fr 1fr}.guard{grid-template-columns:1fr}}@media(max-width:620px){.flow{grid-template-columns:1fr}.table{display:block;overflow:auto}.title{font-size:38px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><div class="logo">M+</div><div><h1>MatheoIQ<br>Médico Móvil</h1><p>AI Dispatch Hub</p></div></div>
+    <nav class="nav">
+      <a class="active" href="#command">Command <span>live preview</span></a>
+      <a href="#patient">Paciente <span>Uber-like</span></a>
+      <a href="#clinics">Clínicas <span>queue</span></a>
+      <a href="#doctors">Médicos <span>licencia</span></a>
+      <a href="#ai">AI Dispatch <span>no humano</span></a>
+      <a href="#ready">Go-live <span>gated</span></a>
+    </nav>
+    <div class="note"><b>Separación limpia:</b><br>Este hub no contiene Alma Fina. Es una interfaz nueva para MatheoIQ, inspirada solo en el patrón de command hub.</div>
+  </aside>
+  <main>
+    <section id="command" class="top">
+      <div><span class="eyebrow">Mise en marche preview</span><h1 class="title">Operar medicina a domicilio como Uber, con seguridad médica.</h1><p class="lead">Hub interno para lanzar MatheoIQ Médico Móvil: pacientes piden una visita, médicos verificados reciben misiones, el agente IA orquesta dispatch, pagos, ETA y excepciones. Sin dispatch humano por defecto; humano solo en escalation.</p></div>
+      <div class="actions"><span class="chip good">Licencia médica obligatoria</span><span class="chip">AI dispatch first</span><span class="chip">No live writes</span></div>
+    </section>
+
+    <section class="grid">
+      <article class="card"><div class="hd"><h3>Clínicas conectadas</h3><span class="tag good">ready</span></div><div class="bd"><div class="kpi" id="kpiClinics">—</div><div class="sub">5 listas para piloto, 2 en credentialing, 1 pausada.</div></div></article>
+      <article class="card"><div class="hd"><h3>Médicos verificados</h3><span class="tag good">license gate</span></div><div class="bd"><div class="kpi" id="kpiDoctors">—</div><div class="sub">Solo médicos con cédula/licencia aprobada pueden recibir misiones.</div></div></article>
+      <article class="card"><div class="hd"><h3>Dispatch IA</h3><span class="tag neu">agent</span></div><div class="bd"><div class="kpi">94%</div><div class="sub">Cobertura estimada sin humano; escalation solo para red flags/gaps/incidents.</div></div></article>
+    </section>
+
+    <section id="patient" class="section grid">
+      <article class="card big"><div class="hd"><h2>Flujo paciente — estilo Uber</h2><span class="tag good">mobile first</span></div><div class="bd"><div class="flow"><div class="step"><b>1. Ubicación</b>Ahora / programar, para mí / familiar.</div><div class="step"><b>2. Motivo</b>Síntomas estructurados y red flags.</div><div class="step"><b>3. Cobertura</b>Zona, clínica, médicos disponibles.</div><div class="step"><b>4. Precio</b>Quote + pago autorizado.</div><div class="step"><b>5. Matching IA</b>Ofertas por waves a médicos elegibles.</div><div class="step"><b>6. Tracking</b>ETA, llegada, visita, cierre.</div></div></div></article>
+      <article class="card"><div class="bd"><div class="phone"><div class="phone-top">Planear visita</div><span class="mobile-pill">Ahora</span><span class="mobile-pill">Para mí</span><div class="ride-box"><div class="ride-line"><div class="dot"></div><div>Mi ubicación actual</div></div><div class="ride-line"><div class="sq"></div><div>¿Dónde debe ir el médico?</div></div></div><div class="choice">🏠 Casa guardada<small>Villas del Carmen · 5.0 km</small></div><div class="choice">🗺️ Elegir en mapa<small>Confirmar entrada y referencias</small></div><div class="choice">🩺 Motivo de consulta<small>No urgente · visita a domicilio</small></div><a class="btn" href="#clinics">Buscar médico verificado</a></div></div></article>
+    </section>
+
+    <section id="clinics" class="section card full"><div class="hd"><h2>Queue de clínicas conectadas</h2><span class="tag neu">preview data</span></div><div class="bd"><table class="table" id="clinicsTable"><thead><tr><th>Clínica</th><th>Ciudad</th><th>Status</th><th>Médicos</th><th>Queue</th><th>ETA</th><th>Próxima acción</th></tr></thead><tbody></tbody></table></div></section>
+    <section class="section card full"><div class="hd"><h2>Queue de visitas</h2><span class="tag warn">AI triage</span></div><div class="bd"><table class="table" id="queueTable"><thead><tr><th>Request</th><th>Ciudad</th><th>Motivo</th><th>Status</th><th>Precio</th><th>ETA</th><th>Escalation</th></tr></thead><tbody></tbody></table></div></section>
+    <section id="doctors" class="section card full"><div class="hd"><h2>Médicos — gate licencia obligatorio</h2><span class="tag good">block verified</span></div><div class="bd"><table class="table" id="doctorsTable"><thead><tr><th>Médico</th><th>Ciudad</th><th>Especialidad</th><th>Licencia</th><th>RCP</th><th>Score</th><th>Estado</th></tr></thead><tbody></tbody></table></div></section>
+
+    <section id="ai" class="section grid">
+      <article class="card big"><div class="hd"><h2>Agent IA de dispatch</h2><span class="tag good">human only exception</span></div><div class="bd"><div class="flow"><div class="step"><b>Triage</b>Bloquea emergencias y dirige a 911/urgencias.</div><div class="step"><b>Eligibility</b>Filtra licencia, RCP, disponibilidad, radio, especialidad.</div><div class="step"><b>Scoring</b>ETA + calidad + aceptación + distancia.</div><div class="step"><b>Waves</b>Ofrece por rondas, expira, relanza.</div><div class="step"><b>Monitoring</b>Detecta retrasos, no-show, pagos, incidentes.</div><div class="step"><b>Escalation</b>Humano solo si riesgo o excepción.</div></div></div></article>
+      <article class="card"><div class="hd"><h3>Regla crítica</h3><span class="tag bad">safety</span></div><div class="bd"><p class="sub"><b>La IA no diagnostica.</b> Orquesta operación, detecta señales de riesgo y escala. El acto médico lo realiza un médico verificado.</p><br><p class="sub"><b>No dispatch humano por defecto.</b> El sistema debe operar automático; humano = backstop de seguridad.</p></div></article>
+    </section>
+
+    <section id="ready" class="section card full"><div class="hd"><h2>Checklist ready-to-launch</h2><span class="tag warn">gated pilot</span></div><div class="bd"><div class="guard"><div><b>Backend guards</b><br>Ownership patient/request, roles clinic/admin/doctor, RLS tests, service-role impossible desde flows públicos.</div><div><b>Licencia médica</b><br>Brancher le bloc existant: cédula/licence approved obligatoire avant mission.</div><div><b>Conformité MX</b><br>Aviso privacidad, consentement données sensibles, logs, scope no urgencia, no AI diagnosis.</div><div><b>Paiements</b><br>Authorization avant dispatch, capture après completion, refunds/disputes contrôlés.</div><div><b>Ops IA</b><br>Agent policy, waves, retry, coverage gap, incident queue, escalation SLA.</div><div><b>Pilote fermé</b><br>Zones limitées, 5–10 médecins vérifiés, monitoring, pas de promesse publique excessive.</div></div></div></section>
+  </main>
+</div>
+<script>
+const tag = (v) => {
+  const s = String(v || '').toLowerCase();
+  const ok = (s.includes('ready') || s.includes('verified') || s.includes('eligible')) && !s.includes('blocked');
+  const bad = s.includes('blocked') || s.includes('paused') || s.includes('red') || s.includes('high');
+  const c = ok ? 'good' : bad ? 'bad' : 'warn';
+  return `<span class="tag ${c}">${v ?? '—'}</span>`;
+};
+async function loadJson(path){ const r = await fetch(path); return r.json(); }
+function money(v){ return v ? `$${Number(v).toLocaleString('es-MX')} MXN` : '—'; }
+function eta(v){ return v ? `${v} min` : '—'; }
+async function boot(){
+ const clinics = await loadJson('./data/clinics.json');
+ const queue = await loadJson('./data/dispatch-queue.json');
+ const doctors = await loadJson('./data/doctors.json');
+ document.querySelector('#kpiClinics').textContent = clinics.summary.connectedClinics;
+ document.querySelector('#kpiDoctors').textContent = clinics.summary.verifiedDoctors;
+ document.querySelector('#clinicsTable tbody').innerHTML = clinics.clinics.map(c => `<tr><td>${c.name}</td><td>${c.city}</td><td>${tag(c.status)}</td><td>${c.doctorsOnline}/${c.doctorsVerified}</td><td>${c.queueOpen}</td><td>${eta(c.avgEtaMin)}</td><td>${c.nextAction}</td></tr>`).join('');
+ document.querySelector('#queueTable tbody').innerHTML = queue.queue.map(q => `<tr><td>${q.id}</td><td>${q.city}</td><td>${q.reason}</td><td>${tag(q.status)}</td><td>${money(q.priceMxn)}</td><td>${eta(q.etaMin)}</td><td>${q.escalation === 'none' ? tag('none') : tag(q.escalation)}</td></tr>`).join('');
+ document.querySelector('#doctorsTable tbody').innerHTML = doctors.doctors.map(d => `<tr><td>${d.name}</td><td>${d.city}</td><td>${d.specialty}</td><td>${tag(d.license)}</td><td>${tag(d.rcp)}</td><td>${d.qualityScore ?? '—'}</td><td>${tag(d.status)}</td></tr>`).join('');
+}
+boot().catch(e => console.error(e));
+</script>
+</body>
+</html>
