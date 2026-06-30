@@ -1,0 +1,90 @@
+{
+  "availableInventoryKg": 75000,
+  "transformationProgressPct": 85,
+  "transformedInventoryKg": 63750,
+  "currentProductionStatus": "En cours de broyage",
+  "shippingStatus": "Prêt pour expédition",
+  "botReadyLeads": 198,
+  "canonicalLeadRows": 198,
+  "directEmailLeads": 198,
+  "highPriorityQueueRows": 10,
+  "highPriorityEmailRows": 10,
+  "manualApprovalPendingRows": 7,
+  "priorityMarkets": [
+    "United States",
+    "Mexico",
+    "Canada",
+    "LATAM"
+  ],
+  "languageCounts": {
+    "English": 133,
+    "Spanish": 43,
+    "Portuguese": 10,
+    "French": 12
+  },
+  "contactTypeCounts": {
+    "email": 198,
+    "phone": 110,
+    "linkedin": 198
+  },
+  "topCountries": [
+    {
+      "name": "United States",
+      "count": 25
+    },
+    {
+      "name": "Canada",
+      "count": 17
+    },
+    {
+      "name": "Mexico",
+      "count": 15
+    },
+    {
+      "name": "Australia",
+      "count": 12
+    },
+    {
+      "name": "Brazil",
+      "count": 10
+    }
+  ],
+  "operatingMilestones": [
+    {
+      "status": "done",
+      "title": "Canonical lead layer built",
+      "date": "April 2026",
+      "summary": "198 classified inbound leads consolidated into one hub-ready artifact"
+    },
+    {
+      "status": "done",
+      "title": "Multilingual routing ready",
+      "date": "April 2026",
+      "summary": "English 133, Spanish 43, Portuguese 10, French 12"
+    },
+    {
+      "status": "done",
+      "title": "Queue overlay connected",
+      "date": "April 2026",
+      "summary": "10 leads already linked to the current operational queue, 3 sent"
+    },
+    {
+      "status": "done",
+      "title": "LOI renderer ready",
+      "date": "April 2026",
+      "summary": "HTML and PDF buyer-safe draft generation working"
+    },
+    {
+      "status": "active",
+      "title": "Manual approval queue",
+      "date": "Current",
+      "summary": "7 current queue rows still waiting on approval-first outreach"
+    },
+    {
+      "status": "pending",
+      "title": "Named-contact enrichment",
+      "date": "Next",
+      "summary": "Advance direct procurement contacts inside the top regional accounts"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0092,HUB-0092,ADM Morocco (Casablanca),Morocco,Africa,French,Global,High,,morocco@adm.com,+212 5 22-XXX-XXX,adm.com,linkedin.com/company/adm,to_find,False,,
+AFLEAD-0106,HUB-0106,Centrale Danone Maroc,Morocco,Africa,French,Global,High,,info@centraledanone.ma,+212 5 22-86-3636,centraledanone.ma,linkedin.com/company/centrale-danone,to_find,False,,
+AFLEAD-0110,HUB-0110,Doehler Morocco,Morocco,Africa,French,Global,High,,mailbox.ma@doehler.com,+212 5 22-XXX-XXX,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0142,HUB-0142,Lesieur Cristal,Morocco,Africa,French,Global,High,,info@lesieur-cristal.ma,+212 5 22-66-5010,lesieur-cristal.ma,linkedin.com/company/lesieur-cristal,to_find,False,,
+AFLEAD-0143,HUB-0143,Maghreb Industrie Alimentaire (MIA),Morocco,Africa,French,Global,High,,info@mia.ma,+212 5 22-XXX-XXX,mia.ma,linkedin.com/company/mia-maroc,to_find,False,,

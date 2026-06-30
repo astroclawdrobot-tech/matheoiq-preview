@@ -1,0 +1,6 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0096,HUB-0096,Amorepacific Corporation,South Korea,Asia,English,Global,High,,info@amorepacific.com,+82 2 709-5114,apgroup.com,linkedin.com/company/amorepacific,to_find,False,,
+AFLEAD-0102,HUB-0102,CJ CheilJedang,South Korea,Asia,English,Global,High,,info@cj.net,+82 2 6740-1114,cj.net,linkedin.com/company/cj-cheiljedang,to_find,False,,
+AFLEAD-0108,HUB-0108,Cosmax Inc.,South Korea,Asia,English,Global,High,,info@cosmax.co.kr,+82 2 6006-9000,cosmax.co.kr,linkedin.com/company/cosmax,to_find,False,,
+AFLEAD-0130,HUB-0130,Ildong Pharmaceutical,South Korea,Asia,English,Global,High,,info@ildong.com,+82 2 526-3114,ildong.com,linkedin.com/company/ildong,to_find,False,,
+AFLEAD-0153,HUB-0153,Ottogi Corporation,South Korea,Asia,English,Global,High,,info@ottogi.co.kr,+82 31 380-6114,ottogi.co.kr,linkedin.com/company/ottogi,to_find,False,,

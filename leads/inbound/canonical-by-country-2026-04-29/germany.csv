@@ -1,0 +1,7 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0169,HUB-0169,ARONA GmbH,Germany,Europe,English,Global,High,,info@arona-ingredients.de,,arona-ingredients.de,linkedin.com/company/arona-gmbh,to_find,False,,
+AFLEAD-0113,HUB-0113,Döhler Group,Germany,Europe,English,Global,High,,contact@doehler.com,+49 6151 306-0,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0121,HUB-0121,Herbafood Ingredients GmbH,Germany,Europe,English,Global,High,,info@herbafood.de,+49 3327 468-0,herbafood.de,linkedin.com/company/herbafood-ingredients-gmbh,to_find,False,,
+AFLEAD-0190,HUB-0190,Ingredion Germany,Germany,Europe,English,Global,High,,germany@ingredion.com,,ingredion.com,linkedin.com/company/ingredion,to_find,False,,
+AFLEAD-0133,HUB-0133,J. Rettenmaier & Söhne GmbH (JRS),Germany,Europe,English,Global,High,,info@jrs.de,+49 7966 82-0,jrs.de,linkedin.com/company/j-rettenmaier-sohne,to_find,False,,
+AFLEAD-0161,HUB-0161,Symrise AG,Germany,Europe,English,Global,High,,info@symrise.com,+49 5531 90-0,symrise.com,linkedin.com/company/symrise,to_find,False,,

@@ -1,0 +1,12 @@
+{
+  "name": "gazoo-railway-root",
+  "private": true,
+  "description": "Root-level Railway wrapper for Alma Fina B2B Command Hub",
+  "scripts": {
+    "postinstall": "npm --prefix alma-fina-b2b-command-hub install",
+    "start": "npm --prefix alma-fina-b2b-command-hub start"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

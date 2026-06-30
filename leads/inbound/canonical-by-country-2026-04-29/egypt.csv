@@ -1,0 +1,6 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0091,HUB-0091,ADM Egypt (North Africa Hub),Egypt,Africa,English,Global,High,,egypt@adm.com,+20 2 XXX-XXXX,adm.com,linkedin.com/company/adm,to_find,False,,
+AFLEAD-0112,HUB-0112,Döhler Egypt,Egypt,Africa,English,Global,High,,mailbox.eg@doehler.com,+20 2 XXX-XXXX,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0114,HUB-0114,EIPICO,Egypt,Africa,English,Global,High,,info@eipico.com.eg,+20 2 2291-1500,eipico.com.eg,linkedin.com/company/eipico,to_find,False,,
+AFLEAD-0115,HUB-0115,Egyptian Food Industries (EFI),Egypt,Africa,English,Global,High,,info@efi-egypt.com,+20 2 XXX-XXXX,efi-egypt.com,linkedin.com/company/egyptian-food-industries,to_find,False,,
+AFLEAD-0154,HUB-0154,Pharco Nutraceuticals,Egypt,Africa,English,Global,High,,info@pharco.com,+20 3 XXX-XXXX,pharco.com,linkedin.com/company/pharco,to_find,False,,

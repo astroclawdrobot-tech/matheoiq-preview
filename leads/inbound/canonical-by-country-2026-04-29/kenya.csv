@@ -1,0 +1,7 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0095,HUB-0095,Agri-Hub East Africa,Kenya,Africa,English,Global,High,,info@agrihubea.com,+254 720-XXX-XXX,agrihubea.com,linkedin.com/company/agri-hub-east-africa,to_find,False,,
+AFLEAD-0101,HUB-0101,Bidco Africa,Kenya,Africa,English,Global,High,,info@bidcoafrica.com,+254 20 350-2000,bidcoafrica.com,linkedin.com/company/bidco-africa,to_find,False,,
+AFLEAD-0105,HUB-0105,Cape Food Ingredients Kenya,Kenya,Africa,English,Global,High,,kenya@capefoodingredients.com,+254 20 XXX-XXXX,capefoodingredients.com,linkedin.com/company/cape-food-ingredients,to_find,False,,
+AFLEAD-0124,HUB-0124,IMCD East Africa,Kenya,Africa,English,Global,High,,food.eastafrica@imcd.com,+254 20 XXX-XXXX,imcdgroup.com,linkedin.com/company/imcd,to_find,False,,
+AFLEAD-0136,HUB-0136,Kapa Oil Refineries,Kenya,Africa,English,Global,High,,info@kapaoil.com,+254 20 530-3000,kapaoil.com,linkedin.com/company/kapa-oil-refineries,to_find,False,,
+AFLEAD-0138,HUB-0138,Kerry Group East Africa,Kenya,Africa,English,Global,High,,eastafrica@kerry.com,+254 20 XXX-XXXX,kerrygroup.com,linkedin.com/company/kerry-group,to_find,False,,

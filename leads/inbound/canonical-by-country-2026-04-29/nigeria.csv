@@ -1,0 +1,6 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0094,HUB-0094,Agboville International,Nigeria,Africa,English,Global,High,,info@agboville.com,+234 1 XXX-XXXX,agboville.com,linkedin.com/company/agboville,to_find,False,,
+AFLEAD-0109,HUB-0109,Dangote Industries (Food Division),Nigeria,Africa,English,Global,High,,info@dangote.com,+234 1 448-0000,dangote.com,linkedin.com/company/dangote-group,to_find,False,,
+AFLEAD-0117,HUB-0117,Flour Mills of Nigeria PLC,Nigeria,Africa,English,Global,High,,info@fmnplc.com,+234 1 583-5170,fmnplc.com,linkedin.com/company/flour-mills-of-nigeria,to_find,False,,
+AFLEAD-0149,HUB-0149,Nestlé Nigeria PLC,Nigeria,Africa,English,Global,High,,info.nigeria@ng.nestle.com,+234 1 279-1000,nestle-cwa.com,linkedin.com/company/nestle,to_find,False,,
+AFLEAD-0163,HUB-0163,Tolaram Group (Indomie Nigeria),Nigeria,Africa,English,Global,High,,info@tolaram.com,+234 1 270-1930,tolaram.com,linkedin.com/company/tolaram-group,to_find,False,,

@@ -1,0 +1,8 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0062,HUB-0062,ALSEC Colombia,Colombia,South America,Spanish,Tier 2,High,,info@alsec.com.co,,alsec.com.co,linkedin.com/company/alsec-colombia,to_find,False,,
+AFLEAD-0064,HUB-0064,Cargill Colombia,Colombia,South America,Spanish,Tier 2,High,,contacto@cargill.com,,cargill.com,linkedin.com/company/cargill,to_find,False,,
+AFLEAD-0068,HUB-0068,Doehler Colombia,Colombia,South America,Spanish,Tier 2,High,,mailbox.co@doehler.com,,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0080,HUB-0080,Nutracecol,Colombia,South America,Spanish,Tier 2,High,,info@nutraceuti.com,,nutraceuti.com,linkedin.com/company/nutracecol,to_find,False,,
+AFLEAD-0085,HUB-0085,Proanat S.A.,Colombia,South America,Spanish,Tier 2,High,,info@proanat.com,,proanat.com,linkedin.com/company/proanat,to_find,False,,
+AFLEAD-0061,HUB-0061,Procaps Group,Colombia,South America,Spanish,Tier 2,High,,info@procapsgroup.com,+57 5 350-0600,procapsgroup.com,linkedin.com/company/procaps-group,to_find,False,,
+AFLEAD-0088,HUB-0088,Superfoods Colombia,Colombia,South America,Spanish,Tier 2,High,,info@superfoodscolombia.com,,superfoodscolombia.com,linkedin.com/company/superfoods-colombia,to_find,False,,

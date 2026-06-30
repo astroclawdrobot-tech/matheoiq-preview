@@ -1,0 +1,7 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0135,HUB-0135,Kaneka Corporation,Japan,Asia,English,Global,High,,info@kaneka.co.jp,+81 6 6226-5050,kaneka.co.jp,linkedin.com/company/kaneka-corporation,to_find,False,,
+AFLEAD-0140,HUB-0140,Kirin Holdings,Japan,Asia,English,Global,High,,info@kirin.co.jp,+81 3 6837-7000,kirinholdings.com,linkedin.com/company/kirin-holdings,to_find,False,,
+AFLEAD-0145,HUB-0145,Maruha Nichiro Corporation,Japan,Asia,English,Global,High,,info@maruha-nichiro.co.jp,+81 3 3273-1111,maruha-nichiro.com,linkedin.com/company/maruha-nichiro,to_find,False,,
+AFLEAD-0151,HUB-0151,Nichirei Corporation,Japan,Asia,English,Global,High,,info@nichirei.co.jp,+81 3 3248-2111,nichirei.co.jp,linkedin.com/company/nichirei,to_find,False,,
+AFLEAD-0152,HUB-0152,Ogawa & Co. Ltd,Japan,Asia,English,Global,High,,info@ogawa.co.jp,+81 3 3865-1211,ogawa.co.jp,linkedin.com/company/ogawa-co,to_find,False,,
+AFLEAD-0164,HUB-0164,Toyo Sugar Refining,Japan,Asia,English,Global,High,,info@toyo-sugar.co.jp,+81 3 3241-XXXX,toyo-sugar.co.jp,linkedin.com/company/toyo-sugar,to_find,False,,

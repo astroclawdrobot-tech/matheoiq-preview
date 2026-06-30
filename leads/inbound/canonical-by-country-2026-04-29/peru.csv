@@ -1,0 +1,7 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0063,HUB-0063,Amazon Andes,Peru,South America,Spanish,Tier 2,High,,info@amazon-andes.com,,amazon-andes.com,linkedin.com/company/amazon-andes,to_find,False,,
+AFLEAD-0069,HUB-0069,Doehler Peru,Peru,South America,Spanish,Tier 2,High,,mailbox.pe@doehler.com,,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0070,HUB-0070,Ecoandino,Peru,South America,Spanish,Tier 2,High,,info@ecoandino.com,,ecoandino.com,linkedin.com/company/ecoandino,to_find,False,,
+AFLEAD-0071,HUB-0071,Ecoandino Peru,Peru,South America,Spanish,Tier 2,High,,info@ecoandino.com,,ecoandino.com,linkedin.com/company/ecoandino,to_find,False,,
+AFLEAD-0077,HUB-0077,Ingredion Peru,Peru,South America,Spanish,Tier 2,High,,peru@ingredion.com,,ingredion.com,linkedin.com/company/ingredion,to_find,False,,
+AFLEAD-0083,HUB-0083,Peruvian Nature,Peru,South America,Spanish,Tier 2,High,,sales@peruviannature.com,,peruviannature.com,linkedin.com/company/peruviannature,to_find,False,,

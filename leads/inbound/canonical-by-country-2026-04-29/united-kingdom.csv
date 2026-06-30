@@ -1,0 +1,6 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0107,HUB-0107,Chaucer Foods Ltd,United Kingdom,Europe,English,Global,High,,info@chaucerfoods.com,+44 1482 630000,chaucerfoods.com,linkedin.com/company/chaucer-foods,to_find,False,,
+AFLEAD-0116,HUB-0116,European Freeze Dry Ltd,United Kingdom,Europe,English,Global,High,,info@europeanfreezedry.co.uk,+44 1362 693047,europeanfreezedry.co.uk,linkedin.com/company/european-freeze-dry,to_find,False,,
+AFLEAD-0129,HUB-0129,IMCD UK,United Kingdom,Europe,English,Global,High,,food.uk@imcd.com,+44 1928 704600,imcd.com,linkedin.com/company/imcd,to_find,False,,
+AFLEAD-0134,HUB-0134,Kanegrade Ltd,United Kingdom,Europe,English,Global,High,,info@kanegrade.com,+44 1438 726000,kanegrade.com,linkedin.com/company/kanegrade,to_find,False,,
+AFLEAD-0165,HUB-0165,Univar Solutions UK,United Kingdom,Europe,English,Global,High,,fooduk@univar.com,+44 1793 512200,univarsolutions.com,linkedin.com/company/univar-solutions,to_find,False,,

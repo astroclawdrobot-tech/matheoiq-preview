@@ -1,0 +1,8 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0170,HUB-0170,Anagenix,New Zealand,Oceania,English,Global,High,,info@anagenix.com,,anagenix.com,linkedin.com/company/anagenix,to_find,False,,
+AFLEAD-0171,HUB-0171,Anzchem NZ,New Zealand,Oceania,English,Global,High,,nz@anzchem.com.au,,anzchem.com.au,linkedin.com/company/anzchem,to_find,False,,
+AFLEAD-0120,HUB-0120,Hawkins Watts NZ,New Zealand,Oceania,English,Global,High,,nz@hawkinswatts.com,+64 9 358-9864,hawkinswatts.com,linkedin.com/company/hawkins-watts,to_find,False,,
+AFLEAD-0192,HUB-0192,New Zealand Health Manufacturing (NZHM),New Zealand,Oceania,English,Global,High,,info@nzhm.co.nz,,nzhm.co.nz,linkedin.com/company/nzhm,to_find,False,,
+AFLEAD-0193,HUB-0193,New Zealand Nutritionals,New Zealand,Oceania,English,Global,High,,info@nznutritionals.co.nz,,nznutritionals.co.nz,linkedin.com/company/nz-nutritionals,to_find,False,,
+AFLEAD-0196,HUB-0196,Redox NZ,New Zealand,Oceania,English,Global,High,,nz@redox.com,,redox.com,linkedin.com/company/redox,to_find,False,,
+AFLEAD-0197,HUB-0197,Superfood Ingredients NZ,New Zealand,Oceania,English,Global,High,,info@superfoodingredients.co.nz,,superfoodingredients.co.nz,linkedin.com/company/superfood-ingredients-nz,to_find,False,,

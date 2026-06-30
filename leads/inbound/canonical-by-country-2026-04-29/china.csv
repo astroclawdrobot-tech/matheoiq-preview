@@ -1,0 +1,8 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0100,HUB-0100,BYHEALTH Co. Ltd,China,Asia,English,Global,High,,info@byhealth.com,+86 20 8821-0168,byhealth.com,linkedin.com/company/byhealth,to_find,False,,
+AFLEAD-0111,HUB-0111,Döhler China,China,Asia,English,Global,High,,mailbox.cn@doehler.com,+86 21 6082-XXXX,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0118,HUB-0118,Fufeng Group,China,Asia,English,Global,High,,info@fufenggroup.com,+86 21 6888-XXXX,fufenggroup.com,linkedin.com/company/fufeng-group,to_find,False,,
+AFLEAD-0123,HUB-0123,IMCD China,China,Asia,English,Global,High,,food.cn@imcd.com,+86 21 6163-5888,imcd.com,linkedin.com/company/imcd,to_find,False,,
+AFLEAD-0132,HUB-0132,Ingredion China,China,Asia,English,Global,High,,china@ingredion.com,+86 21 3366-XXXX,ingredion.com,linkedin.com/company/ingredion,to_find,False,,
+AFLEAD-0141,HUB-0141,Layn Natural Ingredients,China,Asia,English,Global,High,,info@layn.com,+86 20 8703-8888,layn.com,linkedin.com/company/layn-natural-ingredients,to_find,False,,
+AFLEAD-0160,HUB-0160,Sinofi Ingredients,China,Asia,English,Global,High,,info@sinofi.com.cn,+86 22 2340-XXXX,sinofi.com.cn,linkedin.com/company/sinofi-ingredients,to_find,False,,

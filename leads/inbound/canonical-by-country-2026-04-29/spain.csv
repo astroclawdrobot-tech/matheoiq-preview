@@ -1,0 +1,6 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0175,HUB-0175,Caldic Iberia,Spain,Europe,Spanish,Global,High,,info.es@caldic.com,,caldic.com,linkedin.com/company/caldic,to_find,False,,
+AFLEAD-0183,HUB-0183,Döhler Spain,Spain,Europe,Spanish,Global,High,,mailbox.es@doehler.com,,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0184,HUB-0184,Evesa S.A.,Spain,Europe,Spanish,Global,High,,info@evesa.es,,evesa.es,linkedin.com/company/evesa,to_find,False,,
+AFLEAD-0128,HUB-0128,IMCD Spain,Spain,Europe,Spanish,Global,High,,food.es@imcd.com,+34 93 480 31 00,imcd.com,linkedin.com/company/imcd,to_find,False,,
+AFLEAD-0194,HUB-0194,Nutrifoods Spain,Spain,Europe,Spanish,Global,High,,info@nutrifoods.es,,nutrifoods.es,linkedin.com/company/nutrifoods-spain,to_find,False,,

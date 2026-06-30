@@ -1,0 +1,6 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0099,HUB-0099,BCFoods Europe B.V.,Netherlands,Europe,English,Global,High,,carey.nell@bcfoods.com,+31 299 630650,bcfoodseurope.com,linkedin.com/company/bcfoods,to_find,False,,
+AFLEAD-0103,HUB-0103,Caldic Netherlands,Netherlands,Europe,English,Global,High,,info.nl@caldic.com,+31 10 282-5800,caldic.com,linkedin.com/company/caldic,to_find,False,,
+AFLEAD-0177,HUB-0177,Cargill Benelux,Netherlands,Europe,English,Global,High,,benelux@cargill.com,,cargill.com,linkedin.com/company/cargill,to_find,False,,
+AFLEAD-0185,HUB-0185,Givaudan (Naturex) Benelux,Netherlands,Europe,English,Global,High,,naturex.benelux@givaudan.com,,givaudan.com,linkedin.com/company/givaudan,to_find,False,,
+AFLEAD-0126,HUB-0126,IMCD Netherlands,Netherlands,Europe,English,Global,High,,food.nl@imcd.com,+31 10 290-8580,imcd.com,linkedin.com/company/imcd,to_find,False,,

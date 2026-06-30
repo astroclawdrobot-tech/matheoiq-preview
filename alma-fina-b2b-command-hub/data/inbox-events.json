@@ -1,0 +1,49 @@
+{
+  "updatedAt": "2026-04-29T19:53:16Z",
+  "events": [
+    {
+      "id": "INBOX-19",
+      "buyer_id": "",
+      "queue_id": "TOP10-0008",
+      "company": "Bloom Nutrition",
+      "contact_email": "hello@bloomnu.com",
+      "contact_name": "",
+      "event_type": "bounce",
+      "status": "open",
+      "channel": "email",
+      "owner": "auto-intake",
+      "subject": "Delivery Status Notification (Failure)",
+      "snippet": "** Address not found ** Your message wasn't delivered to hello@bloomnu.com because the address couldn't be found, or is unable to receive mail. Learn more here: https://support.google.com/mail/?p=NoSuchUser The response was: The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For more information, go to https://support.google.com/mail/?p=NoSuchUser",
+      "recommended_action": "Repair deliverability or replace the email.",
+      "next_action": "Find a valid contact before retry.",
+      "notes": "Auto-ingested from INBOX as message 69f140da.050a0220.311b26.0323.GMR@mx.google.com",
+      "occurred_at": "2026-04-28T23:20:58Z",
+      "logged_at": "2026-04-29T19:47:53Z",
+      "source_message_id": "69f140da.050a0220.311b26.0323.GMR@mx.google.com",
+      "source_from_email": "mailer-daemon@googlemail.com",
+      "source_uid": "19"
+    },
+    {
+      "id": "INBOX-18",
+      "buyer_id": "",
+      "queue_id": "TOP10-0002",
+      "company": "Naked Nutrition",
+      "contact_email": "info@nakednutrition.com",
+      "contact_name": "",
+      "event_type": "bounce",
+      "status": "open",
+      "channel": "email",
+      "owner": "auto-intake",
+      "subject": "Delivery Status Notification (Failure)",
+      "snippet": "** No se encontró la dirección ** Tu mensaje no se entregó a info@nakednutrition.com porque la dirección no se encuentra o no puede recibir correos electrónicos. Más información aquí: https://support.google.com/mail/?p=NoSuchUser La respuesta fue: 550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For more information, go to https://support.google.com/mail/?p=NoSuchUser d75a77b69052e-5101acdfe94sor2189981cf.3 - gsmtp",
+      "recommended_action": "Repair deliverability or replace the email.",
+      "next_action": "Find a valid contact before retry.",
+      "notes": "Auto-ingested from INBOX as message 69f140aa.c80a0220.368aab.313a.GMR@mx.google.com",
+      "occurred_at": "2026-04-28T23:20:10Z",
+      "logged_at": "2026-04-29T19:47:53Z",
+      "source_message_id": "69f140aa.c80a0220.368aab.313a.GMR@mx.google.com",
+      "source_from_email": "mailer-daemon@googlemail.com",
+      "source_uid": "18"
+    }
+  ]
+}

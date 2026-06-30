@@ -1,0 +1,2 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0189,HUB-0189,ITS Nutriscience,Malaysia,Asia,English,Global,High,,info@its-nutriscience.com,,its-nutriscience.com,linkedin.com/company/its-nutriscience,to_find,False,,

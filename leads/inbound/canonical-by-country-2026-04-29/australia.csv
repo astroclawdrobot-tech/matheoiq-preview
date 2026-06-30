@@ -1,0 +1,13 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0172,HUB-0172,Anzchem Pty Ltd,Australia,Oceania,English,Global,High,,info@anzchem.com.au,,anzchem.com.au,linkedin.com/company/anzchem,to_find,False,,
+AFLEAD-0098,HUB-0098,Australian Food Ingredient Suppliers (AFIS),Australia,Oceania,English,Global,High,,info@afis.com.au,+61 2 9938-0888,afis.com.au,linkedin.com/company/australian-food-ingredient-suppliers,to_find,False,,
+AFLEAD-0173,HUB-0173,Beston Global Food Company,Australia,Oceania,English,Global,High,,info@bestonglobal.com.au,,bestonglobal.com.au,linkedin.com/company/beston-global-food,to_find,False,,
+AFLEAD-0174,HUB-0174,Caldic Australia,Australia,Oceania,English,Global,High,,info.au@caldic.com,,caldic.com,linkedin.com/company/caldic,to_find,False,,
+AFLEAD-0178,HUB-0178,Consolidated Chemicals (CCC),Australia,Oceania,English,Global,High,,info@consolidatedchemicals.com.au,,consolidatedchemicals.com.au,linkedin.com/company/consolidated-chemicals,to_find,False,,
+AFLEAD-0180,HUB-0180,Döhler Australia,Australia,Oceania,English,Global,High,,mailbox.au@doehler.com,,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0186,HUB-0186,Hawkins Watts Australia,Australia,Oceania,English,Global,High,,australia@hawkinswatts.com,,hawkinswatts.com,linkedin.com/company/hawkins-watts,to_find,False,,
+AFLEAD-0122,HUB-0122,IMCD Australia Ltd,Australia,Oceania,English,Global,High,,food.au@imcd.com,+61 2 9428-5000,imcd.com.au,linkedin.com/company/imcd,to_find,False,,
+AFLEAD-0131,HUB-0131,Ingredion Australia (ANZ),Australia,Oceania,English,Global,High,,australia@ingredion.com,+61 2 9624-6022,ingredion.com,linkedin.com/company/ingredion,to_find,False,,
+AFLEAD-0137,HUB-0137,Kerry Group Australia,Australia,Oceania,English,Global,High,,australia@kerry.com,+61 3 9741-8200,kerrygroup.com,linkedin.com/company/kerry-group,to_find,False,,
+AFLEAD-0147,HUB-0147,Mulgowie Farming Company,Australia,Oceania,English,Global,High,,info@mulgowie.com,+61 7 5465-1888,mulgowie.com,linkedin.com/company/mulgowie-farming,to_find,False,,
+AFLEAD-0156,HUB-0156,Redox Pty Ltd,Australia,Oceania,English,Global,High,,food@redox.com,+61 2 9830-3600,redox.com,linkedin.com/company/redox,to_find,False,,

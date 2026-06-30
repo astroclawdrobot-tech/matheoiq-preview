@@ -1,0 +1,26 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0001,HUB-0001,Athletic Greens (AG1),United States,North America,English,Tier 1,High,1,support@drinkag1.com,+1 833-687-9797,drinkag1.com,linkedin.com/company/athletic-greens,to_find,True,sent,false
+AFLEAD-0010,HUB-0010,Live it Up (Super Greens),United States,North America,English,Tier 1,High,10,support@liveitup.com,,liveitup.com,linkedin.com/company/live-it-up,to_find,True,draft_not_sent,true
+AFLEAD-0011,HUB-0011,OEM Superfood,United States,North America,English,Tier 1,High,11,info@oemsuperfood.com,,oemsuperfood.com,linkedin.com/company/oem-superfood,to_find,False,,
+AFLEAD-0012,HUB-0012,Primal Harvest,United States,North America,English,Tier 1,High,12,support@primalharvest.com,,primalharvest.com,linkedin.com/company/primal-harvest,to_find,False,,
+AFLEAD-0013,HUB-0013,Somafina,United States,North America,English,Tier 1,High,13,info@somafina.com,,somafina.com,linkedin.com/company/somafina,to_find,False,,
+AFLEAD-0015,HUB-0015,American International Foods (AIFI),United States,North America,English,Tier 1,High,15,info@aifi.com,+1 734-971-3500,americaninternationalfoods.com,linkedin.com/company/american-international-foods,to_find,False,,
+AFLEAD-0016,HUB-0016,Cerco Group,United States,North America,English,Tier 1,High,16,info@cerealbyproducts.com,+1 800-369-1550,cerealbyproducts.com,linkedin.com/company/cerco-group,to_find,False,,
+AFLEAD-0017,HUB-0017,Jedwards International,United States,North America,English,Tier 1,High,17,info@jedwardsinternational.com,+1 617-472-9300,jedwardsinternational.com,linkedin.com/company/jedwards-international,to_find,False,,
+AFLEAD-0018,HUB-0018,Nutricargo,United States,North America,English,Tier 1,High,18,sales@nutricargo.com,+1 973-338-2500,nutricargo.com,linkedin.com/company/nutricargo,to_find,False,,
+AFLEAD-0019,HUB-0019,YAAX International,United States,North America,English,Tier 1,High,19,info@yaaxinternational.com,,yaaxinternational.com,linkedin.com/company/yaax-international,to_find,False,,
+AFLEAD-0002,HUB-0002,Naked Nutrition,United States,North America,English,Tier 1,High,2,info@nakednutrition.com,+1 855-456-2533,nakednutrition.com,linkedin.com/company/naked-nutrition,to_find,True,sent,false
+AFLEAD-0020,HUB-0020,foodguys,United States,North America,English,Tier 1,High,20,info@foodguys.com,+1 310-534-6000,foodguys.com,linkedin.com/company/foodguys,to_find,False,,
+AFLEAD-0023,HUB-0023,Food Ingredients USA,United States,North America,English,Tier 1,High,23,info@foodingredientsusa.com,,foodingredientsusa.com,linkedin.com/company/food-ingredients-usa,to_find,False,,
+AFLEAD-0024,HUB-0024,Nutralliance,United States,North America,English,Tier 1,High,24,info@nutralliance.com,,nutralliance.com,linkedin.com/company/nutralliance,to_find,False,,
+AFLEAD-0025,HUB-0025,Morning Star Co.,United States,North America,English,Tier 1,High,25,sales@morningstarco.com,+1 530-892-1000,morningstarco.com,linkedin.com/company/the-morning-star-company,to_find,False,,
+AFLEAD-0003,HUB-0003,Nutra Business,United States,North America,English,Tier 1,High,3,info@nutrabusiness.com,+1 888-588-3041,nutrabusiness.com,linkedin.com/company/nutra-business,to_find,True,draft_not_sent,true
+AFLEAD-0004,HUB-0004,Organifi,United States,North America,English,Tier 1,High,4,info@organifi.com,+1 888-409-9657,organifi.com,linkedin.com/company/organifi,to_find,True,draft_not_sent,true
+AFLEAD-0005,HUB-0005,The Synergy Company,United States,North America,English,Tier 1,High,5,info@thesynergycompany.com,+1 800-723-0277,thesynergycompany.com,linkedin.com/company/the-synergy-company,to_find,True,draft_not_sent,true
+AFLEAD-0006,HUB-0006,Vitaquest International,United States,North America,English,Tier 1,High,6,info@vitaquest.com,+1 800-526-9095,vitaquest.com,linkedin.com/company/vitaquest,to_find,True,draft_not_sent,true
+AFLEAD-0007,HUB-0007,Bare Performance Nutrition (BPN),United States,North America,English,Tier 1,High,7,support@bareperformancenutrition.com,,bareperformancenutrition.com,linkedin.com/company/bare-performance-nutrition,to_find,True,draft_not_sent,true
+AFLEAD-0008,HUB-0008,Bloom Nutrition,United States,North America,English,Tier 1,High,8,hello@bloomnu.com,,bloomnu.com,linkedin.com/company/bloom-nutrition,to_find,True,sent,false
+AFLEAD-0009,HUB-0009,Innova Nutra,United States,North America,English,Tier 1,High,9,info@innovanutra.com,,innovanutra.com,linkedin.com/company/innova-nutra,to_find,True,draft_not_sent,true
+AFLEAD-0027,HUB-0027,Organic Partners International,United States,North America,English,Tier 1,High,,info@organic-partners.com,,organic-partners.com,linkedin.com/company/organic-partners-international,to_find,False,,
+AFLEAD-0028,HUB-0028,The Green Labs LLC,United States,North America,English,Tier 1,High,,info@thegreenlabs.com,,thegreenlabs.com,linkedin.com/company/the-green-labs,to_find,False,,
+AFLEAD-0026,HUB-0026,Van Drunen Farms,United States,North America,English,Tier 1,High,,info@vandrunenfarms.com,+1 815-472-3100,vandrunenfarms.com,linkedin.com/company/van-drunen-farms,to_find,False,,

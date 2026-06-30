@@ -1,0 +1,6 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0067,HUB-0067,Doehler Chile,Chile,South America,Spanish,Tier 2,High,,mailbox.cl@doehler.com,,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0074,HUB-0074,Grupo Blumos Chile,Chile,South America,Spanish,Tier 2,High,,info@blumos.cl,,blumos.cl,linkedin.com/company/grupo-blumos,to_find,False,,
+AFLEAD-0075,HUB-0075,Iansa Ingredientes,Chile,South America,Spanish,Tier 2,High,,contacto@iansa.cl,,empresasiansa.cl,linkedin.com/company/iansa,to_find,False,,
+AFLEAD-0084,HUB-0084,Proanat Chile,Chile,South America,Spanish,Tier 2,High,,info@proanat.com,,proanat.com,linkedin.com/company/proanat,to_find,False,,
+AFLEAD-0086,HUB-0086,SouthAm Freeze Dry (Chile),Chile,South America,Spanish,Tier 2,High,,info@southamfreezedry.com,,southamfreezedry.com,linkedin.com/company/southam-freeze-dry,to_find,False,,

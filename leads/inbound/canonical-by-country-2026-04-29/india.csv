@@ -1,0 +1,7 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0097,HUB-0097,Arjuna Natural Pvt Ltd,India,Asia,English,Global,High,,info@arjunanatural.com,+91 484 2527-160,arjunanatural.com,linkedin.com/company/arjuna-natural,to_find,False,,
+AFLEAD-0148,HUB-0148,Natural Remedies Pvt Ltd,India,Asia,English,Global,High,,info@naturalremedy.com,+91 80 2808-8000,naturalremedy.com,linkedin.com/company/natural-remedies,to_find,False,,
+AFLEAD-0195,HUB-0195,Nutriherbs India,India,Asia,English,Global,High,,info@nutriherbsindia.com,,nutriherbsindia.com,linkedin.com/company/nutriherbs-india,to_find,False,,
+AFLEAD-0158,HUB-0158,Sabinsa Corporation,India,Asia,English,Global,High,,info@sabinsa.com,+91 80 4042-7000,sabinsa.com,linkedin.com/company/sabinsa,to_find,False,,
+AFLEAD-0162,HUB-0162,Synthite Industries,India,Asia,English,Global,High,,info@synthite.com,+91 484 2787-000,synthite.com,linkedin.com/company/synthite,to_find,False,,
+AFLEAD-0167,HUB-0167,Vidya Herbs,India,Asia,English,Global,High,,info@vidyaherbs.com,+91 80 2839-4050,vidyaherbs.com,linkedin.com/company/vidya-herbs,to_find,False,,

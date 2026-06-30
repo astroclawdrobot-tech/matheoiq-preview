@@ -1,0 +1,11 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0059,HUB-0059,Duas Rodas Industrial,Brazil,South America,Portuguese,Tier 2,High,,contato@drfi.com,+55 47 3275-8000,drfi.com,linkedin.com/company/duas-rodas-industrial,to_find,False,,
+AFLEAD-0072,HUB-0072,Elemento Puro,Brazil,South America,Portuguese,Tier 2,High,,contato@elementopuro.com.br,,elementopuro.com.br,linkedin.com/company/elemento-puro,to_find,False,,
+AFLEAD-0073,HUB-0073,Green People Brasil,Brazil,South America,Portuguese,Tier 2,High,,contato@greenpeople.com.br,,greenpeople.com.br,linkedin.com/company/green-people-brasil,to_find,False,,
+AFLEAD-0060,HUB-0060,Ingredion Brasil,Brazil,South America,Portuguese,Tier 2,High,,brasil@ingredion.com,+55 11 2132-3000,ingredion.com,linkedin.com/company/ingredion,to_find,False,,
+AFLEAD-0078,HUB-0078,NEimportadora (Naturals Brasil),Brazil,South America,Portuguese,Tier 2,High,,contato@neimportadora.com.br,,neimportadora.com.br,linkedin.com/company/ne-importadora,to_find,False,,
+AFLEAD-0079,HUB-0079,Nexira Brazil,Brazil,South America,Portuguese,Tier 2,High,,brazil@nexira.com,,nexira.com,linkedin.com/company/nexira,to_find,False,,
+AFLEAD-0082,HUB-0082,Nutrimix Industria,Brazil,South America,Portuguese,Tier 2,High,,contato@nutrimix.com.br,,nutrimix.com.br,linkedin.com/company/nutrimix-brasil,to_find,False,,
+AFLEAD-0087,HUB-0087,SouthAm Freeze Dry S.A.,Brazil,South America,Portuguese,Tier 2,High,,info@southamfreezedry.com,,southamfreezedry.com,linkedin.com/company/southam-freeze-dry,to_find,False,,
+AFLEAD-0089,HUB-0089,Vigor Nutra Brasil,Brazil,South America,Portuguese,Tier 2,High,,contato@vigornutra.com.br,,vigornutra.com.br,linkedin.com/company/vigor-nutra,to_find,False,,
+AFLEAD-0090,HUB-0090,Vigora Nutrition,Brazil,South America,Portuguese,Tier 2,High,,contato@vigoranutrition.com.br,,vigoranutrition.com.br,linkedin.com/company/vigora-nutrition,to_find,False,,

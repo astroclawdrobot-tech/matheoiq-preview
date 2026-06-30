@@ -1,0 +1,8 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0093,HUB-0093,ADM South Africa,South Africa,Africa,English,Global,High,,southafrica@adm.com,+27 11 XXX-XXXX,adm.com,linkedin.com/company/adm,to_find,False,,
+AFLEAD-0104,HUB-0104,Cape Food Ingredients (CFI),South Africa,Africa,English,Global,High,,info@capefoodingredients.com,+27 21 788-0202,capefoodingredients.com,linkedin.com/company/cape-food-ingredients,to_find,False,,
+AFLEAD-0127,HUB-0127,IMCD South Africa,South Africa,Africa,English,Global,High,,food.za@imcd.com,+27 11 787-5000,imcdsa.co.za,linkedin.com/company/imcd,to_find,False,,
+AFLEAD-0139,HUB-0139,Kerry Group South Africa,South Africa,Africa,English,Global,High,,southafrica@kerry.com,+27 31 XXX-XXXX,kerrygroup.com,linkedin.com/company/kerry-group,to_find,False,,
+AFLEAD-0144,HUB-0144,Marsing & Co Africa,South Africa,Africa,English,Global,High,,info@marsing-sa.com,+27 11 XXX-XXXX,marsing-sa.com,linkedin.com/company/marsing-africa,to_find,False,,
+AFLEAD-0157,HUB-0157,SK Chemtrade,South Africa,Africa,English,Global,High,,info@skchemtrade.co.za,+27 21 551-0681,skchemtrade.co.za,linkedin.com/company/sk-chemtrade,to_find,False,,
+AFLEAD-0159,HUB-0159,Sabinsa South Africa,South Africa,Africa,English,Global,High,,info@sabinsa.co.za,+27 11 XXX-XXXX,sabinsa.co.za,linkedin.com/company/sabinsa,to_find,False,,

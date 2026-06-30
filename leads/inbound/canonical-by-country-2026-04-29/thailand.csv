@@ -1,0 +1,3 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0146,HUB-0146,Mega Lifesciences,Thailand,Asia,English,Global,High,,info@mega-lifesciences.com,+66 2 726-1515,mega-lifesciences.com,linkedin.com/company/mega-lifesciences,to_find,False,,
+AFLEAD-0191,HUB-0191,NR Instant Produce PCL,Thailand,Asia,English,Global,High,,info@nrinstant.com,,nrinstant.com,linkedin.com/company/nr-instant-produce,to_find,False,,

@@ -1,0 +1,6 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0058,HUB-0058,Arcor Group,Argentina,South America,Spanish,Tier 2,High,,contacto@arcor.com,+54 351 414-7000,arcor.com,linkedin.com/company/arcor,to_find,False,,
+AFLEAD-0065,HUB-0065,Cordis S.A.,Argentina,South America,Spanish,Tier 2,High,,info@cordis.com.ar,,cordis.com.ar,linkedin.com/company/cordis-sa,to_find,False,,
+AFLEAD-0066,HUB-0066,Doehler Argentina,Argentina,South America,Spanish,Tier 2,High,,mailbox.ar@doehler.com,,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0076,HUB-0076,Ingredion Argentina,Argentina,South America,Spanish,Tier 2,High,,argentina@ingredion.com,,ingredion.com,linkedin.com/company/ingredion,to_find,False,,
+AFLEAD-0081,HUB-0081,Nutral S.A.,Argentina,South America,Spanish,Tier 2,High,,info@nutral.com.ar,,nutral.com.ar,linkedin.com/company/nutral-argentina,to_find,False,,

@@ -1,0 +1,35 @@
+[
+  {
+    "queue_id": "TOP10-0002",
+    "company": "Naked Nutrition",
+    "country": "United States",
+    "language": "English",
+    "send_target": "questions@nakednutrition.com",
+    "verification_status": "public_email_confirmed",
+    "launch_state": "ready_for_manual_approval_then_send",
+    "recommended_template": "ultra-short-en",
+    "reason": "Official contact page shows questions@nakednutrition.com; replaced bounced info@nakednutrition.com."
+  },
+  {
+    "queue_id": "TOP10-0004",
+    "company": "Organifi",
+    "country": "United States",
+    "language": "English",
+    "send_target": "support@organifi.com",
+    "verification_status": "public_email_confirmed",
+    "launch_state": "ready_for_manual_approval_then_send",
+    "recommended_template": "ultra-short-en",
+    "reason": "Official contact page shows support@organifi.com; replaced riskier info@organifi.com."
+  },
+  {
+    "queue_id": "TOP10-0009",
+    "company": "Innova Nutra",
+    "country": "United States",
+    "language": "English",
+    "send_target": "sales@innovanutra.com",
+    "verification_status": "public_email_confirmed",
+    "launch_state": "ready_for_manual_approval_then_send",
+    "recommended_template": "ultra-short-en",
+    "reason": "Official contact page shows sales@innovanutra.com; replaced riskier info@innovanutra.com."
+  }
+]

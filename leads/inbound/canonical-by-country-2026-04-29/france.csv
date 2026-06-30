@@ -1,0 +1,6 @@
+canonical_lead_id,buyer_id,company_name,country,continent,language,tier,priority_bucket,priority_rank,email,phone,website,linkedin_company,named_contact_status,queue_matched,send_status,requires_manual_approval
+AFLEAD-0181,HUB-0181,Döhler France,France,Europe,French,Global,High,,mailbox.fr@doehler.com,,doehler.com,linkedin.com/company/doehler,to_find,False,,
+AFLEAD-0119,HUB-0119,Givaudan (Naturex) France,France,Europe,French,Global,High,,naturex.france@givaudan.com,+33 4 90 23 96 89,givaudan.com,linkedin.com/company/givaudan,to_find,False,,
+AFLEAD-0187,HUB-0187,IMCD France,France,Europe,French,Global,High,,food.fr@imcd.com,,imcd.com,linkedin.com/company/imcd,to_find,False,,
+AFLEAD-0150,HUB-0150,Nexira France,France,Europe,French,Global,High,,contact@nexira.com,+33 2 32 83 18 18,nexira.com,linkedin.com/company/nexira,to_find,False,,
+AFLEAD-0155,HUB-0155,Puratos France,France,Europe,French,Global,High,,france@puratos.com,+33 1 64 99 49 99,puratos.com,linkedin.com/company/puratos,to_find,False,,
