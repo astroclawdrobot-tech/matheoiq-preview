@@ -1,0 +1,8 @@
+node_modules/
+generated/
+data/loi-drafts/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
