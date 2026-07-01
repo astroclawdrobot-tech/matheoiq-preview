@@ -19,31 +19,6 @@
 ## Status
 Internal beta scaffold based on the original prototype, but cleaned for safer next-step development.
 
-## Live readiness / priority blocks
-The hub now exposes `GET /api/live-readiness` as the single go-live gate.
-
-Critical internal blocks verified by the smoke test:
-- Dashboard UI and `/api/health`
-- Buyer pipeline and canonical lead data
-- Supply dashboard
-- Outreach queue and next-wave approval file
-- Inbox guardrails for bounces / unsubscribe / wrong contact / no-fit
-- LOI HTML/PDF generator
-- Prometheus metrics at `/metrics`
-
-Public/live exposure remains blocked until these environment-level items are configured:
-- `AUTH_USERNAME` + `AUTH_PASSWORD` (or `ALMAFINA_HUB_USERNAME` + `ALMAFINA_HUB_PASSWORD`)
-- SMTP/IMAP credentials for test/live send and inbox sync
-- `ALMAFINA_PUBLIC_URL` or `RAILWAY_PUBLIC_DOMAIN`
-- `ALMAFINA_LIVE_SEND_ENABLED=1` only after legal/provider/manual approval checks
-
-Live email send has two safety gates: the environment flag above and a per-request confirmation body `confirm: "SEND_LIVE_ALMAFINA"`. Without both, the API returns a guardrail error and sends nothing.
-
-Run the full local gate:
-```bash
-npm run smoke:live-readiness
-```
-
 ## What was changed
 - Removed direct frontend dependency on Anthropic API calls
 - Replaced AI features with local scaffold outputs / mock logic
