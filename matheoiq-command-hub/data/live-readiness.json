@@ -1,0 +1,88 @@
+{
+  "generatedAt": "2026-07-01T04:35:00Z",
+  "hub": "MatheoIQ Médico Móvil Command Hub",
+  "mode": "closed-pilot-preview",
+  "status": "LIVE_PREVIEW_READY_EXTERNAL_ACTIONS_BLOCKED",
+  "publicClaims": {
+    "containsRealPatientData": false,
+    "dispatchesRealDoctors": false,
+    "chargesPayments": false,
+    "usesAlmaFinaContent": false,
+    "isMedicalDiagnosisTool": false
+  },
+  "summary": {
+    "criticalBlocksReady": 6,
+    "criticalBlocksTotal": 6,
+    "connectedClinics": 8,
+    "readyClinics": 5,
+    "verifiedDoctors": 42,
+    "onlineDoctors": 17,
+    "aiDispatchCoveragePct": 94,
+    "humanEscalationRatePct": 6
+  },
+  "priorityBlocks": [
+    {
+      "id": "backend_guards",
+      "label": "Backend guards",
+      "status": "ready_for_integration",
+      "ready": true,
+      "evidence": "Preview requires patient/request ownership, roles clinic/admin/doctor, RLS tests, and no service-role use from public flows before real backend activation.",
+      "liveGate": "No real patient/request write is enabled from this static preview."
+    },
+    {
+      "id": "medical_license",
+      "label": "Licencia médica obligatoria",
+      "status": "ready",
+      "ready": true,
+      "evidence": "Doctor data includes license/RCP status and blocks pending/missing credentials from mission eligibility.",
+      "liveGate": "A verified license + credential check is mandatory before any real mission."
+    },
+    {
+      "id": "mx_compliance",
+      "label": "Conformidad MX",
+      "status": "ready_for_legal_review",
+      "ready": true,
+      "evidence": "UI copy limits scope: no AI diagnosis, no emergency handling, privacy/consent/logging required before pilot.",
+      "liveGate": "Closed pilot only until aviso de privacidad, consent, logs and legal wording are validated."
+    },
+    {
+      "id": "payments",
+      "label": "Pagos",
+      "status": "ready_for_test_mode",
+      "ready": true,
+      "evidence": "Payment flow is specified as authorization before dispatch, capture after completion, refunds/disputes controlled.",
+      "liveGate": "No payment capture is connected in this preview. Test mode only before provider approval."
+    },
+    {
+      "id": "ai_ops",
+      "label": "Ops IA dispatch",
+      "status": "ready",
+      "ready": true,
+      "evidence": "AI dispatch policy covers triage, eligibility, scoring, waves, monitoring and escalation SLA.",
+      "liveGate": "AI only orchestrates operations; it does not diagnose. Human escalation remains safety backstop."
+    },
+    {
+      "id": "closed_pilot",
+      "label": "Piloto cerrado",
+      "status": "ready",
+      "ready": true,
+      "evidence": "Preview is limited to demo data, zones, 5–10 verified doctors and monitoring posture.",
+      "liveGate": "No public promise or open launch until pilot scope is explicitly approved."
+    }
+  ],
+  "externalActions": {
+    "patientWrites": "disabled",
+    "doctorDispatch": "disabled",
+    "paymentCapture": "disabled",
+    "smsWhatsappEmail": "disabled",
+    "publicLaunch": "blocked_until_explicit_go"
+  },
+  "nextForRealProduction": [
+    "Bind to real backend routes with RLS/ownership tests passing",
+    "Connect verified doctor credential source",
+    "Validate Mexican legal/privacy wording",
+    "Connect Stripe/provider test mode only",
+    "Run closed pilot with bounded zones and monitoring",
+    "Require explicit GO before public/live dispatch or payment capture"
+  ]
+}

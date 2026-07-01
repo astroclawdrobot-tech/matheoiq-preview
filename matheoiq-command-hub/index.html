@@ -18,14 +18,14 @@
       <a href="#clinics">Clínicas <span>queue</span></a>
       <a href="#doctors">Médicos <span>licencia</span></a>
       <a href="#ai">AI Dispatch <span>no humano</span></a>
-      <a href="#ready">Go-live <span>gated</span></a>
+      <a href="#ready">Go-live <span id="navReadyStatus">gated</span></a>
     </nav>
     <div class="note"><b>Separación limpia:</b><br>Este hub no contiene Alma Fina. Es una interfaz nueva para MatheoIQ, inspirada solo en el patrón de command hub.</div>
   </aside>
   <main>
     <section id="command" class="top">
       <div><span class="eyebrow">Mise en marche preview</span><h1 class="title">Operar medicina a domicilio como Uber, con seguridad médica.</h1><p class="lead">Hub interno para lanzar MatheoIQ Médico Móvil: pacientes piden una visita, médicos verificados reciben misiones, el agente IA orquesta dispatch, pagos, ETA y excepciones. Sin dispatch humano por defecto; humano solo en escalation.</p></div>
-      <div class="actions"><span class="chip good">Licencia médica obligatoria</span><span class="chip">AI dispatch first</span><span class="chip">No live writes</span></div>
+      <div class="actions"><span class="chip good">Licencia médica obligatoria</span><span class="chip">AI dispatch first</span><span class="chip">No live writes</span><span class="chip good" id="readinessChip">Readiness checking</span></div>
     </section>
 
     <section class="grid">
@@ -48,7 +48,7 @@
       <article class="card"><div class="hd"><h3>Regla crítica</h3><span class="tag bad">safety</span></div><div class="bd"><p class="sub"><b>La IA no diagnostica.</b> Orquesta operación, detecta señales de riesgo y escala. El acto médico lo realiza un médico verificado.</p><br><p class="sub"><b>No dispatch humano por defecto.</b> El sistema debe operar automático; humano = backstop de seguridad.</p></div></article>
     </section>
 
-    <section id="ready" class="section card full"><div class="hd"><h2>Checklist ready-to-launch</h2><span class="tag warn">gated pilot</span></div><div class="bd"><div class="guard"><div><b>Backend guards</b><br>Ownership patient/request, roles clinic/admin/doctor, RLS tests, service-role impossible desde flows públicos.</div><div><b>Licencia médica</b><br>Brancher le bloc existant: cédula/licence approved obligatoire avant mission.</div><div><b>Conformité MX</b><br>Aviso privacidad, consentement données sensibles, logs, scope no urgencia, no AI diagnosis.</div><div><b>Paiements</b><br>Authorization avant dispatch, capture après completion, refunds/disputes contrôlés.</div><div><b>Ops IA</b><br>Agent policy, waves, retry, coverage gap, incident queue, escalation SLA.</div><div><b>Pilote fermé</b><br>Zones limitées, 5–10 médecins vérifiés, monitoring, pas de promesse publique excessive.</div></div></div></section>
+    <section id="ready" class="section card full"><div class="hd"><h2>Checklist priority blocks / ready-to-launch</h2><span class="tag warn" id="readyStatusTag">gated pilot</span></div><div class="bd"><div class="flow" id="readinessMetrics"><div class="step"><b>Status</b>Chargement readiness…</div></div><div class="guard" id="priorityBlocks"><div><b>Backend guards</b><br>Ownership patient/request, roles clinic/admin/doctor, RLS tests, service-role impossible desde flows públicos.</div><div><b>Licencia médica</b><br>Brancher le bloc existant: cédula/licence approved obligatoire avant mission.</div><div><b>Conformité MX</b><br>Aviso privacidad, consentement données sensibles, logs, scope no urgencia, no AI diagnosis.</div><div><b>Paiements</b><br>Authorization avant dispatch, capture après completion, refunds/disputes contrôlés.</div><div><b>Ops IA</b><br>Agent policy, waves, retry, coverage gap, incident queue, escalation SLA.</div><div><b>Pilote fermé</b><br>Zones limitées, 5–10 médecins vérifiés, monitoring, pas de promesse publique excessive.</div></div></div></section>
   </main>
 </div>
 <script>
@@ -66,8 +66,14 @@ async function boot(){
  const clinics = await loadJson('./data/clinics.json');
  const queue = await loadJson('./data/dispatch-queue.json');
  const doctors = await loadJson('./data/doctors.json');
+ const readiness = await loadJson('./data/live-readiness.json');
  document.querySelector('#kpiClinics').textContent = clinics.summary.connectedClinics;
  document.querySelector('#kpiDoctors').textContent = clinics.summary.verifiedDoctors;
+ document.querySelector('#readinessChip').textContent = readiness.status.replaceAll('_',' ');
+ document.querySelector('#navReadyStatus').textContent = readiness.mode;
+ document.querySelector('#readyStatusTag').textContent = readiness.status.replace('LIVE_PREVIEW_READY_', '');
+ document.querySelector('#readinessMetrics').innerHTML = `<div class="step"><b>Priority blocks</b>${readiness.summary.criticalBlocksReady}/${readiness.summary.criticalBlocksTotal} ready</div><div class="step"><b>External actions</b>Dispatch, payments, patient writes disabled</div><div class="step"><b>Mode</b>${readiness.mode}</div><div class="step"><b>Doctors</b>${readiness.summary.verifiedDoctors} verified · ${readiness.summary.onlineDoctors} online</div><div class="step"><b>AI coverage</b>${readiness.summary.aiDispatchCoveragePct}% estimated</div><div class="step"><b>Human escalation</b>${readiness.summary.humanEscalationRatePct}% expected</div>`;
+ document.querySelector('#priorityBlocks').innerHTML = readiness.priorityBlocks.map(b => `<div><b>${b.label} ${b.ready ? '✅' : '⚠️'}</b><br>${b.evidence}<br><small>${b.liveGate}</small></div>`).join('');
  document.querySelector('#clinicsTable tbody').innerHTML = clinics.clinics.map(c => `<tr><td>${c.name}</td><td>${c.city}</td><td>${tag(c.status)}</td><td>${c.doctorsOnline}/${c.doctorsVerified}</td><td>${c.queueOpen}</td><td>${eta(c.avgEtaMin)}</td><td>${c.nextAction}</td></tr>`).join('');
  document.querySelector('#queueTable tbody').innerHTML = queue.queue.map(q => `<tr><td>${q.id}</td><td>${q.city}</td><td>${q.reason}</td><td>${tag(q.status)}</td><td>${money(q.priceMxn)}</td><td>${eta(q.etaMin)}</td><td>${q.escalation === 'none' ? tag('none') : tag(q.escalation)}</td></tr>`).join('');
  document.querySelector('#doctorsTable tbody').innerHTML = doctors.doctors.map(d => `<tr><td>${d.name}</td><td>${d.city}</td><td>${d.specialty}</td><td>${tag(d.license)}</td><td>${tag(d.rcp)}</td><td>${d.qualityScore ?? '—'}</td><td>${tag(d.status)}</td></tr>`).join('');
