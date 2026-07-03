@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-07-03T01:45:00Z",
+  "mode": "medical_command_hub_parity",
+  "externalWrites": 0,
+  "approvals": [
+    {
+      "id": "MED-APPROVAL-0001",
+      "queueId": "MED-OUT-0001",
+      "status": "ready_for_human_review",
+      "requiredConfirmation": "SEND_LIVE_MATHEOIQ_MEDICAL",
+      "liveAllowed": false,
+      "blockers": ["provider_credentials_not_bound_to_this_preview", "human_go_required"],
+      "externalWrites": 0
+    },
+    {
+      "id": "MED-APPROVAL-0002",
+      "queueId": "MED-OUT-0002",
+      "status": "test_only",
+      "requiredConfirmation": "SEND_LIVE_MATHEOIQ_MEDICAL",
+      "liveAllowed": false,
+      "blockers": ["smtp_or_resend_domain_verification_required", "human_go_required"],
+      "externalWrites": 0
+    }
+  ]
+}
