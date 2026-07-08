@@ -4,13 +4,15 @@
   "private": true,
   "description": "Alma Fina B2B Command Hub, lightweight internal app",
   "scripts": {
-    "start": "node start.js"
+    "start": "node start.js",
+    "smoke": "npm run smoke:live-readiness",
+    "smoke:live-readiness": "bash scripts/smoke-live-readiness.sh"
   },
   "dependencies": {
-    "nodemailer": "^6.9.15",
-    "@opentelemetry/auto-instrumentations-node": "^0.57.0",
-    "@opentelemetry/exporter-trace-otlp-http": "^0.57.0",
-    "@opentelemetry/sdk-node": "^0.57.0"
+    "@opentelemetry/auto-instrumentations-node": "^0.77.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.219.0",
+    "@opentelemetry/sdk-node": "^0.219.0",
+    "nodemailer": "^9.0.3"
   },
   "engines": {
     "node": ">=18"

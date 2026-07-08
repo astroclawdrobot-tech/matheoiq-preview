@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-06-30T15:25:00Z",
+  "doctors": [
+    {"id":"DOC-001","name":"Dra. Valeria Soto","city":"CDMX","specialty":"Medicina general","license":"verified","rcp":"verified","online":true,"radiusKm":8,"acceptanceRate":91,"qualityScore":97,"status":"eligible"},
+    {"id":"DOC-002","name":"Dr. Andrés Molina","city":"Playa del Carmen","specialty":"Medicina familiar","license":"verified","rcp":"pending","online":true,"radiusKm":10,"acceptanceRate":88,"qualityScore":94,"status":"eligible_limited"},
+    {"id":"DOC-003","name":"Dra. Camila Ruiz","city":"Monterrey","specialty":"Pediatría","license":"verified","rcp":"verified","online":true,"radiusKm":7,"acceptanceRate":86,"qualityScore":95,"status":"eligible"},
+    {"id":"DOC-004","name":"Dr. Nuevo Egresado Demo","city":"Guadalajara","specialty":"Medicina general","license":"pending_review","rcp":"missing","online":false,"radiusKm":6,"acceptanceRate":0,"qualityScore":null,"status":"blocked_until_license_verified"}
+  ]
+}

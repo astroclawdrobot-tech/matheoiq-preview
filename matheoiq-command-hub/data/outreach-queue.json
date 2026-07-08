@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-07-03T01:45:00Z",
+  "mode": "medical_command_hub_parity",
+  "externalWrites": 0,
+  "queue": [
+    {
+      "id": "MED-OUT-0001",
+      "clinicId": "CLN-CDMX-001",
+      "target": "Paciente demo A",
+      "channel": "whatsapp",
+      "templateKey": "appointment_followup_es_mx",
+      "subject": "Seguimiento de cita a domicilio",
+      "status": "draft_ready_human_review",
+      "risk": "low",
+      "nextAction": "Aprobar borrador antes de cualquier envío",
+      "externalWrites": 0
+    },
+    {
+      "id": "MED-OUT-0002",
+      "clinicId": "CLN-PDC-001",
+      "target": "Paciente demo B",
+      "channel": "email",
+      "templateKey": "post_visit_summary_es_mx",
+      "subject": "Resumen administrativo post-visita",
+      "status": "draft_ready_human_review",
+      "risk": "low",
+      "nextAction": "Enviar prueba interna antes de live",
+      "externalWrites": 0
+    },
+    {
+      "id": "MED-OUT-0003",
+      "clinicId": "CLN-MTY-001",
+      "target": "Paciente demo C",
+      "channel": "whatsapp",
+      "templateKey": "safety_escalation_es_mx",
+      "subject": "Escalamiento de seguridad clínica",
+      "status": "blocked_clinical_safety_review",
+      "risk": "high",
+      "nextAction": "Revisión humana obligatoria; no enviar automáticamente",
+      "externalWrites": 0
+    }
+  ]
+}

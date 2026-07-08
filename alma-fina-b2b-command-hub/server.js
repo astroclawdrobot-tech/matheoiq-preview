@@ -135,6 +135,8 @@ const AUTH_SESSION_SECRET = process.env.AUTH_SESSION_SECRET || crypto.createHash
   .update(`${AUTH_USERNAME}:${AUTH_PASSWORD}:${SERVICE_NAME}`)
   .digest('hex');
 const REPLY_EMAIL = process.env.ALMAFINA_REPLY_EMAIL || 'sales@almafina.mx';
+const LIVE_SEND_ENABLED = ['1', 'true', 'yes'].includes(String(process.env.ALMAFINA_LIVE_SEND_ENABLED || '').toLowerCase());
+const LIVE_SEND_CONFIRMATION = 'SEND_LIVE_ALMAFINA';
 const OBS_STARTED_AT = Date.now();
 const HTTP_DURATION_BUCKETS = [0.05, 0.1, 0.25, 0.5, 1, 2.5, 5];
 const COUNTERS = new Map();
@@ -277,6 +279,82 @@ function renderMetrics() {
   }
 
   return lines.join('\n') + '\n';
+}
+
+
+function hasMailTransportConfigured() {
+  const loaded = readJsonIfExists(resolveExistingPath(MAIL_CONFIG_CANDIDATES));
+  const smtpCfg = loaded.smtp || {};
+  const fromEmail = process.env.ALMAFINA_FROM_EMAIL || process.env.FROM_EMAIL || loaded.from_email || process.env.ALMAFINA_SMTP_USERNAME || process.env.SMTP_USERNAME || smtpCfg.username || '';
+  const username = process.env.ALMAFINA_SMTP_USERNAME || process.env.SMTP_USERNAME || smtpCfg.username || fromEmail || '';
+  const password = process.env.ALMAFINA_SMTP_PASSWORD || process.env.SMTP_PASSWORD || smtpCfg.password || '';
+  return Boolean(String(fromEmail).trim() && String(username).trim() && String(password).trim());
+}
+
+function errorStatusFor(err) {
+  const message = String(err && err.message || err || '');
+  if (message.includes('missing_queue_id') || message.includes('queue_id_not_found')) return 400;
+  if (message.includes('missing_smtp_config')) return 503;
+  if (message.includes('live_send_disabled') || message.includes('live_send_confirmation_required')) return 403;
+  if (message.includes('queue_row_requires_manual_approval') || message.includes('do_not_contact') || message.includes('blocked') || BLOCK_LIVE_SEND_EVENT_TYPES.has(message.toLowerCase())) return 409;
+  return 500;
+}
+
+function buildLiveReadiness() {
+  const buyers = readBuyers();
+  const supply = readSupply();
+  const canonical = readCanonicalLeadBundle();
+  const queue = readOutreachQueue();
+  const queueSummary = buildOutreachSummary(queue.rows);
+  const inbox = readInboxEventStore();
+  const inboxSummary = buildInboxEventSummary(inbox.events);
+  const readyApproval = readReadyApproval();
+  const artifacts = listLoiArtifacts();
+  const drafts = listLoiDrafts();
+  const mailConfigured = hasMailTransportConfigured();
+  const deployUrl = String(process.env.ALMAFINA_PUBLIC_URL || process.env.RAILWAY_PUBLIC_DOMAIN || '').trim();
+  const blocks = [
+    { id: 'dashboard', label: 'Dashboard UI', ok: fs.existsSync(path.join(ROOT, 'index.html')), detail: 'Static command hub UI is present.' },
+    { id: 'health', label: 'Health endpoint', ok: true, detail: 'GET /api/health is served by the lightweight backend.' },
+    { id: 'auth', label: 'Production auth', ok: authEnabled(), detail: authEnabled() ? 'Basic/session auth is configured.' : 'Set AUTH_USERNAME + AUTH_PASSWORD or ALMAFINA_HUB_USERNAME + ALMAFINA_HUB_PASSWORD before exposing publicly.' },
+    { id: 'buyers', label: 'Buyer pipeline', ok: buyers.length > 0, detail: `${buyers.length} buyer rows available.` },
+    { id: 'canonical_leads', label: 'Canonical leads', ok: (canonical.leads || []).length > 0, detail: `${(canonical.leads || []).length} canonical lead rows available.` },
+    { id: 'supply', label: 'Supply dashboard', ok: Boolean(supply && supply.availableInventoryKg), detail: `${supply.availableInventoryKg || 0} kg inventory loaded; ${supply.transformationProgressPct || 0}% transformation progress.` },
+    { id: 'outreach_queue', label: 'Outreach queue', ok: queueSummary.totalRows > 0, detail: `${queueSummary.totalRows || 0} queue rows; ${queueSummary.pendingApprovalRows || 0} pending manual approval; ${queueSummary.sentRows || 0} already sent.` },
+    { id: 'ready_approval', label: 'Ready-approval file', ok: (readyApproval.rows || []).length > 0, detail: `${(readyApproval.rows || []).length} next-wave approval rows available.` },
+    { id: 'inbox_guardrails', label: 'Inbox guardrails', ok: true, detail: `${inboxSummary.totalEvents || 0} inbox events loaded; ${inboxSummary.bounceRows || 0} bounce rows currently block resend.` },
+    { id: 'loi', label: 'LOI generator', ok: fs.existsSync(path.join(ROOT, 'render_loi_pdf.py')), detail: `${drafts.length} saved drafts; ${artifacts.length} generated artifacts currently indexed.` },
+    { id: 'metrics', label: 'Metrics/observability', ok: true, detail: 'GET /metrics exposes Prometheus-format metrics; optional OTLP tracing is supported.' },
+    { id: 'mail_transport', label: 'SMTP/IMAP transport', ok: mailConfigured, detail: mailConfigured ? 'Mail transport env/config detected.' : 'SMTP/IMAP credentials are not configured in this runtime.' },
+    { id: 'live_send_gate', label: 'Live-send gate', ok: LIVE_SEND_ENABLED, detail: LIVE_SEND_ENABLED ? 'ALMAFINA_LIVE_SEND_ENABLED is enabled.' : 'Live send is intentionally disabled until ALMAFINA_LIVE_SEND_ENABLED=1 and per-request confirmation are set.' },
+    { id: 'public_deploy', label: 'Public deploy URL', ok: Boolean(deployUrl), detail: deployUrl || 'No ALMAFINA_PUBLIC_URL / RAILWAY_PUBLIC_DOMAIN detected in this runtime.' }
+  ];
+  const criticalIds = new Set(['dashboard', 'health', 'buyers', 'canonical_leads', 'supply', 'outreach_queue', 'ready_approval', 'inbox_guardrails', 'loi', 'metrics']);
+  const criticalOk = blocks.filter(block => criticalIds.has(block.id)).every(block => block.ok);
+  const publicLiveOk = blocks.every(block => block.ok);
+  return {
+    ok: criticalOk,
+    status: publicLiveOk ? 'PUBLIC_LIVE_READY' : (criticalOk ? 'INTERNAL_BETA_READY_PROVIDER_BLOCKED' : 'NOT_READY'),
+    publicLiveReady: publicLiveOk,
+    generated_at: new Date().toISOString(),
+    summary: {
+      buyers: buyers.length,
+      canonicalLeads: (canonical.leads || []).length,
+      inventoryKg: supply.availableInventoryKg || 0,
+      queueRows: queueSummary.totalRows || 0,
+      sentRows: queueSummary.sentRows || 0,
+      pendingApprovalRows: queueSummary.pendingApprovalRows || 0,
+      blockedRows: queueSummary.blockedRows || 0,
+      inboxEvents: inboxSummary.totalEvents || 0,
+      readyApprovalRows: (readyApproval.rows || []).length,
+      authEnabled: authEnabled(),
+      mailTransportConfigured: mailConfigured,
+      liveSendEnabled: LIVE_SEND_ENABLED,
+      deployUrl: deployUrl || null
+    },
+    blocks,
+    nextRequiredForPublicLive: blocks.filter(block => !block.ok).map(block => ({ id: block.id, label: block.label, detail: block.detail }))
+  };
 }
 
 function sendJson(res, status, payload) {
@@ -1509,12 +1587,23 @@ const server = http.createServer(async (req, res) => {
       app: 'alma-fina-b2b-command-hub',
       mode: 'light-backend',
       auth: authEnabled() ? 'basic' : 'disabled',
+      liveSend: LIVE_SEND_ENABLED ? 'enabled' : 'disabled',
       observability: {
         metrics: '/metrics',
         logs: 'json-stdout',
         traces: getObservabilityState()
       }
     });
+  }
+
+  if (req.method === 'GET' && url.pathname === '/api/live-readiness') {
+    try {
+      const readiness = buildLiveReadiness();
+      return sendJson(res, readiness.ok ? 200 : 503, readiness);
+    } catch (err) {
+      logEvent('error', 'live_readiness_failed', { request_id: requestId, message: String(err) });
+      return sendJson(res, 500, { ok: false, status: 'NOT_READY', error: 'live_readiness_failed', message: String(err) });
+    }
   }
 
   if (req.method === 'GET' && url.pathname === '/metrics') {
@@ -1705,7 +1794,7 @@ const server = http.createServer(async (req, res) => {
       });
     } catch (err) {
       logEvent('error', 'outreach_approve_failed', { request_id: requestId, message: String(err) });
-      return sendJson(res, 500, { ok: false, error: 'outreach_approve_failed', message: String(err) });
+      return sendJson(res, errorStatusFor(err), { ok: false, error: 'outreach_approve_failed', message: String(err) });
     }
   }
 
@@ -1748,7 +1837,7 @@ const server = http.createServer(async (req, res) => {
       });
     } catch (err) {
       logEvent('error', 'outreach_send_test_failed', { request_id: requestId, message: String(err) });
-      return sendJson(res, 500, { ok: false, error: 'outreach_send_test_failed', message: String(err) });
+      return sendJson(res, errorStatusFor(err), { ok: false, error: 'outreach_send_test_failed', message: String(err) });
     }
   }
 
@@ -1761,6 +1850,20 @@ const server = http.createServer(async (req, res) => {
       }
       if (!payload.queue_id && !payload.queueId) {
         return sendJson(res, 400, { ok: false, error: 'missing_queue_id' });
+      }
+      if (!LIVE_SEND_ENABLED) {
+        return sendJson(res, 403, {
+          ok: false,
+          error: 'live_send_disabled',
+          message: 'Live send is disabled until ALMAFINA_LIVE_SEND_ENABLED=1 is configured.'
+        });
+      }
+      if (String(payload.confirm || '') !== LIVE_SEND_CONFIRMATION) {
+        return sendJson(res, 403, {
+          ok: false,
+          error: 'live_send_confirmation_required',
+          message: `Set confirm=${LIVE_SEND_CONFIRMATION} in the request body after manual approval and legal/provider checks.`
+        });
       }
       let mailResult;
       try {
@@ -1790,7 +1893,7 @@ const server = http.createServer(async (req, res) => {
       });
     } catch (err) {
       logEvent('error', 'outreach_send_live_failed', { request_id: requestId, message: String(err) });
-      return sendJson(res, 500, { ok: false, error: 'outreach_send_live_failed', message: String(err) });
+      return sendJson(res, errorStatusFor(err), { ok: false, error: 'outreach_send_live_failed', message: String(err) });
     }
   }
 

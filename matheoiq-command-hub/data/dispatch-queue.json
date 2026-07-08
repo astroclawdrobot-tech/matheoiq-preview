@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-06-30T15:25:00Z",
+  "queue": [
+    {"id":"MMQ-1001","city":"CDMX","patient":"Paciente demo A","forWhom":"Para mí","reason":"Fiebre y dolor general","urgency":"non_urgent","status":"ai_matching","clinic":"Clínica Norte CDMX","priceMxn":1250,"etaMin":26,"wave":1,"eligibleDoctors":5,"escalation":"none"},
+    {"id":"MMQ-1002","city":"Playa del Carmen","patient":"Paciente demo B","forWhom":"Familiar","reason":"Control postoperatorio simple","urgency":"non_urgent","status":"offer_sent","clinic":"Red Médica Playa","priceMxn":1450,"etaMin":24,"wave":2,"eligibleDoctors":3,"escalation":"none"},
+    {"id":"MMQ-1003","city":"Monterrey","patient":"Paciente demo C","forWhom":"Para mí","reason":"Dolor de pecho leve reportado","urgency":"red_flag","status":"triage_blocked","clinic":"Monterrey Care Network","priceMxn":0,"etaMin":null,"wave":0,"eligibleDoctors":0,"escalation":"clinical_safety_review"},
+    {"id":"MMQ-1004","city":"CDMX","patient":"Paciente demo D","forWhom":"Para mi hijo","reason":"Fiebre pediátrica sin signos graves","urgency":"watch","status":"payment_authorized","clinic":"Clínica Norte CDMX","priceMxn":1650,"etaMin":34,"wave":0,"eligibleDoctors":4,"escalation":"none"},
+    {"id":"MMQ-1005","city":"Guadalajara","patient":"Paciente demo E","forWhom":"Para mí","reason":"Consulta general a domicilio","urgency":"non_urgent","status":"waiting_coverage","clinic":"Médicos GDL Sur","priceMxn":0,"etaMin":null,"wave":0,"eligibleDoctors":0,"escalation":"coverage_gap"}
+  ]
+}
